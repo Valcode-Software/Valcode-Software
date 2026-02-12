@@ -6,6 +6,10 @@
   flex-shrink: 0;
   width: 100%;
   margin-top: auto;
+  /* Sombra superior: eje-x eje-y difuminado color */
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5); 
+  position: relative;
+  z-index: 10;
 }
 
 .container {
@@ -240,7 +244,7 @@
 }
 
 .copyright {
-  font-size: clamp(11px, 1.6vw, 13px);
+  font-size: clamp(15px, 1.6vw, 13px);
   color: #64748B;
   margin: 0;
   order: 2;

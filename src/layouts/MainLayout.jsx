@@ -2,14 +2,14 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../components/footer/Footer";
 import Navbar from "../components/navbar/navbar";
-
+import "./MainLayout.css";
 
 
 const MainLayout = () => {
   return (
-    <div className="flex flex-col min-h-screen w-full">
+    <div className="main-layout">
       <Navbar />
-      <div className="flex-1 flex flex-col w-full">
+      <div className="main-content">
         <Outlet />
       </div>
       <Footer />

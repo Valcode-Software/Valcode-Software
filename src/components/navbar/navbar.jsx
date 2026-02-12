@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RiLinkedinFill } from "react-icons/ri";
 import { HiMenu, HiX } from "react-icons/hi";
 import "./navbar.css";
-import logo from "../../assets/images/valcode_logo_all_white.png";
+import logo from "../../assets/img/valcode_logo_all_white.png";
 
 const Navbar = () => {
     const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);

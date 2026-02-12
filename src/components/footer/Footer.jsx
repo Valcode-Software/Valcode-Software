@@ -46,14 +46,15 @@ const Footer = () => {
   const socialLinksTop = [
     { icon: <Linkedin size={18} />, url: 'https://www.linkedin.com/in/valcode-software/', label: 'LinkedIn' },
     { icon: <Github size={18} />, url: '#', label: 'GitHub' },
-    { icon: <Instagram size={18} />, url: 'https://www.instagram.com/valcode.software/', label: 'Instagram' },
-    { icon: <XIcon size={18} />, url: 'https://x.com/valcodesoftware', label: 'X' }
+    { icon: <TiktokIcon size={18} />, url: '#', label: 'TikTok' },
+    { icon: <Youtube size={18} />, url: '#', label: 'YouTube' }
+  
   ];
 
   const socialLinksBottom = [
-    { icon: <TiktokIcon size={18} />, url: '#', label: 'TikTok' },
+    { icon: <Instagram size={18} />, url: 'https://www.instagram.com/valcode.software/', label: 'Instagram' },
     { icon: <Facebook size={18} />, url: 'https://www.facebook.com/profile.php?id=61580736153444', label: 'Facebook' },
-    { icon: <Youtube size={18} />, url: '#', label: 'YouTube' },
+    { icon: <XIcon size={18} />, url: 'https://x.com/valcodesoftware', label: 'X' },
     { icon: <WhatsappIcon size={18} />, url: '#', label: 'WhatsApp' }
   ];
 
@@ -69,7 +70,7 @@ const Footer = () => {
               <span className={styles.brandName}>Valcode Software</span>
             </div>
             <p className={styles.slogan}>
-              Code The Future 
+              Code the Future 
             </p>
             <div className={styles.socialWrapper}>
               <div className={styles.socialRow}>
