@@ -1,29 +1,148 @@
+import React from 'react';
+import { 
+  FileText, 
+  Shield, 
+  Cookie, 
+  Scale, 
+  Github, 
+  Linkedin, 
+  Instagram, 
+  Facebook,
+  Youtube
+} from 'lucide-react';
+import styles from './Footer.module.css';
+import img from  '../../assets/img/logovalcode.png';
+
+// Iconos personalizados para marcas específicas
+const XIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+    <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+  </svg>
+);
+
+const TiktokIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
+
+// Icono de WhatsApp corregido (icono real)
+const WhatsappIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+  </svg>
+);
+
 const Footer = () => {
+  const legalLinks = [
+    { icon: <FileText size={16} />, title: 'Términos y Condiciones' },
+    { icon: <Shield size={16} />, title: 'Política de Privacidad' },
+    { icon: <Cookie size={16} />, title: 'Política de Cookies' },
+    { icon: <Scale size={16} />, title: 'Aviso Legal' }
+  ];
+
+  // Redes sociales separadas en dos filas (4 arriba, 4 abajo)
+  const socialLinksTop = [
+    { icon: <Linkedin size={18} />, url: 'https://www.linkedin.com/in/valcode-software/', label: 'LinkedIn' },
+    { icon: <Github size={18} />, url: '#', label: 'GitHub' },
+    { icon: <Instagram size={18} />, url: '#', label: 'Instagram' },
+    { icon: <XIcon size={18} />, url: '#', label: 'X' }
+  ];
+
+  const socialLinksBottom = [
+    { icon: <TiktokIcon size={18} />, url: '#', label: 'TikTok' },
+    { icon: <Facebook size={18} />, url: '#', label: 'Facebook' },
+    { icon: <Youtube size={18} />, url: '#', label: 'YouTube' },
+    { icon: <WhatsappIcon size={18} />, url: '#', label: 'WhatsApp' }
+  ];
+
   return (
-    <footer className="w-full bg-black border-t border-gray-800 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0 text-center md:text-left">
-            <h2 className="text-xl font-bold text-white">Valcode Software</h2>
-            <p className="text-sm text-gray-400 mt-1">
-              © {new Date().getFullYear()} Todos los derechos reservados.
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        {/* Main Footer */}
+        <div className={styles.footerMain}>
+          {/* Brand Section */}
+          <div className={styles.brandSection}>
+            <div className={styles.logo}>
+              <img src={img} alt="Valcode Logo" className={styles.logoImg} />
+              <span className={styles.brandName}>Valcode Software</span>
+            </div>
+            <p className={styles.slogan}>
+              Code The Future 
             </p>
+            <div className={styles.socialWrapper}>
+              <div className={styles.socialRow}>
+                {socialLinksTop.map((social, index) => (
+                  <a 
+                    key={index} 
+                    href={social.url} 
+                    aria-label={social.label}
+                    className={styles.socialIcon}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+              <div className={styles.socialRow}>
+                {socialLinksBottom.map((social, index) => (
+                  <a 
+                    key={index} 
+                    href={social.url} 
+                    aria-label={social.label}
+                    className={styles.socialIcon}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Legal Section */}
+          <div className={styles.legalSection}>
+            <h4 className={styles.sectionTitle}>Legal</h4>
+            <div className={styles.legalLinks}>
+              {legalLinks.map((link, index) => (
+                <a key={index} href="#" className={styles.legalLink}>
+                  {link.icon}
+                  {link.title}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact Section */}
+          <div className={styles.contactSection}>
+            <h4 className={styles.sectionTitle}>Contacto</h4>
+            <div className={styles.contactInfo}>
+              <p>softwarevalcode@gmail.com</p>
+              <p>+57 3114672067</p>
+              <p className={styles.schedule}>Lun - Vie: 8:00 - 18:00</p>
+            </div>
+          </div>
+                    
+          <div className={styles.navSection}>
+            <h4 className={styles.sectionTitle}>Navegación</h4>
+            <div className={styles.navLinks}>
+              <p>Servicios</p>
+              <p>Proyectos</p>
+              <p>Nosotros</p>
+              <p>Contacto</p>
+            </div>
           </div>
           
-          <div className="flex space-x-6">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-              Inicio
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-              Servicios
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-              Proyectos
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-              Contacto
-            </a>
-          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className={styles.footerBottom}>
+          <p className={styles.copyright}>
+            © 2026 Valcode Software. Todos los derechos reservados.
+          </p>
         </div>
       </div>
     </footer>
