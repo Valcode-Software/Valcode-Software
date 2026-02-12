@@ -46,13 +46,13 @@ const Footer = () => {
   const socialLinksTop = [
     { icon: <Linkedin size={18} />, url: 'https://www.linkedin.com/in/valcode-software/', label: 'LinkedIn' },
     { icon: <Github size={18} />, url: '#', label: 'GitHub' },
-    { icon: <Instagram size={18} />, url: '#', label: 'Instagram' },
-    { icon: <XIcon size={18} />, url: '#', label: 'X' }
+    { icon: <Instagram size={18} />, url: 'https://www.instagram.com/valcode.software/', label: 'Instagram' },
+    { icon: <XIcon size={18} />, url: 'https://x.com/valcodesoftware', label: 'X' }
   ];
 
   const socialLinksBottom = [
     { icon: <TiktokIcon size={18} />, url: '#', label: 'TikTok' },
-    { icon: <Facebook size={18} />, url: '#', label: 'Facebook' },
+    { icon: <Facebook size={18} />, url: 'https://www.facebook.com/profile.php?id=61580736153444', label: 'Facebook' },
     { icon: <Youtube size={18} />, url: '#', label: 'YouTube' },
     { icon: <WhatsappIcon size={18} />, url: '#', label: 'WhatsApp' }
   ];
