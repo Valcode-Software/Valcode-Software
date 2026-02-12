@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap');
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  width: 90%;
+  max-width: 1100px;
+  height: 80px;
+  padding: 2px 12px; 
+  
+  /* Fondo azul más transparente y borroso */
+  background: rgba(30, 60, 200, 0.2); /* Más transparente */
+  backdrop-filter: blur(12px);        
+  -webkit-backdrop-filter: blur(12px); 
+
+  color: white;
+  border-radius: 30px;
+  z-index: 1000;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.35);
+}
+
+
+
+
+.logo {
+  font-size: 18px;      
+  font-weight: bold;
+  display: flex; /* Elimina espacios extra debajo de la imagen */
+}
+
+.logo img {
+  height: 115px; /* Ajusta la imagen para que quepa en la barra */
+  width: auto;  /* Mantiene la proporción original */
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;             /* menos espacio */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #cfcfcf;
+}
+
+.nav-links li {
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: "Playwrite NZ Basic", cursive;
+  font-size: 17px;
+  position: relative;
+}
+
+.nav-links li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;             /* empieza invisible */
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+.nav-links li:hover::after {
+  width: 100%;          /* se dibuja la línea */
+}
+.nav-links li:hover {
+  color: white;
+}
+
+.mobile-separator {
+  width: 85%;
+  height: 1px;
+  background-color: white;
+  margin: 10px 0;
+  opacity: 0.6;
+}
+
+.language-selector {
+  position: relative; /* Necesario para el posicionamiento absoluto del dropdown */
+  font-size: 14px;
+  cursor: pointer;
+  color: #cfcfcf;
+  margin-right: 20px;
+  margin-left: auto;
+}
+
+.selected-lang {
+  padding: 5px 10px;
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-right: 0;   /* antes 190px */
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: -30px;
+  background-color: #252440;
+  border: 1px solid #333;
+  border-radius: 5px;
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  z-index: 10;
+  min-width: 100px;
+
+  /* Animación suave sin bug */
+  opacity: 0;
+  visibility: hidden;  /* <-- evita que se pueda interactuar mientras está oculto */
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.language-selector:hover .lang-dropdown,
+.language-selector:focus-within .lang-dropdown {
+  opacity: 1;
+  visibility: visible;  /* <-- hace visible y clickeable */
+  transform: translateY(0);
+}
+
+.lang-dropdown li {
+  padding: 10px 20px;
+  transition: all 0.25s ease;
+  border-radius: 5px;
+}
+
+.lang-dropdown li:hover {
+  background-color: #d8d8d8;
+  color: rgb(30, 3, 72);
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 10px rgba(255, 255, 255, 0.5));
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+  margin-left: 10px;
+  margin-right: 75px;
+  text-decoration: none;
+  transition: all 0.3s ease; /* Transición suave para todo */
+}
+
+.social-link svg {
+  width: 1em;
+  height: 1em;
+  transition: all 0.3s ease; /* Transición del SVG también */
+}
+
+/* Hover moderno */
+.social-link:hover {
+  color: #ffffff;
+  transform: translateY(-5px) scale(1.2); /* Sube y agranda un poco */
+  filter: drop-shadow(0 4px 10px rgba(255, 255, 255, 0.5)); /* Sombra de color púrpura */
+}
+
+
+/* ICONO MENU */
+.mobile-menu-icon {
+  display: none;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* MENU FULL */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #252440;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  z-index: 999;
+  animation: slideDown 0.5s ease-out;
+}
+
+.mobile-nav-links {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mobile-nav-links li {
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+}
+
+.mobile-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.mobile-lang-selector {
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+}
+
+.current-lang {
+  font-size: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 25px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 100px;
+  z-index: 10;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-social-link {
+  font-size: 32px;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.mobile-social-link:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* RESPONSIVE LANDSCAPE (Móviles en horizontal) */
+@media (max-height: 800px) {
+  .mobile-menu {
+    padding-top: 40px; /* Subimos el menú más hacia arriba */
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding-bottom: 150px; /* Más espacio abajo */
+    gap: 15px; /* Menos espacio entre elementos */
+    height: 100dvh;
+    -webkit-overflow-scrolling: touch;
+  }
+
+.mobile-nav-links {
+  position: relative; /* o absolute si quieres sacarlo del flujo */
+  gap: 10px;
+  top: -30px; /* sube los links más arriba */
+}
+
+  .mobile-nav-links li {
+    font-size: 20px; /* Ajustable según necesidad */
+  }
+
+  .mobile-actions {
+    margin-top: 10px; /* Bajamos los iconos y el idioma */
+    margin-bottom: 20px;
+  }
+
+  .mobile-separator {
+    margin: -50px 0 0 0; /* Sube más la línea */
+  }
+}
+
+
+
+
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  /* Ajuste intermedio: Reducir tamaño para que quepan los links sin ocultarlos */
+  .nav-links {
+    gap: 11px;
+    top: 5px; 
+  }
+  .nav-links li {
+    font-size: 13px;
+  }
+  .logo img {
+    height: 90px;
+  }
+  .social-link {
+    margin-right: 25px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Pantallas pequeñas: Ocultar menú y mostrar hamburguesa */
+  .nav-links,
+  .language-selector,
+  .social-link {
+    display: none;
+  }
+
+  .mobile-menu-icon {
+    display: block;
+    margin-left: auto;
+  }
+
+  .logo img {
+    height: 100px;
+    margin-left: -45px;
+  }
+}

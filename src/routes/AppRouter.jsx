@@ -6,7 +6,7 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<MainLayout />}>
+         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
         </Route>
       </Routes>
