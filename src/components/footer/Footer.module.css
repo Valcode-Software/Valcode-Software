@@ -208,10 +208,7 @@
   cursor: pointer;
 }
 
-.schedule {
-  font-size: clamp(11px, 1.6vw, 13px);
-  color: #64748B;
-}
+
 
 /* Navegación */
 .navLinks p {

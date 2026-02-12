@@ -122,7 +122,6 @@ const Footer = () => {
             <div className={styles.contactInfo}>
               <p>softwarevalcode@gmail.com</p>
               <p>+57 3114672067</p>
-              <p className={styles.schedule}>Lun - Vie: 8:00 - 18:00</p>
             </div>
           </div>
                     
