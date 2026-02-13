@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { RiLinkedinFill } from "react-icons/ri";
+import { RiLinkedinFill, RiSearchLine } from "react-icons/ri";
 import { HiMenu, HiX } from "react-icons/hi";
 import "./navbar.css";
-import logo from "../../assets/img/valcode_logo_all_white.png";
+import logo from "../../assets/img/valcode_white_cleaned_logo.png";
 
 const Navbar = () => {
     const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
     const [selectedLang, setSelectedLang] = useState("ES");
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
 
 
   const handleLangSelect = (lang) => {
@@ -39,9 +40,22 @@ const Navbar = () => {
         )}
       </div>
 
+      <div className="search-icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
+        <RiSearchLine />
+      </div>
+
       <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
         <RiLinkedinFill />
       </a>
+
+      {isSearchOpen && (
+        <div className="search-dropdown">
+          <div className="search-input-wrapper">
+            <RiSearchLine className="search-input-icon" />
+            <input type="text" placeholder="Buscar..." autoFocus />
+          </div>
+        </div>
+      )}
 
       {/* ICONO MENU MOBILE */}
       <div className="mobile-menu-icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
