@@ -1,158 +1,123 @@
-import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import img1 from "../../assets/img/side2.jpg";
+import img2 from "../../assets/img/slide5.jpg";
+import img3 from "../../assets/img/side4.jpg";
+import img4 from "../../assets/img/side6.jpg";
+import img5 from "../../assets/img/side3.jpg";
+import img6 from "../../assets/img/side1.jpg";
 
-import { HiArrowRight } from "react-icons/hi";
-import leftImage from "../../assets/img/alex-knight-2EJCSULRwC8-unsplash-.png";
+const slides = [
+  {
+    img: img1,
+    title: "Nuestras Soluciones en Colombia",
+    desc: "Facilitamos procesos más ágiles y transparentes con soluciones tecnológicas innovadoras.",
+  },
+  {
+    img: img2,
+    title: "Soluciones digitales estratégicas para tu organización",
+    desc: "Desarrollamos tecnología alineada con los objetivos de tu empresa.",
+  },
+  {
+    img: img3,
+    title: "Innovamos contigo",
+    desc: "Impulsamos tu negocio con soluciones tecnológicas modernas, eficientes y a la medida.",
+  },
+  {
+    img: img4,
+    title: "Automatizamos procesos para hacer crecer tu negocio",
+    desc: "Desarrollamos soluciones de software que optimizan tu productividad y reducen costos.",
+  },
+  {
+    img: img5,
+    title: "Revoluciona tu negocio con inteligencia artificial",
+    desc: "Integramos IA para automatizar, optimizar y escalar tus procesos con soluciones inteligentes.",
+  },
+  {
+    img: img6,
+    title: "Más productividad, menos esfuerzo",
+    desc: "Optimizamos tus procesos para que tu equipo logre más en menos tiempo.",
+  },
+];
 
-gsap.registerPlugin(ScrollTrigger);
-
-export default function Hero() {
-  const heroRef = useRef();
-
-  const [text, setText] = useState("");
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const phrases = [
-    "Soluciones Tecnológicas",
-    "Innovación",
-    "Desarrollo a Medida",
-    "Inteligencia Artificial",
-  ];
-
-  // TYPEWRITER
-  useEffect(() => {
-    const currentPhrase = phrases[phraseIndex];
-    const speed = isDeleting ? 40 : 80;
-
-    const timer = setTimeout(() => {
-      if (!isDeleting && text === currentPhrase) {
-        setTimeout(() => setIsDeleting(true), 1500);
-      } else if (isDeleting && text === "") {
-        setIsDeleting(false);
-        setPhraseIndex((prev) => (prev + 1) % phrases.length);
-      } else {
-        setText(
-          currentPhrase.substring(0, text.length + (isDeleting ? -1 : 1))
-        );
-      }
-    }, speed);
-
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, phraseIndex]);
-
-  // GSAP
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".hero-card", {
-        scale: 0.85,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
+export default function HeroCarousel() {
+  const [index, setIndex] = useState(0);
 
   return (
-    <section
-      ref={heroRef}
-      className="
-      relative w-full min-h-[100dvh] text-white overflow-hidden
-      bg-gradient-to-br from-[#020617] via-[#172554] to-[#020617]
-      flex flex-col items-center justify-center
-      py-8 sm:py-0
-      "
-    >
-      {/* ESTRELLAS */}
-      <div className="absolute inset-0 z-0 pointer-events-none animate-stars" />
+    <section className="relative w-full h-[100dvh] overflow-hidden bg-black">
+      <AnimatePresence initial={false}>
+        <motion.div
+  key={index}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+  className="absolute inset-0"
+>
 
-      {/* CONTENEDOR CENTRAL */}
-      <div className="relative z-10 w-full flex items-center justify-center px-4 sm:px-6 md:px-8">
-        <div
-          className="
-          relative w-full
-          max-w-[380px]
-          xs:max-w-[420px]
-          sm:max-w-[520px]
-          md:max-w-[650px]
-          lg:max-w-[780px]
-          xl:max-w-[900px]
 
-          aspect-[3/4]
-          xs:aspect-[4/5]
-          sm:aspect-[5/6]
-          md:aspect-[16/14]
-          lg:aspect-[16/12]
-          xl:aspect-[16/10]
+          <img
+            src={slides[index].img}
+            alt={slides[index].title}
+            className="w-full h-full object-cover"
+          />
 
-          max-h-[70vh]
-          sm:max-h-[75vh]
-          md:max-h-[80vh]
-        "
-        >
-          {/* IMAGEN */}
-          <div className="hero-card absolute inset-0 overflow-hidden">
-            <img
-              src={leftImage}
-              className="w-full h-full object-cover object-[center_35%] brightness-110 contrast-110"
-              alt="Hero Visual"
-            />
+          {/* Overlay oscuro */}
+          <div className="absolute inset-0 bg-black/50" />
+
+          {/* Texto */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16 z-10">
+  <motion.h2
+    initial={{ y: 20, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ delay: 0.2 }}
+    className="
+      text-white
+                text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+      font-extrabold
+      tracking-tight
+      leading-tight
+      drop-shadow-2xl
+      mb-6
+      max-w-5xl
+      bg-gradient-to-r from-white via-gray-200 to-gray-400
+      bg-clip-text
+      text-transparent
+    "
+  >
+    {slides[index].title}
+  </motion.h2>
+
+  <motion.p
+    initial={{ y: 20, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ delay: 0.4 }}
+    className="
+      text-gray-100
+                text-lg sm:text-xl md:text-2xl lg:text-3xl
+      font-light
+      leading-relaxed
+      max-w-3xl
+      drop-shadow-md
+    "
+  >
+    {slides[index].desc}
+  </motion.p>
           </div>
+        </motion.div>
+      </AnimatePresence>
 
-          {/* TEXTO */}
-          <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-8">
-            <h1
-              className="
-              font-ia
-              text-[clamp(1.75rem,5.5vw,6rem)]
-              sm:text-[clamp(2rem,6vw,6rem)]
-              font-extrabold text-center
-              bg-gradient-to-r from-indigo-300 via-white to-indigo-400
-              bg-clip-text text-transparent
-              min-h-[1.2em]
-              tracking-wide 
-              md:tracking-[0.12em]
-              lg:tracking-[0.15em]
-              drop-shadow-[0_0_20px_rgba(129,140,248,0.45)]
-              sm:drop-shadow-[0_0_25px_rgba(129,140,248,0.45)]
-              transform scale-x-105
-              leading-tight
-              px-2
-            "
-            >
-              {text}
-              <span className="animate-pulse text-indigo-400 ml-1 sm:ml-2">|</span>
-            </h1>
-          </div>
-        </div>
-      </div>
-
-      {/* BOTÓN */}
-      <div className="relative z-20 w-full flex justify-center mt-8 pb-8 sm:mt-10 sm:pb-10 md:absolute md:bottom-10 md:mt-0 md:pb-0">
-        <button
-          className="
-          bg-indigo-600 hover:bg-indigo-500
-          px-5 py-2.5
-          sm:px-6 sm:py-3 
-          md:px-8 md:py-3.5
-          lg:px-10 lg:py-4
-          rounded-xl sm:rounded-2xl
-          text-sm sm:text-base md:text-lg
-          font-bold text-white
-          shadow-[0_0_20px_rgba(99,102,241,0.5)]
-          sm:shadow-[0_0_25px_rgba(99,102,241,0.5)]
-          backdrop-blur-md transition duration-300
-          flex items-center gap-2 sm:gap-3 cursor-pointer
-          border-none outline-none
-          hover:scale-105 active:scale-95
-        "
-        >
-          Contáctanos
-          <HiArrowRight className="animate-spin-slow text-lg sm:text-xl md:text-2xl" />
-        </button>
+      {/* Indicadores */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`w-3 h-3 rounded-full transition-all ${
+              i === index ? "bg-white w-6" : "bg-white/50"
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
