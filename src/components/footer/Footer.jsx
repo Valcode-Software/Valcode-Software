@@ -125,6 +125,19 @@ const Footer = () => {
               <p>+57 3114672067</p>
             </div>
           </div>
+
+                    {/* Contact Section */}
+          <div className={styles.contactSection}>
+            <h4 className={styles.sectionTitle}>Servicios</h4>
+            <div className={styles.contactInfo}>
+              <p>Desarrollo Web</p>
+              <p>Apps Móviles</p>
+              <p>Software a Medida</p>
+              <p>Diseño UI/UX</p>
+              <p>Cloud & DevOps</p>
+              <p>Consultoría IT</p>
+            </div>
+          </div>
                     
           <div className={styles.navSection}>
             <h4 className={styles.sectionTitle}>Navegación</h4>

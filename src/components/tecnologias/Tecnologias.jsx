@@ -363,6 +363,7 @@ const Tecnologias = () => {
           fadeOut={true} 
           fadeOutColor="#020617" 
           logoHeight={60}
+          scaleOnHover={true}
         />
       </div>
     </section>

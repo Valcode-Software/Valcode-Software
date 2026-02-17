@@ -1,5 +1,5 @@
 .footer {
-  background: #0B1A2A;
+  background: #020617;
   color: #E5E9F0;
   padding: clamp(32px, 5vw, 48px) 0 clamp(16px, 3vw, 24px);
   border-top: 1px solid rgba(229, 233, 240, 0.1);
@@ -41,12 +41,14 @@
 
 @media (min-width: 1024px) {
   .footerMain {
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+    gap: 30px;
   }
 }
 
 @media (min-width: 1280px) {
   .footerMain {
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
     gap: 60px;
   }
 }
@@ -152,7 +154,7 @@
 }
 
 .socialIcon:hover {
-  background: #007AFF;
+  background: #0a82fa;
   color: white;
   transform: translateY(-2px);
 }
@@ -195,7 +197,7 @@
 }
 
 .legalLink:hover {
-  color: #19908A;
+  color: #1E90FF;
 }
 
 /* Contact Section */
@@ -208,7 +210,7 @@
 }
 
 .contactInfo p:first-child:hover {
-  color: #19908A;
+  color: #1E90FF;
   cursor: pointer;
 }
 
@@ -221,7 +223,7 @@
 }
 
 .navLinks p:hover {
-  color: #19908A;
+  color: #1E90FF;
 }
 
 /* Bottom Bar */
