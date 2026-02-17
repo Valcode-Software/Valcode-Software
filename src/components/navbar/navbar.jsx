@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { RiLinkedinFill, RiSearchLine } from "react-icons/ri";
 import { HiMenu, HiX } from "react-icons/hi";
 import "./navbar.css";
@@ -9,6 +10,7 @@ const Navbar = () => {
     const [selectedLang, setSelectedLang] = useState("ES");
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const navigate = useNavigate();
 
 
   const handleLangSelect = (lang) => {
@@ -23,7 +25,8 @@ const Navbar = () => {
       </div>
 
       <ul className="nav-links">
-        <li>Nosotros</li>
+        <li onClick={() => navigate("/")}>Inicio</li>
+        <li onClick={() => navigate("/nosotros")}>Nosotros</li>
         <li>Servicios</li>
         <li>Productos</li>
         <li>Nuestro Trabajo</li>
@@ -66,7 +69,7 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="mobile-menu">
           <ul className="mobile-nav-links">
-            <li>Nosotros</li>
+            <li onClick={() => { setIsMobileMenuOpen(false); navigate("/nosotros"); }}>Nosotros</li>
             <li>Servicios</li>
             <li>Productos</li>
             <li>Nuestro Trabajo</li>
