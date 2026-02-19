@@ -10,7 +10,7 @@ const Card = ({ year, title, desc }) => {
     <div
       className="
         w-full max-w-[320px] min-h-[260px] flex flex-col p-6 rounded-xl
-        bg-gray-900
+        bg-[#020617]
         border border-pink-500/30
         hover:rotate-2
         transition-all duration-500
@@ -19,7 +19,7 @@ const Card = ({ year, title, desc }) => {
       "
     >
       <div className="flex-1">
-        <span className="text-gray-500 text-sm">{year}</span>
+        <span className="text-white text-sm">{year}</span>
 
         <h3 className="text-xl font-bold mt-2 mb-3">{title}</h3>
 
@@ -33,7 +33,7 @@ const Card = ({ year, title, desc }) => {
 
 const FounderCard = ({ img, name, role, linkedin }) => {
   return (
-    <div className="flex flex-col items-center bg-gray-900 border border-pink-500/20 rounded-xl p-6 w-full max-w-[300px] hover:-translate-y-2 transition-transform duration-300 shadow-lg shadow-pink-500/5">
+    <div className="flex flex-col items-center bg-[#020617] border border-pink-500/20 rounded-xl p-6 w-full max-w-[300px] hover:-translate-y-2 transition-transform duration-300 shadow-lg shadow-pink-500/5">
       <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-pink-500 mb-4">
         <img src={img} alt={name} className="w-full h-full object-cover" />
       </div>
@@ -53,11 +53,9 @@ const FounderCard = ({ img, name, role, linkedin }) => {
 
 const Nosotros = () => {
   return (
-    <section className="bg-gray-950 text-white min-h-screen py-12 md:py-20 relative overflow-hidden">
-      {/* Iluminaciones de fondo (Glow Effects) */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-pink-600/20 rounded-full blur-[120px] translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
-      <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-indigo-900/10 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+    <section className="bg-gradient-to-br from-[#020617] via-[#172554] to-[#020617] text-white min-h-screen py-12 md:py-20 relative overflow-hidden">
+      {/* ESTRELLAS / GALAXIA */}
+      <div className="absolute inset-0 z-0 pointer-events-none animate-stars opacity-40" />
 
       <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
 <br /><br />
@@ -65,17 +63,17 @@ const Nosotros = () => {
         <div className="grid md:grid-cols-2 gap-10 items-center mb-20 md:mb-32">
           <div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Somos TuEmpresa
+              Tu Empresa a llegado
             </h1>
 
-            <p className="text-pink-500 mb-4">
-              Misión & Visión
+            <p className="text-white mb-4">
+              Nuestro Propósito
             </p>
 
             <p className="text-gray-400">
 En Valcode trabajamos con el firme propósito de ofrecer soluciones digitales innovadoras que impulsen la transformación tecnológica de negocios pequeños. Nuestro objetivo es convertir la tecnología en un aliado estratégico que genere valor, optimice procesos y potencie la competitividad en un mercado en constante evolución.
 
-Nuestra misión es simplificar procesos y potenciar negocios con herramientas digitales avanzadas, brindando soluciones personalizadas para cada necesidad.
+Nos dedicamos a simplificar procesos y potenciar negocios con herramientas digitales avanzadas, brindando soluciones personalizadas para cada necesidad.
             </p>
           </div>
 
@@ -117,7 +115,7 @@ Nuestra misión es simplificar procesos y potenciar negocios con herramientas di
             <div className="hidden md:block"></div>
 
             {/* Punto */}
-            <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-pink-600 rounded-full -translate-x-1/2 border-4 border-gray-950"></div>
+            <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-gray-950"></div>
           </div>
 
           {/* ITEM 2 */}
@@ -132,7 +130,7 @@ Nuestra misión es simplificar procesos y potenciar negocios con herramientas di
               />
             </div>
 
-            <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-pink-600 rounded-full -translate-x-1/2 border-4 border-gray-950"></div>
+            <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-gray-950"></div>
           </div>
 
           {/* ITEM 3 */}
@@ -147,13 +145,13 @@ Nuestra misión es simplificar procesos y potenciar negocios con herramientas di
 
             <div className="hidden md:block"></div>
 
-            <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-pink-600 rounded-full -translate-x-1/2 border-4 border-gray-950"></div>
+            <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-gray-950"></div>
           </div>
 
         </div>
 
         <div className="mt-12 md:mt-20 text-center max-w-4xl mx-auto px-4">
-          <h3 className="text-2xl md:text-3xl font-bold text-pink-500 mb-4">Hoy</h3>
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Hoy</h3>
           <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-light">
             Hoy seguimos generando negocios poco a poco, transformando el futuro de las empresas en Colombia con innovación y pasión por la evolución digital.
           </p>

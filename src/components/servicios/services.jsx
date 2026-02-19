@@ -41,7 +41,7 @@ const services = [
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* TÍTULO */}
         <div className="mb-14">
-          <p className="text-gray-400 tracking-widest text-sm mb-2">
+          <p className="text-white tracking-widest text-sm mb-2">
             Nuestros Principales
           </p>
           <h2 className="text-5xl md:text-6xl font-extrabold tracking-wide">
@@ -81,7 +81,7 @@ const services = [
                 <h3 className="text-2xl font-extrabold tracking-wide mb-3">
                   {service.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-white text-sm leading-relaxed">
                   {service.desc}
                 </p>
               </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import img1 from "../../assets/img/side2.jpg";
 import img2 from "../../assets/img/slide5.jpg";
@@ -42,6 +42,14 @@ const slides = [
 
 export default function HeroCarousel() {
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % slides.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section className="relative w-full h-[100dvh] overflow-hidden bg-black">

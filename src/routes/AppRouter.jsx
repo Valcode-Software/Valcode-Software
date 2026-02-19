@@ -7,6 +7,8 @@ import Tecnologias from "../components/tecnologias/Tecnologias";
 import Services from "../components/servicios/services";
 import Aliados from "../components/aliados/strategicallybadge";
 import Nosotros from "../pages/Nosotros";
+import Chat from "../components/chat/floatingchat";
+import Contacto from "../pages/contacto";
 
 const ScrollReveal = ({ children }) => {
   return (
@@ -41,8 +43,10 @@ const AppRouter = () => {
             </div>
           } />
           <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/contacto" element={<Contacto />} />
         </Route>
       </Routes>
+      <Chat />
     </BrowserRouter>
   );
 };
