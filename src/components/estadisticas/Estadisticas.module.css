@@ -24,7 +24,7 @@
 
 .statCard:hover {
   transform: translateY(-10px);
-  border-color: #3b82f6; /* Color acento azul */
+  border-color: #71a8ff; /* Color acento azul */
 }
 
 .number {
