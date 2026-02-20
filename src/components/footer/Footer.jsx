@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   FileText, 
   Shield, 
@@ -36,10 +37,10 @@ const WhatsappIcon = ({ size = 18 }) => (
 
 const Footer = () => {
   const legalLinks = [
-    { icon: <FileText size={16} />, title: 'Términos y Condiciones' },
-    { icon: <Shield size={16} />, title: 'Política de Privacidad' },
-    { icon: <Cookie size={16} />, title: 'Política de Cookies' },
-    { icon: <Scale size={16} />, title: 'Aviso Legal' }
+    { icon: <FileText size={16} />, title: 'Términos y Condiciones', path: '/terminos' },
+    { icon: <Shield size={16} />, title: 'Política de Privacidad', path: '/privacidad' },
+    { icon: <Cookie size={16} />, title: 'Política de Cookies', path: '/cookies' },
+    { icon: <Scale size={16} />, title: 'Aviso Legal', path: '/aviso-legal' }
   ];
 
   // Redes sociales separadas en dos filas (4 arriba, 4 abajo)
@@ -109,10 +110,10 @@ const Footer = () => {
             <h4 className={styles.sectionTitle}>Legal</h4>
             <div className={styles.legalLinks}>
               {legalLinks.map((link, index) => (
-                <a key={index} href="#" className={styles.legalLink}>
+                <Link key={index} to={link.path} className={styles.legalLink}>
                   {link.icon}
                   {link.title}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

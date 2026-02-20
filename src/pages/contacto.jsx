@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { RiSmartphoneLine, RiMailLine, RiCheckLine, RiErrorWarningLine, RiCloseLine } from "react-icons/ri";
 import emailjs from '@emailjs/browser';
 
@@ -10,6 +11,7 @@ export default function ContactPage() {
     email: "",
     telefono: "",
     mensaje: "",
+    acceptedTerms: false,
   });
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
@@ -68,7 +70,12 @@ export default function ContactPage() {
       return "";
     },
     mensaje: (value) => {
+      if (!value.trim()) return "El mensaje es obligatorio.";
       if (value.trim().length > 1000) return "El mensaje no puede exceder 1000 caracteres.";
+      return "";
+    },
+    acceptedTerms: (value) => {
+      if (!value) return "Debes aceptar los términos y condiciones para continuar.";
       return "";
     }
   };
@@ -81,13 +88,15 @@ export default function ContactPage() {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
 
-    let processedValue = value;
-    if (name === 'telefono') {
-      processedValue = value.replace(/\D/g, '');
-    } else if (name === 'nombre') {
-      processedValue = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+    let processedValue = type === 'checkbox' ? checked : value;
+    if (type !== 'checkbox') {
+      if (name === 'telefono') {
+        processedValue = value.replace(/\D/g, '');
+      } else if (name === 'nombre') {
+        processedValue = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+      }
     }
 
     setFormData((prev) => ({ ...prev, [name]: processedValue }));
@@ -99,10 +108,11 @@ export default function ContactPage() {
   };
 
   const handleBlur = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setTouched((prev) => ({ ...prev, [name]: true }));
 
-    const error = validateField(name, name === 'telefono' ? value.replace(/\D/g, '') : value);
+    const val = type === 'checkbox' ? checked : (name === 'telefono' ? value.replace(/\D/g, '') : value);
+    const error = validateField(name, val);
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
@@ -125,7 +135,8 @@ export default function ContactPage() {
       nombre: true,
       email: true,
       telefono: true,
-      mensaje: true
+      mensaje: true,
+      acceptedTerms: true
     });
 
     return isValid;
@@ -135,7 +146,7 @@ export default function ContactPage() {
     const lastId = localStorage.getItem('lastRequestId');
     const nextId = lastId ? parseInt(lastId) + 1 : 1;
     localStorage.setItem('lastRequestId', nextId.toString());
-    return `VAL-${String(nextId).padStart(4, '0')}`;
+    return `VAL-${String(nextId).padStart(2, '0')}`;
   };
 
   const showNotification = (message, type) => {
@@ -198,6 +209,7 @@ export default function ContactPage() {
         email: "",
         telefono: "",
         mensaje: "",
+        acceptedTerms: false,
       });
 
       setTouched({});
@@ -222,7 +234,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#020617] via-[#172554] to-[#020617] relative overflow-hidden px-4 pt-24 pb-12">
+    <div className="min-h-screen bg-gradient-to-br from-[#020617] via-[#172554] to-[#020617] relative overflow-hidden px-4 pt-36 pb-24">
       
       {/* NOTIFICACIÓN FLOTANTE MODERNA */}
       {notification.show && (
@@ -273,7 +285,7 @@ export default function ContactPage() {
           </h1>
 
           <p className="text-gray-600 mb-6 text-sm">
-            Todos los campos marcados con <span className="text-red-500">*</span> son obligatorios
+            Comparta su idea con nosotros y desarrollemos la mejor solución.
           </p>
 
           <form ref={formRef} onSubmit={sendEmail} className="mt-8 space-y-4" noValidate>
@@ -281,7 +293,7 @@ export default function ContactPage() {
               <input
                 type="text"
                 name="empresa"
-                placeholder="Empresa *"
+                placeholder="Empresa"
                 value={formData.empresa}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -308,7 +320,7 @@ export default function ContactPage() {
               <input
                 type="text"
                 name="nombre"
-                placeholder="Nombre completo *"
+                placeholder="Nombre"
                 value={formData.nombre}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -335,7 +347,7 @@ export default function ContactPage() {
               <input
                 type="email"
                 name="email"
-                placeholder="Email corporativo *"
+                placeholder="Email corporativo"
                 value={formData.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -362,7 +374,7 @@ export default function ContactPage() {
               <input
                 type="tel"
                 name="telefono"
-                placeholder="Teléfono *"
+                placeholder="Teléfono"
                 value={formData.telefono}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -389,15 +401,17 @@ export default function ContactPage() {
               <textarea
                 rows="3"
                 name="mensaje"
-                placeholder="Cuéntanos sobre tu proyecto..."
+                placeholder="Cuéntanos sobre tu proyecto"
                 value={formData.mensaje}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
                 maxLength={1000}
                 className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${
-                  errors.mensaje && touched.mensaje 
-                    ? "border-red-500 focus:ring-red-500" 
+                  errors.mensaje && touched.mensaje
+                    ? "border-red-500 focus:ring-red-500"
+                    : formData.mensaje && !errors.mensaje && touched.mensaje
+                    ? "border-green-500 focus:ring-green-500"
                     : "border-gray-200 focus:ring-blue-800"
                 } focus:outline-none focus:ring-2 transition-all ${
                   isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
@@ -416,10 +430,34 @@ export default function ContactPage() {
               )}
             </div>
 
+            <div className="flex flex-col">
+              <div className="flex items-start gap-2">
+                <input
+                  type="checkbox"
+                  name="acceptedTerms"
+                  id="acceptedTerms"
+                  checked={formData.acceptedTerms}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  disabled={isSubmitting}
+                  className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                />
+                <label htmlFor="acceptedTerms" className="text-sm text-gray-600 cursor-pointer select-none">
+                  He leído y acepto los <Link to="/terminos" target="_blank" className="text-blue-600 hover:underline font-medium">Términos y Condiciones</Link> y la <Link to="/privacidad" target="_blank" className="text-blue-600 hover:underline font-medium">Política de Privacidad</Link>.
+                </label>
+              </div>
+              {errors.acceptedTerms && touched.acceptedTerms && (
+                <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
+                  <RiErrorWarningLine className="flex-shrink-0" />
+                  {errors.acceptedTerms}
+                </p>
+              )}
+            </div>
+
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full bg-gradient-to-r from-[#020617] to-[#172554] text-white py-3 rounded-xl font-semibold hover:from-[#172554] hover:to-[#020617] transition-all duration-300 shadow-lg transform hover:scale-105 ${
+              className={`w-full bg-gradient-to-r from-[#020617] to-[#172554] text-white py-3 rounded-xl font-semibold hover:from-[#020617] hover:to-[#020617] transition-all duration-300 shadow-lg transform hover:scale-105 ${
                 isSubmitting ? 'opacity-50 cursor-not-allowed hover:scale-100' : ''
               }`}
             >
@@ -442,7 +480,7 @@ export default function ContactPage() {
         <div className="flex flex-col justify-center text-white space-y-6">
           <div>
             <h2 className="text-3xl font-bold mb-4">
-              <span className="text-blue-400">Impulsar el</span><br />
+              <span style={{ color: '#1E90FF' }}>Impulsar el</span><br />
               Crecimiento Empresarial
             </h2>
             <p className="text-gray-300 leading-relaxed">
@@ -455,7 +493,7 @@ export default function ContactPage() {
           <div>
             <div className="flex items-start group hover:bg-white/10 transition-all duration-300 p-3 rounded-xl">
               <div className="bg-blue-500/20 p-3 rounded-xl group-hover:bg-blue-500/30 transition-all duration-300">
-                <RiSmartphoneLine className="text-blue-400" size={24} />
+                <RiSmartphoneLine style={{ color: '#1E90FF' }} size={24} />
               </div>
               <div className="ml-4">
                 <h4 className="text-sm font-medium text-gray-400">Celular</h4>
@@ -465,7 +503,7 @@ export default function ContactPage() {
 
             <div className="flex items-start group hover:bg-white/10 transition-all duration-300 p-3 rounded-xl">
               <div className="bg-blue-500/20 p-3 rounded-xl group-hover:bg-blue-500/30 transition-all duration-300">
-                <RiMailLine className="text-blue-400" size={24} />
+                <RiMailLine style={{ color: '#1E90FF' }} size={24} />
               </div>
               <div className="ml-4">
                 <h4 className="text-sm font-medium text-gray-400">E-mail</h4>
