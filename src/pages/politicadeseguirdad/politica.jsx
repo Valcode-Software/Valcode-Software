@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Politica.module.css';
+import styles from './politica.module.css';
 
 const PoliticaPrivacidad = () => {
   return (
@@ -17,7 +17,7 @@ const PoliticaPrivacidad = () => {
           />
           <h1 className={styles.mainTitle}>POLÍTICA DE PRIVACIDAD</h1>
           <p className={styles.subtitle}>Valcode Software Solutions</p>
-          <p className={styles.updateDate}>Última actualización: 20 de febrero de 2024</p>
+          <p className={styles.updateDate}>Última actualización: 29 de febrero de 2024</p>
         </div>
 
         <div className={styles.contentSection}>
