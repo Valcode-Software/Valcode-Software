@@ -66,7 +66,7 @@ export default function ContactPage() {
       // Eliminar espacios, guiones y otros caracteres no numéricos
       const cleanNumber = value.replace(/\D/g, '');
       
-      if (cleanNumber.length < 7) return "Debe tener al menos 7 dígitos.";
+      if (cleanNumber.length !== 10) return "El teléfono debe tener exactamente 10 dígitos.";
       return "";
     },
     mensaje: (value) => {
@@ -379,6 +379,7 @@ export default function ContactPage() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
+                maxLength={10}
                 className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${
                   errors.telefono && touched.telefono 
                     ? "border-red-500 focus:ring-red-500" 

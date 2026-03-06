@@ -6,6 +6,7 @@ import Estadisticas from "../components/estadisticas/Estadisticas";
 import Tecnologias from "../components/tecnologias/Tecnologias";
 import Services from "../components/servicios/services";
 import Aliados from "../components/aliados/strategicallybadge";
+import PorqueValcode from "../components/porque/porque";
 import Nosotros from "../pages/nosotros";
 import ContactPage from "../pages/contacto";
 import Terminos from "../pages/tyc/tyc";
@@ -36,6 +37,9 @@ const AppRouter = () => {
               <Hero />
               <ScrollReveal>
                 <Estadisticas />
+              </ScrollReveal>
+              <ScrollReveal>
+                <PorqueValcode />
               </ScrollReveal>
               <ScrollReveal>
                 <Tecnologias />

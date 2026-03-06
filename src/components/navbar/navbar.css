@@ -8,8 +8,8 @@
   height: 80px;
   padding: 0 20px;
   box-sizing: border-box;
-  background: #ffffff; /* Azul oscuro neutro sólido */
-  color: rgb(23, 5, 51);
+  background: #020617; /* Azul oscuro neutro sólido */
+  color: rgb(255, 255, 255);
   border-radius: 0;
   z-index: 1000;
   box-shadow: 0 3px 12px rgba(0,0,0,0.35);
@@ -42,7 +42,7 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 14px;
-  color: rgb(23, 5, 51);
+  color: rgb(255, 255, 255);
 }
 
 .nav-links li {
@@ -59,7 +59,7 @@
   bottom: -4px;
   width: 0;             /* empieza invisible */
   height: 2px;
-  background: rgb(23, 5, 51);
+  background: rgb(255, 255, 255);
   transition: width 0.3s ease;
 }
 .nav-links li:hover::after {
@@ -81,7 +81,7 @@
   position: relative; /* Necesario para el posicionamiento absoluto del dropdown */
   font-size: 14px;
   cursor: pointer;
-  color: rgb(23, 5, 51);
+  color: rgb(255, 255, 255);
   margin-right: 20px;
   margin-left: auto;
 }
@@ -100,6 +100,7 @@
   right: -30px;
   background-color: #fdfdfd;
   border: 1px solid #333;
+  color: black;
   border-radius: 5px;
   list-style: none;
   padding: 5px 0;
@@ -129,7 +130,7 @@
 
 .lang-dropdown li:hover {
   background-color: #d8d8d8;
-  color: rgb(30, 3, 72);
+  color: rgb(0, 0, 0);
   transform: scale(1.05);
   filter: drop-shadow(0 4px 10px rgba(255, 255, 255, 0.5));
 }
@@ -138,7 +139,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(23, 5, 51); /* Azul oscuro para verse en fondo blanco */
+  color: rgb(255, 255, 255); /* Azul oscuro para verse en fondo blanco */
   font-size: 22px;
   margin-left: 10px;
   margin-right: 75px;
@@ -162,7 +163,7 @@
 .search-icon {
   font-size: 22px;
   cursor: pointer;
-  color: rgb(23, 5, 51); /* Azul oscuro */
+  color: rgb(255, 255, 255); /* Azul oscuro */
   margin-left: 15px;
   display: flex;
   align-items: center;
@@ -170,7 +171,7 @@
 }
 
 .search-icon:hover {
-  color: #2563eb; /* Azul brillante */
+  color: #ffffff; /* Azul brillante */
   transform: scale(1.1);
 }
 
@@ -180,7 +181,7 @@
   left: 0;
   width: 100%;
   margin-top: -1px;
-  background: #0B1A2A;
+  background: #ffffff;
   padding: 15px;
   border-radius: 20px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);

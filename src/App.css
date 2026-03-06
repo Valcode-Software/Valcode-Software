@@ -1,0 +1,21 @@
+/* Ancho de la barra */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Fondo del track */
+::-webkit-scrollbar-track {
+  background: #000; /* o #000 si quieres fondo negro */
+}
+
+/* La barra en sí */
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 2px solid transparent; /* efecto más fino */
+}
+
+/* Hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #e6e6e6;
+}

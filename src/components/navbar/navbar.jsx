@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { RiLinkedinFill, RiSearchLine } from "react-icons/ri";
 import { HiMenu, HiX } from "react-icons/hi";
 import "./navbar.css";
-import logo from "../../assets/img/valcode_white_cleaned_logo.png";
+import logo from "../../assets/img/Logo_Valcode_Software_White.png";
 
 const Navbar = () => {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
@@ -55,9 +55,10 @@ const Navbar = () => {
 
       <ul className="nav-links">
         <li onClick={() => navigate("/")}>Inicio</li>
-        <li onClick={() => navigate("/nosotros")}>Nosotros</li>
         <li>Servicios</li>
-        <li>blog</li>
+        <li onClick={() => navigate("/nosotros")}>Nosotros</li>
+        <li>Proyectos</li>
+        <li>Blog</li>
         <li onClick={() => navigate("/contacto")}>Contacto</li>
       </ul>
 
