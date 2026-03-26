@@ -12,6 +12,7 @@ import {
   Youtube
 } from 'lucide-react';
 import styles from './Footer.module.css';
+import WhatsAppButton from '../whatsapp/WhatsAppButton';
 import img from  '../../assets/img/logovalcode.png';
 
 // Iconos personalizados para marcas específicas
@@ -159,6 +160,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
+      <WhatsAppButton />
     </footer>
   );
 };

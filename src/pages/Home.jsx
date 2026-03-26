@@ -5,6 +5,7 @@ import Tecnologias from "../components/tecnologias/Tecnologias";
 import Services from "../components/servicios/services";
 import Aliados from "../components/aliados/strategicallybadge";
 import PorqueValcode from "../components/porque/porque";
+import IndustriesSection from "../components/industrias/industriessection";
 
 const ScrollReveal = ({ children }) => {
   return (
@@ -36,6 +37,9 @@ const Home = () => {
             <Services />
             <ScrollReveal>
                 <Aliados />
+            </ScrollReveal>
+            <ScrollReveal>
+                <IndustriesSection />
             </ScrollReveal>
         </div>
     );
