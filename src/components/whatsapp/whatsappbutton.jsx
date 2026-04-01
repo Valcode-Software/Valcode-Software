@@ -1,5 +1,5 @@
 import React from 'react';
-import './whatsAppbutton.css';
+import './whatsappbutton.css';
 
 const WhatsAppButton = () => {
   const phoneNumber = "573114672067";
