@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import Hero from "../components/hero/hero";
-import Estadisticas from "../components/estadisticas/Estadisticas";
 import Tecnologias from "../components/tecnologias/Tecnologias";
 import Services from "../components/servicios/services";
 import Aliados from "../components/aliados/strategicallybadge";
@@ -25,9 +24,6 @@ const Home = () => {
     return (
         <div className="flex flex-col w-full">
             <Hero />
-            <ScrollReveal>
-                <Estadisticas />
-            </ScrollReveal>
             <ScrollReveal>
                 <PorqueValcode />
             </ScrollReveal>

@@ -103,8 +103,6 @@ const PorqueValcode = () => {
               que entendieron nuestra visión y la hicieron realidad superando expectativas."
             </p>
             <div className={styles['testimonio-autor']}>
-              <strong>Carlos Rodríguez</strong>
-              <span>CEO, TechInnovate</span>
             </div>
           </div>
         </div>

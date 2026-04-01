@@ -58,7 +58,6 @@ const Navbar = () => {
         <li>Servicios</li>
         <li onClick={() => navigate("/nosotros")}>Nosotros</li>
         <li onClick={() => navigate("/proyectos")}>Proyectos</li>
-        <li>Blog</li>
         <li onClick={() => navigate("/contacto")}>Contacto</li>
       </ul>
 
@@ -143,14 +142,6 @@ const Navbar = () => {
               }}
             >
               Servicios
-            </li>
-            <li
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                navigate("/blog");
-              }}
-            >
-              blog
             </li>
             <li
               onClick={() => {

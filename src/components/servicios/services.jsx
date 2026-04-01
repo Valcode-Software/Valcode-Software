@@ -31,22 +31,22 @@ const services = [
   return (
     <section
       className="
-        relative w-full py-20 text-white overflow-hidden
+        relative w-full py-24 text-white overflow-hidden
         bg-gradient-to-br from-[#020617] via-[#172554] to-[#020617]
       "
     >
       {/* ESTRELLAS / GALAXIA */}
       <div className="absolute inset-0 z-0 pointer-events-none animate-stars opacity-40" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* TÍTULO */}
-        <div className="mb-14">
-          <p className="text-white tracking-widest text-sm mb-2">
-            Nuestros Principales
-          </p>
-          <h2 className="text-5xl md:text-6xl font-extrabold tracking-wide">
-            SERVICIOS
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Nuestros Servicios
           </h2>
+          <p className="text-gray-400 text-lg">
+            Soluciones digitales que impulsan negocios
+          </p>
         </div>
 
         {/* GRID */}
@@ -56,12 +56,12 @@ const services = [
               key={i}
               className="
                 group relative p-8 rounded-2xl
-                bg-gradient-to-br from-[#111827] to-[#1f2933]
-                border border-white/10
-                hover:border-indigo-500/40
-                transition duration-300
+                bg-slate-900/50 backdrop-blur-md
+                border border-pink-500/20
+                hover:border-pink-500/50
+                transition duration-500
                 hover:scale-[1.02]
-                shadow-lg hover:shadow-indigo-500/20
+                shadow-2xl hover:shadow-pink-500/10
                 min-h-[280px]
                 flex flex-col justify-between
                 overflow-hidden
@@ -78,10 +78,10 @@ const services = [
               </div>
 
               <div className="relative z-10">
-                <h3 className="text-2xl font-extrabold tracking-wide mb-3">
+                <h3 className="text-2xl font-bold tracking-wide mb-3">
                   {service.title}
                 </h3>
-                <p className="text-white text-sm leading-relaxed">
+                <p className="text-gray-300 text-sm leading-relaxed">
                   {service.desc}
                 </p>
               </div>
@@ -92,8 +92,8 @@ const services = [
                   relative z-10 self-end mt-6 w-10 h-10 rounded-lg
                   border border-white/20
                   flex items-center justify-center
-                  group-hover:bg-indigo-600
-                  group-hover:border-indigo-600
+                  group-hover:bg-pink-600
+                  group-hover:border-pink-600
                   transition
                 "
               >

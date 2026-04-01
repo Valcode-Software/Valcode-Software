@@ -23,7 +23,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #2563eb;
+  color: #0b2152;
   background: rgba(37, 99, 235, 0.1);
   padding: 0.5rem 1rem;
   border-radius: 100px;
@@ -33,14 +33,14 @@
 .title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #0b2152;
   margin-bottom: 1.5rem;
   line-height: 1.2;
 }
 
 .description {
   font-size: 1.125rem;
-  color: #475569;
+  color: #0b2152;
   max-width: 700px;
   margin: 0 auto;
   line-height: 1.6;
@@ -65,13 +65,13 @@
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #2563eb;
+  color: #0b2152;
   margin-bottom: 0.5rem;
 }
 
 .stat-label {
   font-size: 0.875rem;
-  color: #64748b;
+  color: #0b2152;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -96,7 +96,7 @@
 .beneficio-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 30px 35px -10px rgba(37, 99, 235, 0.15);
-  border-color: #2563eb;
+  border-color: #0b2152;
 }
 
 .icon-wrapper {
@@ -105,19 +105,19 @@
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
   border-radius: 1rem;
   margin-bottom: 1.5rem;
-  color: #2563eb;
+  color: #0b2152;
 }
 
 .beneficio-titulo {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #0f172a;
+  color: #0b2152;
   margin-bottom: 0.75rem;
 }
 
 .beneficio-descripcion {
   font-size: 0.95rem;
-  color: #475569;
+  color: #0b2152;
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
@@ -127,26 +127,26 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: #2563eb;
+  color: #0b2152;
   font-weight: 500;
   padding-top: 1rem;
   border-top: 1px solid #e2e8f0;
 }
 
 /* Testimonio */
-.testimonio {
-  margin-bottom: 4rem;
-  padding: 2rem;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  border-radius: 2rem;
-  color: white;
-}
+  .testimonio {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-radius: 2rem;
+    color: white;
+  }
 
-.testimonio-content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
+  .testimonio-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
 
 .star-icon {
   color: #fbbf24;
@@ -204,7 +204,7 @@
 }
 
 .cta-button {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #0b2152 0%, #0b2152 100%);
   color: white;
   font-size: 1.125rem;
   font-weight: 600;
