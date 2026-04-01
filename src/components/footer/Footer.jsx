@@ -12,7 +12,7 @@ import {
   Youtube
 } from 'lucide-react';
 import styles from './Footer.module.css';
-import WhatsAppButton from '../whatsapp/WhatsAppButton';
+import WhatsAppButton from '../whatsapp/whatsappbutton';
 import img from  '../../assets/img/logovalcode.png';
 
 // Iconos personalizados para marcas específicas
