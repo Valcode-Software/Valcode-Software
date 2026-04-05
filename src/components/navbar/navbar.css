@@ -8,12 +8,14 @@
   height: 80px;
   padding: 0 20px;
   box-sizing: border-box;
-  background: #020617; /* Azul oscuro neutro sólido */
+  background: #020617;
+  /* Azul oscuro neutro sólido */
   color: rgb(255, 255, 255);
   border-radius: 0;
   z-index: 1000;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.35);
-  border-bottom: 1px solid rgba(23, 5, 51, 0.1); /* Borde sutil oscuro */
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(23, 5, 51, 0.1);
+  /* Borde sutil oscuro */
   transition: transform 0.35s ease-in-out, box-shadow 0.3s ease;
 }
 
@@ -22,19 +24,23 @@
 }
 
 .logo {
-  font-size: 18px;      
+  font-size: 18px;
   font-weight: bold;
-  display: flex; /* Elimina espacios extra debajo de la imagen */
+  display: flex;
+  /* Elimina espacios extra debajo de la imagen */
 }
 
 .logo img {
-  height: 115px; /* Ajusta la imagen para que quepa en la barra */
-  width: auto;  /* Mantiene la proporción original */
+  height: 115px;
+  /* Ajusta la imagen para que quepa en la barra */
+  width: auto;
+  /* Mantiene la proporción original */
 }
 
 .nav-links {
   display: flex;
-  gap: 25px;             /* menos espacio */
+  gap: 25px;
+  /* menos espacio */
   list-style: none;
   margin: 0;
   padding: 0;
@@ -57,16 +63,21 @@
   position: absolute;
   left: 0;
   bottom: -4px;
-  width: 0;             /* empieza invisible */
+  width: 0;
+  /* empieza invisible */
   height: 2px;
   background: rgb(255, 255, 255);
   transition: width 0.3s ease;
 }
+
 .nav-links li:hover::after {
-  width: 100%;          /* se dibuja la línea */
+  width: 100%;
+  /* se dibuja la línea */
 }
+
 .nav-links li:hover {
-  color: #2563eb; /* Azul brillante al pasar el mouse */
+  color: #2563eb;
+  /* Azul brillante al pasar el mouse */
 }
 
 .mobile-separator {
@@ -78,7 +89,8 @@
 }
 
 .language-selector {
-  position: relative; /* Necesario para el posicionamiento absoluto del dropdown */
+  position: relative;
+  /* Necesario para el posicionamiento absoluto del dropdown */
   font-size: 14px;
   cursor: pointer;
   color: rgb(255, 255, 255);
@@ -91,7 +103,8 @@
   border: 1px solid #d6d6d6;
   border-radius: 5px;
   transition: background-color 0.3s;
-  margin-right: 0;   /* antes 190px */
+  margin-right: 0;
+  /* antes 190px */
 }
 
 .lang-dropdown {
@@ -110,7 +123,8 @@
 
   /* Animación suave sin bug */
   opacity: 0;
-  visibility: hidden;  /* <-- evita que se pueda interactuar mientras está oculto */
+  visibility: hidden;
+  /* <-- evita que se pueda interactuar mientras está oculto */
   transform: translateY(-10px);
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
@@ -118,7 +132,8 @@
 .language-selector:hover .lang-dropdown,
 .language-selector:focus-within .lang-dropdown {
   opacity: 1;
-  visibility: visible;  /* <-- hace visible y clickeable */
+  visibility: visible;
+  /* <-- hace visible y clickeable */
   transform: translateY(0);
 }
 
@@ -139,31 +154,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(255, 255, 255); /* Azul oscuro para verse en fondo blanco */
+  color: rgb(255, 255, 255);
+  /* Azul oscuro para verse en fondo blanco */
   font-size: 22px;
   margin-left: 10px;
   margin-right: 75px;
   text-decoration: none;
-  transition: all 0.3s ease; /* Transición suave para todo */
+  transition: all 0.3s ease;
+  /* Transición suave para todo */
 }
 
 .social-link svg {
   width: 1em;
   height: 1em;
-  transition: all 0.3s ease; /* Transición del SVG también */
+  transition: all 0.3s ease;
+  /* Transición del SVG también */
 }
 
 /* Hover moderno */
 .social-link:hover {
-  color: #2563eb; /* Azul brillante */
-  transform: translateY(-5px) scale(1.2); /* Sube y agranda un poco */
-  filter: drop-shadow(0 4px 10px rgba(37, 99, 235, 0.3)); /* Sombra azul */
+  color: #2563eb;
+  /* Azul brillante */
+  transform: translateY(-5px) scale(1.2);
+  /* Sube y agranda un poco */
+  filter: drop-shadow(0 4px 10px rgba(37, 99, 235, 0.3));
+  /* Sombra azul */
 }
 
 .search-icon {
   font-size: 22px;
   cursor: pointer;
-  color: rgb(255, 255, 255); /* Azul oscuro */
+  color: rgb(255, 255, 255);
+  /* Azul oscuro */
   margin-left: 15px;
   display: flex;
   align-items: center;
@@ -171,7 +193,8 @@
 }
 
 .search-icon:hover {
-  color: #ffffff; /* Azul brillante */
+  color: #ffffff;
+  /* Azul brillante */
   transform: scale(1.1);
 }
 
@@ -184,7 +207,7 @@
   background: #1a0a2e;
   padding: 15px;
   border-radius: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
   animation: slideDown 0.3s ease;
   box-sizing: border-box;
@@ -204,6 +227,7 @@
   font-size: 18px;
   pointer-events: none;
 }
+
 .search-dropdown input {
   width: 100%;
   background: transparent;
@@ -217,20 +241,20 @@
 
   /* estilo moderno */
   border: none;
-  border-bottom: 2px solid rgba(255,255,255,0.25);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
   border-radius: 0;
   transition: all 0.25s ease;
 }
 
 /* Línea glow al enfocar */
 .search-dropdown input:focus {
-  border-bottom: 2px solid rgba(255,255,255,0.8);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
   box-shadow: none;
 }
 
 /* Placeholder */
 .search-dropdown input::placeholder {
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
   font-weight: 300;
 }
 
@@ -247,7 +271,8 @@
   font-size: 22px;
   cursor: pointer;
   z-index: 1001;
-  color: rgb(23, 5, 51); /* Azul oscuro */
+  color: rgb(23, 5, 51);
+  /* Azul oscuro */
   transition: 0.3s;
 }
 
@@ -261,6 +286,7 @@
     transform: translateY(-100%);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -358,32 +384,40 @@
 /* RESPONSIVE LANDSCAPE (Móviles en horizontal) */
 @media (max-height: 800px) {
   .mobile-menu {
-    padding-top: 40px; /* Subimos el menú más hacia arriba */
+    padding-top: 40px;
+    /* Subimos el menú más hacia arriba */
     justify-content: flex-start;
     overflow-y: auto;
-    padding-bottom: 150px; /* Más espacio abajo */
-    gap: 15px; /* Menos espacio entre elementos */
+    padding-bottom: 150px;
+    /* Más espacio abajo */
+    gap: 15px;
+    /* Menos espacio entre elementos */
     height: 100dvh;
     -webkit-overflow-scrolling: touch;
   }
 
-.mobile-nav-links {
-  position: relative; /* o absolute si quieres sacarlo del flujo */
-  gap: 10px;
-  top: -30px; /* sube los links más arriba */
-}
+  .mobile-nav-links {
+    position: relative;
+    /* o absolute si quieres sacarlo del flujo */
+    gap: 10px;
+    top: -30px;
+    /* sube los links más arriba */
+  }
 
   .mobile-nav-links li {
-    font-size: 20px; /* Ajustable según necesidad */
+    font-size: 20px;
+    /* Ajustable según necesidad */
   }
 
   .mobile-actions {
-    margin-top: 10px; /* Bajamos los iconos y el idioma */
+    margin-top: 10px;
+    /* Bajamos los iconos y el idioma */
     margin-bottom: 20px;
   }
 
   .mobile-separator {
-    margin: -50px 0 0 0; /* Sube más la línea */
+    margin: -50px 0 0 0;
+    /* Sube más la línea */
   }
 }
 
@@ -393,23 +427,28 @@
 
 /* RESPONSIVE */
 @media (max-width: 1100px) {
+
   /* Ajuste intermedio: Reducir tamaño para que quepan los links sin ocultarlos */
   .nav-links {
     gap: 11px;
-    top: 5px; 
+    top: 5px;
   }
+
   .nav-links li {
     font-size: 13px;
   }
+
   .logo img {
     height: 90px;
   }
+
   .social-link {
     margin-right: 25px;
   }
 }
 
 @media (max-width: 900px) {
+
   /* Pantallas pequeñas: Ocultar menú y mostrar hamburguesa */
   .nav-links,
   .language-selector,
@@ -418,9 +457,15 @@
   }
 
   .mobile-menu-icon {
+    color: #ffffff;
     display: flex;
+    font-size: 30px;
     align-items: center;
     margin-left: 15px;
+  }
+
+  .mobile-menu-icon:hover {
+    color: #ffffff;
   }
 
   .search-icon {

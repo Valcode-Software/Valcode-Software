@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../context/LanguageContext";
 import { RiLinkedinFill, RiSearchLine } from "react-icons/ri";
 import { HiMenu, HiX } from "react-icons/hi";
 import "./navbar.css";
@@ -7,7 +8,8 @@ import logo from "../../assets/img/Logo_Valcode_Software_White.png";
 
 const Navbar = () => {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("ES");
+  const { language, changeLanguage, t } = useLanguage();
+  const selectedLang = language === 'en' ? 'EN' : 'ES';
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
@@ -16,7 +18,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLangSelect = (lang) => {
-    setSelectedLang(lang);
+    changeLanguage(lang.toLowerCase());
     setIsLangMenuOpen(false);
   };
 
@@ -54,11 +56,11 @@ const Navbar = () => {
       </div>
 
       <ul className="nav-links">
-        <li onClick={() => navigate("/")}>Inicio</li>
-        <li>Servicios</li>
-        <li onClick={() => navigate("/nosotros")}>Nosotros</li>
-        <li onClick={() => navigate("/proyectos")}>Proyectos</li>
-        <li onClick={() => navigate("/contacto")}>Contacto</li>
+        <li onClick={() => navigate("/")}>{t("nav_inicio")}</li>
+        <li>{t("nav_servicios")}</li>
+        <li onClick={() => navigate("/nosotros")}>{t("nav_nosotros")}</li>
+        <li onClick={() => navigate("/proyectos")}>{t("nav_proyectos")}</li>
+        <li onClick={() => navigate("/contacto")}>{t("nav_contacto")}</li>
       </ul>
 
       <div
@@ -94,7 +96,7 @@ const Navbar = () => {
         <div className="search-dropdown">
           <div className="search-input-wrapper">
             <RiSearchLine className="search-input-icon" />
-            <input type="text" placeholder="Buscar..." autoFocus />
+            <input type="text" placeholder={t("nav_buscar")} autoFocus />
           </div>
         </div>
       )}
@@ -117,7 +119,7 @@ const Navbar = () => {
                 navigate("/");
               }}
             >
-              Inicio
+              {t("nav_inicio")}
             </li>
             <li
               onClick={() => {
@@ -125,7 +127,7 @@ const Navbar = () => {
                 navigate("/nosotros");
               }}
             >
-              Nosotros
+              {t("nav_nosotros")}
             </li>
             <li
               onClick={() => {
@@ -133,7 +135,7 @@ const Navbar = () => {
                 navigate("/proyectos");
               }}
             >
-              Proyectos
+              {t("nav_proyectos")}
             </li>
             <li
               onClick={() => {
@@ -141,7 +143,7 @@ const Navbar = () => {
                 navigate("/servicios");
               }}
             >
-              Servicios
+              {t("nav_servicios")}
             </li>
             <li
               onClick={() => {
@@ -149,7 +151,7 @@ const Navbar = () => {
                 navigate("/contacto");
               }}
             >
-              Contacto
+              {t("nav_contacto")}
             </li>
           </ul>
 

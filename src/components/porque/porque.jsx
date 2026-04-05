@@ -10,46 +10,48 @@ import {
   Star
 } from 'lucide-react';
 import styles from './porque.module.css';
+import { useLanguage } from "../../context/LanguageContext";
 
 const PorqueValcode = () => {
+  const { t } = useLanguage();
   const beneficios = [
     {
       icon: <Rocket className="w-8 h-8" />,
-      titulo: "Time-to-Market Acelerado",
-      descripcion: "Reducimos los tiempos de desarrollo hasta en un 40% mediante metodologías ágiles y equipos especializados."
+      titulo: t("porque_ben1_title"),
+      descripcion: t("porque_ben1_desc")
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      titulo: "Calidad Garantizada",
-      descripcion: "Código robusto y escalable con pruebas automatizadas y code review en cada etapa del desarrollo."
+      titulo: t("porque_ben2_title"),
+      descripcion: t("porque_ben2_desc")
     },
     {
       icon: <Users className="w-8 h-8" />,
-      titulo: "Equipo Senior",
-      descripcion: "Desarrolladores con 5+ años de experiencia en tecnologías de vanguardia y arquitectura de software."
+      titulo: t("porque_ben3_title"),
+      descripcion: t("porque_ben3_desc")
     },
     {
       icon: <Code2 className="w-8 h-8" />,
-      titulo: "Tecnología Moderna",
-      descripcion: "Implementamos las últimas tecnologías y mejores prácticas del mercado para garantizar tu éxito."
+      titulo: t("porque_ben4_title"),
+      descripcion: t("porque_ben4_desc")
     },
     {
       icon: <Clock className="w-8 h-8" />,
-      titulo: "Soporte Continuo",
-      descripcion: "Acompañamiento post-lanzamiento y mantenimiento proactivo de tu solución."
+      titulo: t("porque_ben5_title"),
+      descripcion: t("porque_ben5_desc")
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      titulo: "Escalabilidad",
-      descripcion: "Arquitecturas preparadas para crecer junto a tu negocio sin perder rendimiento."
+      titulo: t("porque_ben6_title"),
+      descripcion: t("porque_ben6_desc")
     }
   ];
 
   const stats = [
-    { numero: "50+", label: "Proyectos exitosos" },
-    { numero: "5+", label: "Años de experiencia" },
-    { numero: "15+", label: "Expertos en tecnología" },
-    { numero: "100%", label: "Satisfacción cliente" }
+    { numero: "50+", label: t("porque_stats_proyectos") },
+    { numero: "5+", label: t("porque_stats_experiencia") },
+    { numero: "15+", label: t("porque_stats_expertos") },
+    { numero: "100%", label: t("porque_stats_satisfaccion") }
   ];
 
   return (
@@ -57,13 +59,12 @@ const PorqueValcode = () => {
       <div className={styles.container}>
         {/* Header */}
         <div className={styles.header}>
-          <span className={styles.subtitle}>¿POR QUÉ ELEGIRNOS?</span>
+          <span className={styles.subtitle}>{t("porque_subtitle")}</span>
           <h2 className={styles.title}>
-            Tu socio tecnológico de confianza
+            {t("porque_title")}
           </h2>
           <p className={styles.description}>
-            En Valcode Software no solo escribimos código, creamos soluciones que transforman negocios. 
-            Combinamos experiencia técnica con entendimiento del negocio para entregar valor real.
+            {t("porque_desc")}
           </p>
         </div>
 
@@ -88,7 +89,7 @@ const PorqueValcode = () => {
               <p className={styles['beneficio-descripcion']}>{beneficio.descripcion}</p>
               <div className={styles['card-footer']}>
                 <CheckCircle className="w-5 h-5" />
-                <span>Incluido en todos nuestros proyectos</span>
+                <span>{t("porque_ben_incluido")}</span>
               </div>
             </div>
           ))}
@@ -99,8 +100,7 @@ const PorqueValcode = () => {
           <div className={styles['testimonio-content']}>
             <Star className={styles['star-icon']} />
             <p className={styles['testimonio-texto']}>
-              "Valcode Software no solo desarrolló nuestra plataforma, se convirtieron en partners estratégicos 
-              que entendieron nuestra visión y la hicieron realidad superando expectativas."
+              {t("porque_testimonial")}
             </p>
             <div className={styles['testimonio-autor']}>
             </div>
@@ -109,12 +109,12 @@ const PorqueValcode = () => {
 
         {/* CTA */}
         <div className={styles['cta-section']}>
-          <h3 className={styles['cta-title']}>¿Listo para transformar tu idea en realidad?</h3>
+          <h3 className={styles['cta-title']}>{t("porque_cta_title")}</h3>
           <p className={styles['cta-description']}>
-            Agendemos una reunión sin compromiso para analizar tu proyecto y descubrir cómo podemos ayudarte.
+            {t("porque_cta_desc")}
           </p>
           <button className={styles['cta-button']}>
-            Agendar reunión estratégica
+            {t("porque_cta_button")}
           </button>
         </div>
       </div>

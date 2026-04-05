@@ -2,8 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RiSmartphoneLine, RiMailLine, RiCheckLine, RiErrorWarningLine, RiCloseLine } from "react-icons/ri";
 import emailjs from '@emailjs/browser';
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ContactPage() {
+  const { t } = useLanguage();
   const formRef = useRef();
   const [formData, setFormData] = useState({
     empresa: "",
@@ -281,11 +283,11 @@ export default function ContactPage() {
         {/* FORMULARIO */}
         <div className="bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-blue-900/20">
           <h1 className="text-4xl font-bold mb-4">
-            <span className="text-[#020617]">Solicita tu Cotización</span>
+            <span className="text-[#020617]">{t("contact_req")}</span>
           </h1>
 
           <p className="text-gray-600 mb-6 text-sm">
-            Comparta su idea con nosotros y desarrollemos la mejor solución.
+            {t("contact_desc")}
           </p>
 
           <form ref={formRef} onSubmit={sendEmail} className="mt-8 space-y-4" noValidate>
@@ -293,7 +295,7 @@ export default function ContactPage() {
               <input
                 type="text"
                 name="empresa"
-                placeholder="Empresa"
+                placeholder={t("contact_empresa")}
                 value={formData.empresa}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -320,7 +322,7 @@ export default function ContactPage() {
               <input
                 type="text"
                 name="nombre"
-                placeholder="Nombre"
+                placeholder={t("contact_nombre")}
                 value={formData.nombre}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -347,7 +349,7 @@ export default function ContactPage() {
               <input
                 type="email"
                 name="email"
-                placeholder="Email corporativo"
+                placeholder={t("contact_email")}
                 value={formData.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -374,7 +376,7 @@ export default function ContactPage() {
               <input
                 type="tel"
                 name="telefono"
-                placeholder="Teléfono"
+                placeholder={t("contact_telefono")}
                 value={formData.telefono}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -402,7 +404,7 @@ export default function ContactPage() {
               <textarea
                 rows="3"
                 name="mensaje"
-                placeholder="Cuéntanos sobre tu proyecto"
+                placeholder={t("contact_mensaje")}
                 value={formData.mensaje}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -444,7 +446,7 @@ export default function ContactPage() {
                   className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                 />
                 <label htmlFor="acceptedTerms" className="text-sm text-gray-600 cursor-pointer select-none">
-                  He leído y acepto los <Link to="/terminos" target="_blank" className="text-blue-600 hover:underline font-medium">Términos y Condiciones</Link> y la <Link to="/privacidad" target="_blank" className="text-blue-600 hover:underline font-medium">Política de Privacidad</Link>.
+                  {t("contact_terms1")}<Link to="/terminos" target="_blank" className="text-blue-600 hover:underline font-medium">{t("footer_terminos")}</Link>{t("contact_terms2")}<Link to="/privacidad" target="_blank" className="text-blue-600 hover:underline font-medium">{t("footer_privacidad")}</Link>{t("contact_terms3")}
                 </label>
               </div>
               {errors.acceptedTerms && touched.acceptedTerms && (
@@ -468,10 +470,10 @@ export default function ContactPage() {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  Enviando...
+                  {t("contact_submitting")}
                 </span>
               ) : (
-                'Enviar Solicitud'
+                t("contact_submit")
               )}
             </button>
           </form>
@@ -481,13 +483,11 @@ export default function ContactPage() {
         <div className="flex flex-col justify-center text-white space-y-6">
           <div>
             <h2 className="text-3xl font-bold mb-4">
-              <span style={{ color: '#1E90FF' }}>Impulsar el</span><br />
-              Crecimiento Empresarial
+              <span style={{ color: '#1E90FF' }}>{t("contact_info_title_1")}</span><br />
+              {t("contact_info_title_2")}
             </h2>
             <p className="text-gray-300 leading-relaxed">
-              En Valcode, somos el socio tecnológico ideal para impulsar
-              el crecimiento continuo de su empresa. Complete el formulario
-              y recibirá una respuesta pronta de nuestro equipo.
+              {t("contact_info_desc")}
             </p>
           </div>
 
@@ -497,7 +497,7 @@ export default function ContactPage() {
                 <RiSmartphoneLine style={{ color: '#1E90FF' }} size={24} />
               </div>
               <div className="ml-4">
-                <h4 className="text-sm font-medium text-gray-400">Celular</h4>
+                <h4 className="text-sm font-medium text-gray-400">{t("contact_info_celular")}</h4>
                 <p className="text-white text-lg font-semibold">+57 311 467 2067</p>
               </div>
             </div>
@@ -507,7 +507,7 @@ export default function ContactPage() {
                 <RiMailLine style={{ color: '#1E90FF' }} size={24} />
               </div>
               <div className="ml-4">
-                <h4 className="text-sm font-medium text-gray-400">E-mail</h4>
+                <h4 className="text-sm font-medium text-gray-400">{t("contact_info_email")}</h4>
                 <p className="text-white text-lg font-semibold">softwarevalcode@gmail.com</p>
               </div>
             </div>
@@ -515,7 +515,7 @@ export default function ContactPage() {
 
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <RiCheckLine style={{ color: '#1E90FF' }} size={18} />
-            <span>Tus datos están seguros con nosotros</span>
+            <span>{t("contact_info_secure")}</span>
           </div>
         </div>
 

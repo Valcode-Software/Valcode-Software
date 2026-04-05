@@ -3,30 +3,32 @@ import img1 from "../../assets/img/automatizacion-inteligente.jpg";
 import img2 from "../../assets/img/plataformas-digitales.jpg";
 import img3 from "../../assets/img/ia-para-negocios.jpg";
 import img4 from "../../assets/img/asistentes-virtuales.png";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Services() {
-const services = [
-  {
-    title: "AUTOMATIZACIÓN INTELIGENTE",
-    desc: "Elimine tareas repetitivas y ahorre horas de trabajo con flujos automáticos.",
-    img: img1,
-  },
-  {
-    title: "PLATAFORMAS DIGITALES A MEDIDA",
-    desc: "Creamos sistemas web y apps que se adaptan exactamente a su negocio.",
-    img: img2,
-  },
-  {
-    title: "IA APLICADA A NEGOCIOS",
-    desc: "Transformamos datos en decisiones inteligentes y oportunidades reales.",
-    img: img3,
-  },
-  {
-    title: "AGENTES Y ASISTENTES VIRTUALES",
-    desc: "Bots y copilotos que atienden clientes, venden y optimizan procesos 24/7.",
-    img: img4,
-  },
-];
+  const { t } = useLanguage();
+  const services = [
+    {
+      title: t("servicios_serv1_title"),
+      desc: t("servicios_serv1_desc"),
+      img: img1,
+    },
+    {
+      title: t("servicios_serv2_title"),
+      desc: t("servicios_serv2_desc"),
+      img: img2,
+    },
+    {
+      title: t("servicios_serv3_title"),
+      desc: t("servicios_serv3_desc"),
+      img: img3,
+    },
+    {
+      title: t("servicios_serv4_title"),
+      desc: t("servicios_serv4_desc"),
+      img: img4,
+    },
+  ];
 
   return (
     <section
@@ -42,10 +44,10 @@ const services = [
         {/* TÍTULO */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Nuestros Servicios
+            {t("servicios_title")}
           </h2>
           <p className="text-gray-400 text-lg">
-            Soluciones digitales que impulsan negocios
+            {t("servicios_subtitle")}
           </p>
         </div>
 

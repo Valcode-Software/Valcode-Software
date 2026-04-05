@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 
 // Imagen local del proyecto AMCO
 import amcoImg from "../assets/img/proyecto amco.jpeg";
+import { useLanguage } from "../context/LanguageContext";
 
 const ProjectsSection = () => {
+  const { t } = useLanguage();
   // Forzar que la página inicie desde arriba al cargar
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,10 +26,10 @@ const ProjectsSection = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold">
-            Nuestros Proyectos
+            {t("proj_title")}
           </h2>
           <p className="text-gray-400 mt-4 text-lg">
-            Soluciones digitales que impulsan negocios
+            {t("proj_subtitle")}
           </p>
         </div>
 
@@ -47,11 +49,11 @@ const ProjectsSection = () => {
           {/* Contenido */}
           <div>
             <h3 className="text-2xl font-bold mb-4 text-white">
-              Plataforma Web Empresarial
+              {t("proj_card1")}
             </h3>
 
             <p className="text-gray-400 mb-6 leading-relaxed">
-Desarrollo de una plataforma web corporativa orientada a la gestión y visualización de proyectos, diseñada para optimizar procesos internos, centralizar la información y mejorar la toma de decisiones estratégicas.
+{t("proj_card1_desc")}
             </p>
 
             {/* Tecnologías */}
@@ -75,7 +77,7 @@ Desarrollo de una plataforma web corporativa orientada a la gestión y visualiza
                 aria-label="Ver proyecto Plataforma Web Empresarial"
                 className="px-6 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition shadow-lg shadow-blue-500/20"
               >
-                Ver proyecto
+                {t("proj_btn_view")}
               </a>
 
             <a
@@ -86,7 +88,7 @@ Desarrollo de una plataforma web corporativa orientada a la gestión y visualiza
               }}
               className="px-6 py-3 border border-gray-600 rounded-full text-white hover:bg-white/10 transition"
             >
-              Más información
+              {t("proj_btn_more")}
             </a>
             </div>
           </div>
@@ -117,23 +119,18 @@ Desarrollo de una plataforma web corporativa orientada a la gestión y visualiza
           </button>
 
           {/* Contenido */}
-          <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-white">Desarrollo del Proyecto</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-white">{t("proj_modal_title")}</h3>
 
           <p className="text-gray-300 mb-4 leading-relaxed">
-            Este proyecto fue concebido como una solución digital para centralizar y optimizar
-            la gestión de proyectos empresariales. Se diseñó una arquitectura enfocada en
-            escalabilidad, rendimiento y experiencia de usuario.
+            {t("proj_modal_p1")}
           </p>
 
           <p className="text-gray-300 mb-4 leading-relaxed">
-            Durante el desarrollo se implementaron buenas prácticas de diseño UI/UX,
-            asegurando una navegación intuitiva y una visualización clara de la información,
-            permitiendo a la empresa tomar decisiones más rápidas y eficientes.
+            {t("proj_modal_p2")}
           </p>
 
           <p className="text-gray-300 leading-relaxed">
-            La solución final representa una plataforma moderna, adaptable y alineada con
-            las necesidades del negocio, fortaleciendo su presencia digital y capacidad operativa.
+            {t("proj_modal_p3")}
           </p>
 
         </div>

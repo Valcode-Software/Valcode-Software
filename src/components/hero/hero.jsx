@@ -1,47 +1,48 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../../context/LanguageContext";
 import img1 from "../../assets/img/side2.jpg";
 import img2 from "../../assets/img/slide5.jpg";
 import img3 from "../../assets/img/side4.jpg";
 import img4 from "../../assets/img/side6.jpg";
 import img5 from "../../assets/img/side3.jpg";
 import img6 from "../../assets/img/side1.jpg";
-
-const slides = [
-  {
-    img: img1,
-    title: "Nuestras Soluciones en Colombia",
-    desc: "Facilitamos procesos más ágiles y transparentes con soluciones tecnológicas innovadoras.",
-  },
-  {
-    img: img2,
-    title: "Soluciones digitales estratégicas para tu organización",
-    desc: "Desarrollamos tecnología alineada con los objetivos de tu empresa.",
-  },
-  {
-    img: img3,
-    title: "Innovamos contigo",
-    desc: "Impulsamos tu negocio con soluciones tecnológicas modernas, eficientes y a la medida.",
-  },
-  {
-    img: img4,
-    title: "Automatizamos procesos para hacer crecer tu negocio",
-    desc: "Desarrollamos soluciones de software que optimizan tu productividad y reducen costos.",
-  },
-  {
-    img: img5,
-    title: "Revoluciona tu negocio con inteligencia artificial",
-    desc: "Integramos IA para automatizar, optimizar y escalar tus procesos con soluciones inteligentes.",
-  },
-  {
-    img: img6,
-    title: "Más productividad, menos esfuerzo",
-    desc: "Optimizamos tus procesos para que tu equipo logre más en menos tiempo.",
-  },
-];
-
 export default function HeroCarousel() {
   const [index, setIndex] = useState(0);
+  const { t } = useLanguage();
+
+  const slides = useMemo(() => [
+    {
+      img: img1,
+      title: t("hero_slide1_title"),
+      desc: t("hero_slide1_desc"),
+    },
+    {
+      img: img2,
+      title: t("hero_slide2_title"),
+      desc: t("hero_slide2_desc"),
+    },
+    {
+      img: img3,
+      title: t("hero_slide3_title"),
+      desc: t("hero_slide3_desc"),
+    },
+    {
+      img: img4,
+      title: t("hero_slide4_title"),
+      desc: t("hero_slide4_desc"),
+    },
+    {
+      img: img5,
+      title: t("hero_slide5_title"),
+      desc: t("hero_slide5_desc"),
+    },
+    {
+      img: img6,
+      title: t("hero_slide6_title"),
+      desc: t("hero_slide6_desc"),
+    },
+  ], [t]);
 
   useEffect(() => {
     const timer = setInterval(() => {

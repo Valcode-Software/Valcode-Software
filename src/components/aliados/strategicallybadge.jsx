@@ -1,17 +1,19 @@
 import React from "react";
 import amcoLogo from "../../assets/img/Amco.png";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function StrategicAllyBadge() {
+  const { t } = useLanguage();
   return (
     <section className="w-full flex justify-center py-16 bg-white">
       <div className="flex flex-col items-center text-center max-w-xl">
 
         {/* Título */}
         <span className="text-sm tracking-[0.3em] text-gray-500 uppercase mb-2">
-          Nuestro
+          {t("aliados_nuestro")}
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
-          Aliado Estratégico
+          {t("aliados_titulo")}
         </h2>
 
         {/* Tarjeta del aliado */}
@@ -32,8 +34,7 @@ export default function StrategicAllyBadge() {
 
         {/* Texto opcional */}
         <p className="mt-6 text-gray-600 text-sm max-w-md">
-          Trabajamos junto a empresas líderes para garantizar calidad,
-          confianza y excelencia en cada proyecto.
+          {t("aliados_texto")}
         </p>
       </div>
     </section>

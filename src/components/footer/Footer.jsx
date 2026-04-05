@@ -14,6 +14,7 @@ import {
 import styles from './Footer.module.css';
 import WhatsAppButton from '../whatsapp/whatsappbutton';
 import img from  '../../assets/img/logovalcode.png';
+import { useLanguage } from '../../context/LanguageContext';
 
 // Iconos personalizados para marcas específicas
 const XIcon = ({ size = 18 }) => (
@@ -37,11 +38,12 @@ const WhatsappIcon = ({ size = 18 }) => (
 );
 
 const Footer = () => {
+  const { t } = useLanguage();
   const legalLinks = [
-    { icon: <FileText size={16} />, title: 'Términos y Condiciones', path: '/terminos' },
-    { icon: <Shield size={16} />, title: 'Política de Privacidad', path: '/privacidad' },
-    { icon: <Cookie size={16} />, title: 'Política de Cookies', path: '/cookies' },
-    { icon: <Scale size={16} />, title: 'Aviso Legal', path: '/aviso-legal' }
+    { icon: <FileText size={16} />, title: t("footer_terminos"), path: '/terminos' },
+    { icon: <Shield size={16} />, title: t("footer_privacidad"), path: '/privacidad' },
+    { icon: <Cookie size={16} />, title: t("footer_cookies"), path: '/cookies' },
+    { icon: <Scale size={16} />, title: t("footer_aviso"), path: '/aviso-legal' }
   ];
 
   // Redes sociales separadas en dos filas (4 arriba, 4 abajo)
@@ -72,7 +74,7 @@ const Footer = () => {
               <span className={styles.brandName}>Valcode Software</span>
             </div>
             <p className={styles.slogan}>
-              Code the Future 
+              {t("footer_slogan")} 
             </p>
             <div className={styles.socialWrapper}>
               <div className={styles.socialRow}>
@@ -108,7 +110,7 @@ const Footer = () => {
 
           {/* Legal Section */}
           <div className={styles.legalSection}>
-            <h4 className={styles.sectionTitle}>Legal</h4>
+            <h4 className={styles.sectionTitle}>{t("footer_legal")}</h4>
             <div className={styles.legalLinks}>
               {legalLinks.map((link, index) => (
                 <Link key={index} to={link.path} className={styles.legalLink}>
@@ -121,7 +123,7 @@ const Footer = () => {
 
           {/* Contact Section */}
           <div className={styles.contactSection}>
-            <h4 className={styles.sectionTitle}>Contacto</h4>
+            <h4 className={styles.sectionTitle}>{t("footer_contacto")}</h4>
             <div className={styles.contactInfo}>
               <p>softwarevalcode@gmail.com</p>
               <p>+57 3114672067</p>
@@ -130,24 +132,24 @@ const Footer = () => {
 
                     {/* Contact Section */}
           <div className={styles.contactSection}>
-            <h4 className={styles.sectionTitle}>Servicios</h4>
+            <h4 className={styles.sectionTitle}>{t("footer_servicios")}</h4>
             <div className={styles.contactInfo}>
-              <p>Desarrollo Web</p>
-              <p>Apps Móviles</p>
-              <p>Software a Medida</p>
-              <p>Diseño UI/UX</p>
-              <p>Cloud & DevOps</p>
-              <p>Consultoría IT</p>
+              <p>{t("footer_servicios_web")}</p>
+              <p>{t("footer_servicios_apps")}</p>
+              <p>{t("footer_servicios_software")}</p>
+              <p>{t("footer_servicios_uiux")}</p>
+              <p>{t("footer_servicios_cloud")}</p>
+              <p>{t("footer_servicios_consultoria")}</p>
             </div>
           </div>
                     
           <div className={styles.navSection}>
-            <h4 className={styles.sectionTitle}>Navegación</h4>
+            <h4 className={styles.sectionTitle}>{t("footer_navegacion")}</h4>
             <div className={styles.navLinks}>
-              <p>Servicios</p>
-              <p>Proyectos</p>
-              <p>Nosotros</p>
-              <p>Contacto</p>
+              <p>{t("nav_servicios")}</p>
+              <p>{t("nav_proyectos")}</p>
+              <p>{t("nav_nosotros")}</p>
+              <p>{t("nav_contacto")}</p>
             </div>
           </div>
           
@@ -156,7 +158,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className={styles.footerBottom}>
           <p className={styles.copyright}>
-            © 2026 Valcode Software. Todos los derechos reservados.
+            {t("footer_derechos")}
           </p>
         </div>
       </div>

@@ -1,9 +1,10 @@
 import Imgwat from "../../assets/img/WhatsApp_icon.png";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function FloatingWhatsApp() {
-
+  const { t } = useLanguage();
   const phoneNumber = "573001234567"; // sin +
-  const message = "Hola 👋 quiero más información";
+  const message = t("chat_mensaje");
   
   const handleClick = () => {
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

@@ -3,9 +3,10 @@ import { RiLinkedinFill } from "react-icons/ri";
 import img1 from "../assets/img/somos-nosotros.png";
 import imgJho from "../assets/img/jesus.jpg";
 import imgJesu from "../assets/img/jhonatan.jpg";
+import { useLanguage } from "../context/LanguageContext";
 
 
-const Card = ({ year, title, desc }) => {
+const Card = ({ year, title, desc, t }) => {
   return (
     <div
       className="
@@ -26,7 +27,7 @@ const Card = ({ year, title, desc }) => {
         <p className="text-gray-400 text-sm mb-4">{desc}</p>
       </div>
 
-      <div className="text-gray-500 mt-4 text-xs">Equipo</div>
+      <div className="text-gray-500 mt-4 text-xs">{t("us_team")}</div>
     </div>
   );
 };
@@ -52,6 +53,7 @@ const FounderCard = ({ img, name, role, linkedin }) => {
 };
 
 const Nosotros = () => {
+  const { t } = useLanguage();
   return (
     <section className="bg-gradient-to-br from-[#020617] via-[#172554] to-[#020617] text-white min-h-screen py-12 md:py-20 relative overflow-hidden">
       {/* ESTRELLAS / GALAXIA */}
@@ -63,17 +65,17 @@ const Nosotros = () => {
         <div className="grid md:grid-cols-2 gap-10 items-center mb-20 md:mb-32">
           <div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Tu Empresa a llegado
+              {t("us_title")}
             </h1>
 
             <p className="text-white mb-4">
-              Nuestro Propósito
+              {t("us_purpose")}
             </p>
 
             <p className="text-gray-400">
-En Valcode trabajamos con el firme propósito de ofrecer soluciones digitales innovadoras que impulsen la transformación tecnológica de negocios pequeños. Nuestro objetivo es convertir la tecnología en un aliado estratégico que genere valor, optimice procesos y potencie la competitividad en un mercado en constante evolución.
+{t("us_desc1")}
 
-Nos dedicamos a simplificar procesos y potenciar negocios con herramientas digitales avanzadas, brindando soluciones personalizadas para cada necesidad.
+{t("us_desc2")}
             </p>
           </div>
 
@@ -107,8 +109,9 @@ Nos dedicamos a simplificar procesos y potenciar negocios con herramientas digit
             <div className="flex justify-center md:justify-end md:pr-10 w-full">
               <Card
                 year="2024"
-                title="Nacimiento"
-                desc="Valcode Software nació creando contenido en redes sociales para enseñar programación y ayudar a otros a dar sus primeros pasos en el desarrollo web; con el tiempo, esa pasión evolucionó hacia la creación de proyectos y portafolios digitales propios, hasta convertirse en la visión de construir una startup impulsada por inteligencia artificial enfocada en ayudar a microempresas y negocios a automatizar procesos y crecer mediante soluciones tecnológicas accesibles."
+                title={t("us_card1_title")}
+                desc={t("us_card1_desc")}
+                t={t}
               />
             </div>
 
@@ -125,8 +128,9 @@ Nos dedicamos a simplificar procesos y potenciar negocios con herramientas digit
             <div className="flex justify-center md:justify-start md:pl-10 w-full">
               <Card
                 year="2025"
-                title="Expansión"
-                desc="Nuestro primer cliente llegó con la necesidad de remodelar su sitio web, ya que presentaba una estructura deficiente. Trabajamos en su rediseño e implementamos soluciones apoyadas en inteligencia artificial para optimizar el proceso de forma rápida y eficiente, logrando una plataforma más adaptable al mercado. Cumplimos nuestro propósito y el resultado fue un sitio web funcional, moderno y alineado con sus objetivos."
+                title={t("us_card2_title")}
+                desc={t("us_card2_desc")}
+                t={t}
               />
             </div>
 
@@ -138,8 +142,9 @@ Nos dedicamos a simplificar procesos y potenciar negocios con herramientas digit
             <div className="flex justify-center md:justify-end md:pr-10 w-full">
               <Card
                 year="2026"
-                title="Consolidación"
-                desc="Un año donde la visión se convierte en estructura, la experiencia en confianza y la comunidad en parte del proyecto"
+                title={t("us_card3_title")}
+                desc={t("us_card3_desc")}
+                t={t}
               />
             </div>
 
@@ -151,9 +156,9 @@ Nos dedicamos a simplificar procesos y potenciar negocios con herramientas digit
         </div>
 
         <div className="mt-12 md:mt-20 text-center max-w-4xl mx-auto px-4">
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Hoy</h3>
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">{t("us_today")}</h3>
           <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-light">
-            Hoy seguimos generando negocios poco a poco, transformando el futuro de las empresas en Colombia con innovación y pasión por la evolución digital.
+            {t("us_today_desc")}
           </p>
         </div>
 
