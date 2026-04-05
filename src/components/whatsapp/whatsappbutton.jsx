@@ -5,7 +5,8 @@ import { useLanguage } from "../../context/LanguageContext";
 
 const WhatsAppButton = ({ isFloating = true }) => {
   const { t } = useLanguage();
-  const phoneNumber = "+57 322 7223032"; // Reemplaza con tu número real
+
+  const phoneNumber = "573227223032";
   const message = t("wpp_mensaje");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
