@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  FileText, 
-  Shield, 
-  Cookie, 
-  Scale, 
-  Github, 
-  Linkedin, 
-  Instagram, 
+import {
+  FileText,
+  Shield,
+  Cookie,
+  Scale,
+  Github,
+  Linkedin,
+  Instagram,
   Facebook,
   Youtube
 } from 'lucide-react';
 import styles from './Footer.module.css';
 import WhatsAppButton from '../whatsapp/whatsappbutton';
-import img from  '../../assets/img/logovalcode.png';
+import img from '../../assets/img/logovalcode.png';
 import { useLanguage } from '../../context/LanguageContext';
 
 // Iconos personalizados para marcas específicas
@@ -52,7 +52,7 @@ const Footer = () => {
     { icon: <Github size={18} />, url: '#', label: 'GitHub' },
     { icon: <TiktokIcon size={18} />, url: '#', label: 'TikTok' },
     { icon: <Youtube size={18} />, url: '#', label: 'YouTube' }
-  
+
   ];
 
   const socialLinksBottom = [
@@ -74,14 +74,14 @@ const Footer = () => {
               <span className={styles.brandName}>Valcode Software</span>
             </div>
             <p className={styles.slogan}>
-              {t("footer_slogan")} 
+              {t("footer_slogan")}
             </p>
             <div className={styles.socialWrapper}>
               <div className={styles.socialRow}>
                 {socialLinksTop.map((social, index) => (
-                  <a 
-                    key={index} 
-                    href={social.url} 
+                  <a
+                    key={index}
+                    href={social.url}
                     aria-label={social.label}
                     className={styles.socialIcon}
                     target="_blank"
@@ -93,9 +93,9 @@ const Footer = () => {
               </div>
               <div className={styles.socialRow}>
                 {socialLinksBottom.map((social, index) => (
-                  <a 
-                    key={index} 
-                    href={social.url} 
+                  <a
+                    key={index}
+                    href={social.url}
                     aria-label={social.label}
                     className={styles.socialIcon}
                     target="_blank"
@@ -126,11 +126,11 @@ const Footer = () => {
             <h4 className={styles.sectionTitle}>{t("footer_contacto")}</h4>
             <div className={styles.contactInfo}>
               <p>softwarevalcode@gmail.com</p>
-              <p>+57 3114672067</p>
+              <p>+57 3227223032</p>
             </div>
           </div>
 
-                    {/* Contact Section */}
+          {/* Contact Section */}
           <div className={styles.contactSection}>
             <h4 className={styles.sectionTitle}>{t("footer_servicios")}</h4>
             <div className={styles.contactInfo}>
@@ -142,7 +142,7 @@ const Footer = () => {
               <p>{t("footer_servicios_consultoria")}</p>
             </div>
           </div>
-                    
+
           <div className={styles.navSection}>
             <h4 className={styles.sectionTitle}>{t("footer_navegacion")}</h4>
             <div className={styles.navLinks}>
@@ -152,7 +152,7 @@ const Footer = () => {
               <p>{t("nav_contacto")}</p>
             </div>
           </div>
-          
+
         </div>
 
         {/* Bottom Bar */}

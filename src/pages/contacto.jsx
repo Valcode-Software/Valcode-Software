@@ -23,7 +23,7 @@ export default function ContactPage() {
 
   // Configuración de EmailJS - Reemplaza con tus credenciales
   const EMAILJS_CONFIG = {
-    serviceId: 'valcode_contact', 
+    serviceId: 'valcode_contact',
     templateId: 'template_93i6ml8',
     userId: '8r9u0XFzuB7KHwW_s'
   };
@@ -45,29 +45,29 @@ export default function ContactPage() {
     },
     email: (value) => {
       if (!value.trim()) return "El email es obligatorio.";
-      
+
       // Validación más estricta de email
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!emailRegex.test(value)) return "El formato del email no es válido.";
-      
+
       // Validar que el dominio tenga al menos un punto y no sea solo números
       const domain = value.split('@')[1];
       if (!domain.includes('.') || domain.startsWith('.') || domain.endsWith('.')) {
         return "El dominio del email no es válido.";
       }
-      
+
       // Validar TLD (última parte después del último punto)
       const tld = domain.split('.').pop();
       if (tld.length < 2) return "El email debe tener un dominio válido (ej: .com, .es)";
-      
+
       return "";
     },
     telefono: (value) => {
       if (!value.trim()) return "El teléfono es obligatorio.";
-      
+
       // Eliminar espacios, guiones y otros caracteres no numéricos
       const cleanNumber = value.replace(/\D/g, '');
-      
+
       if (cleanNumber.length !== 10) return "El teléfono debe tener exactamente 10 dígitos.";
       return "";
     },
@@ -196,7 +196,7 @@ export default function ContactPage() {
       );
 
       console.log('Email enviado exitosamente:', result.text);
-      
+
       setSubmitStatus({
         show: true,
         success: true,
@@ -218,7 +218,7 @@ export default function ContactPage() {
 
     } catch (error) {
       console.error('Error al enviar email:', error);
-      
+
       setSubmitStatus({
         show: true,
         success: false,
@@ -228,7 +228,7 @@ export default function ContactPage() {
       showNotification('No se pudo enviar la solicitud. Por favor, inténtalo de nuevo.', 'error');
     } finally {
       setIsSubmitting(false);
-      
+
       setTimeout(() => {
         setSubmitStatus({ show: false, success: false, message: '' });
       }, 5000);
@@ -237,7 +237,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#020617] via-[#172554] to-[#020617] relative overflow-hidden px-4 pt-36 pb-24">
-      
+
       {/* NOTIFICACIÓN FLOTANTE MODERNA */}
       {notification.show && (
         <div className={`fixed top-32 right-5 z-50 w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transform transition-all duration-500 animate-slide-in`}>
@@ -277,7 +277,7 @@ export default function ContactPage() {
 
       {/* ESTRELLAS / GALAXIA */}
       <div className="absolute inset-0 z-0 pointer-events-none animate-stars opacity-40" />
-      
+
       <div className="grid md:grid-cols-2 gap-12 max-w-6xl w-full mx-auto relative z-10">
 
         {/* FORMULARIO */}
@@ -300,15 +300,13 @@ export default function ContactPage() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${
-                  errors.empresa && touched.empresa 
-                    ? "border-red-500 focus:ring-red-500" 
+                className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${errors.empresa && touched.empresa
+                    ? "border-red-500 focus:ring-red-500"
                     : formData.empresa && !errors.empresa && touched.empresa
-                    ? "border-green-500 focus:ring-green-500"
-                    : "border-gray-200 focus:ring-blue-800"
-                } focus:outline-none focus:ring-2 transition-all ${
-                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
+                      ? "border-green-500 focus:ring-green-500"
+                      : "border-gray-200 focus:ring-blue-800"
+                  } focus:outline-none focus:ring-2 transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
               />
               {errors.empresa && touched.empresa && (
                 <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
@@ -327,15 +325,13 @@ export default function ContactPage() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${
-                  errors.nombre && touched.nombre 
-                    ? "border-red-500 focus:ring-red-500" 
+                className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${errors.nombre && touched.nombre
+                    ? "border-red-500 focus:ring-red-500"
                     : formData.nombre && !errors.nombre && touched.nombre
-                    ? "border-green-500 focus:ring-green-500"
-                    : "border-gray-200 focus:ring-blue-800"
-                } focus:outline-none focus:ring-2 transition-all ${
-                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
+                      ? "border-green-500 focus:ring-green-500"
+                      : "border-gray-200 focus:ring-blue-800"
+                  } focus:outline-none focus:ring-2 transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
               />
               {errors.nombre && touched.nombre && (
                 <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
@@ -354,15 +350,13 @@ export default function ContactPage() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${
-                  errors.email && touched.email 
-                    ? "border-red-500 focus:ring-red-500" 
+                className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${errors.email && touched.email
+                    ? "border-red-500 focus:ring-red-500"
                     : formData.email && !errors.email && touched.email
-                    ? "border-green-500 focus:ring-green-500"
-                    : "border-gray-200 focus:ring-blue-800"
-                } focus:outline-none focus:ring-2 transition-all ${
-                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
+                      ? "border-green-500 focus:ring-green-500"
+                      : "border-gray-200 focus:ring-blue-800"
+                  } focus:outline-none focus:ring-2 transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
               />
               {errors.email && touched.email && (
                 <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
@@ -382,15 +376,13 @@ export default function ContactPage() {
                 onBlur={handleBlur}
                 disabled={isSubmitting}
                 maxLength={10}
-                className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${
-                  errors.telefono && touched.telefono 
-                    ? "border-red-500 focus:ring-red-500" 
+                className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${errors.telefono && touched.telefono
+                    ? "border-red-500 focus:ring-red-500"
                     : formData.telefono && !errors.telefono && touched.telefono
-                    ? "border-green-500 focus:ring-green-500"
-                    : "border-gray-200 focus:ring-blue-800"
-                } focus:outline-none focus:ring-2 transition-all ${
-                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
+                      ? "border-green-500 focus:ring-green-500"
+                      : "border-gray-200 focus:ring-blue-800"
+                  } focus:outline-none focus:ring-2 transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
               />
               {errors.telefono && touched.telefono && (
                 <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
@@ -410,15 +402,13 @@ export default function ContactPage() {
                 onBlur={handleBlur}
                 disabled={isSubmitting}
                 maxLength={1000}
-                className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${
-                  errors.mensaje && touched.mensaje
+                className={`w-full px-4 py-3 bg-gray-50 rounded-xl border-2 ${errors.mensaje && touched.mensaje
                     ? "border-red-500 focus:ring-red-500"
                     : formData.mensaje && !errors.mensaje && touched.mensaje
-                    ? "border-green-500 focus:ring-green-500"
-                    : "border-gray-200 focus:ring-blue-800"
-                } focus:outline-none focus:ring-2 transition-all ${
-                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
+                      ? "border-green-500 focus:ring-green-500"
+                      : "border-gray-200 focus:ring-blue-800"
+                  } focus:outline-none focus:ring-2 transition-all ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
               ></textarea>
               {formData.mensaje && (
                 <p className="text-xs text-gray-500 mt-1 text-right">
@@ -460,9 +450,8 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full bg-gradient-to-r from-[#020617] to-[#172554] text-white py-3 rounded-xl font-semibold hover:from-[#020617] hover:to-[#020617] transition-all duration-300 shadow-lg transform hover:scale-105 ${
-                isSubmitting ? 'opacity-50 cursor-not-allowed hover:scale-100' : ''
-              }`}
+              className={`w-full bg-gradient-to-r from-[#020617] to-[#172554] text-white py-3 rounded-xl font-semibold hover:from-[#020617] hover:to-[#020617] transition-all duration-300 shadow-lg transform hover:scale-105 ${isSubmitting ? 'opacity-50 cursor-not-allowed hover:scale-100' : ''
+                }`}
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center">
@@ -498,7 +487,7 @@ export default function ContactPage() {
               </div>
               <div className="ml-4">
                 <h4 className="text-sm font-medium text-gray-400">{t("contact_info_celular")}</h4>
-                <p className="text-white text-lg font-semibold">+57 311 467 2067</p>
+                <p className="text-white text-lg font-semibold">+57 322 722 3032</p>
               </div>
             </div>
 
