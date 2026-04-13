@@ -1,14 +1,19 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+// Mantenemos tu import del contexto por si lo usas en el navbar/footer, 
+// pero ya no dependeremos de él para los textos de esta página.
 import { useLanguage } from "../context/LanguageContext";
 import { 
-  RiCodeSSlashLine, 
+  RiComputerLine, 
   RiSmartphoneLine, 
-  RiLayoutLine, 
-  RiCloudLine, 
-  RiSettings4Line, 
-  RiShoppingCartLine,
-  RiArrowRightLine
+  RiMagicLine, 
+  RiRobot2Line, 
+  RiStore3Line,
+  RiSettings4Line,
+  RiArrowRightLine,
+  RiMoneyDollarCircleLine,
+  RiShieldCheckLine,
+  RiTeamLine
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
@@ -54,39 +59,39 @@ const Servicios = () => {
 
   const services = [
     {
-      icon: RiCodeSSlashLine,
-      title: t("serv_web_titles") || "Desarrollo Web de Alto Rendimiento",
-      desc: t("serv_web_desc") || "Construimos ecosistemas digitales utilizando React y Next.js. Nos enfocamos en la velocidad de carga, el SEO técnico y arquitecturas escalables que soportan el crecimiento de tu negocio sin degradar la experiencia.",
+      icon: RiRobot2Line,
+      title: "Automatización de Procesos",
+      desc: "Haz más en menos tiempo. Creamos herramientas inteligentes que automatizan las tareas repetitivas de tu día a día, reduciendo errores humanos y bajando los costos operativos de tu empresa.",
       delay: 0.1
     },
     {
-      icon: RiSmartphoneLine,
-      title: t("serv_mobile_title") || "Experiencias Móviles Nativas e Híbridas",
-      desc: t("serv_mobile_desc") || "Diseñamos y desarrollamos apps para iOS y Android con React Native. Priorizamos la fluidez táctil, el consumo eficiente de batería y una integración perfecta con las funcionalidades del hardware.",
+      icon: RiComputerLine,
+      title: "Desarrollo de Páginas Web",
+      desc: "Creamos sitios web rápidos, seguros y diseñados para destacar tu marca. Convertimos visitantes en clientes con plataformas atractivas que funcionan perfectamente en cualquier celular o computadora.",
       delay: 0.2
     },
     {
-      icon: RiLayoutLine,
-      title: t("serv_uiux_title") || "Diseño de Producto UX/UI",
-      desc: t("serv_uiux_desc") || "Transformamos la complejidad en simplicidad. Creamos interfaces intuitivas basadas en datos y comportamiento del usuario, asegurando que cada clic tenga un propósito y cada pantalla genere valor.",
+      icon: RiSmartphoneLine,
+      title: "Aplicaciones Móviles",
+      desc: "Lleva tu negocio al bolsillo de tus clientes. Desarrollamos apps para iOS y Android que son intuitivas, rápidas y pensadas para facilitar la vida de tus usuarios, aumentando su fidelidad.",
       delay: 0.3
     },
     {
-      icon: RiCloudLine,
-      title: t("serv_cloud_title") || "Soluciones Cloud & DevOps",
-      desc: t("serv_cloud_desc") || "Maximizamos la disponibilidad de tus servicios mediante AWS y Azure. Implementamos CI/CD y monitoreo en tiempo real para que tu software sea resiliente, seguro y siempre esté disponible.",
+      icon: RiStore3Line,
+      title: "Tiendas en Línea (E-commerce)",
+      desc: "Vende tus productos las 24 horas del día. Diseñamos tiendas online seguras, fáciles de administrar y con métodos de pago integrados para que tu única preocupación sea enviar los pedidos.",
       delay: 0.4
     },
     {
-      icon: RiShoppingCartLine,
-      title: t("serv_ecommerce_title") || "E-commerce Escalable",
-      desc: t("serv_ecommerce_desc") || "Desarrollamos tiendas online preparadas para eventos de alto tráfico. Integramos pasarelas de pago globales, sistemas de logística y paneles de administración que facilitan tu operación diaria.",
+      icon: RiSettings4Line,
+      title: "Sistemas y Software a Medida",
+      desc: "Desarrollamos la herramienta exacta que tu negocio necesita. Desde sistemas de inventario y facturación hasta plataformas completas para gestionar toda la información de tu empresa en un solo lugar.",
       delay: 0.5
     },
     {
-      icon: RiSettings4Line,
-      title: t("serv_custom_title") || "Sistemas y Software a Medida",
-      desc: t("serv_custom_desc") || "Desarrollamos la pieza de software que tu empresa necesita para ser competitiva. Desde CRMs especializados hasta sistemas core de facturación o gestión, diseñados a tu medida.",
+      icon: RiMagicLine,
+      title: "Diseño de Experiencia",
+      desc: "Hacemos que la tecnología sea fácil de usar. Diseñamos plataformas modernas y agradables que guían a tus clientes de manera natural hacia lo que buscan, garantizando que no se frustren ni abandonen.",
       delay: 0.6
     }
   ];
@@ -102,9 +107,9 @@ const Servicios = () => {
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-[#1E90FF]"
+            className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-[#FFFFFF]"
           >
-            {t("serv_title") || "Nuestros Servicios"}
+            Soluciones Tecnológicas Reales
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -112,7 +117,7 @@ const Servicios = () => {
             transition={{ delay: 0.2 }}
             className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
           >
-            {t("serv_subtitle") || "En Valcode Software, no solo escribimos código; construimos los cimientos tecnológicos de tu próximo éxito empresarial. Soluciones robustas para desafíos modernos."}
+            No solo escribimos código; construimos herramientas que hacen crecer tu empresa, optimizan tu tiempo y aumentan tus ventas en el mundo digital.
           </motion.p>
         </div>
       </section>
@@ -126,30 +131,70 @@ const Servicios = () => {
         </div>
       </section>
 
+      {/* NUEVA SECCIÓN: Por qué vale la pena (Valor Comercial) */}
+      <section className="py-24 bg-slate-900/60 relative z-10 border-y border-blue-500/10">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              ¿Por qué vale la pena <span className="text-[#1E90FF]">trabajar con nosotros?</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              No somos una agencia más. Nos convertimos en tu socio tecnológico para asegurarnos de que cada peso que inviertas se traduzca en resultados medibles para tu negocio.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-[#020617] p-8 rounded-2xl border border-blue-500/20 hover:border-[#1E90FF]/50 transition-colors duration-300">
+              <RiMoneyDollarCircleLine className="text-[#1E90FF] text-4xl mb-4" />
+              <h3 className="text-xl font-bold mb-3 text-white">Retorno de Inversión (ROI)</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Cada sistema, app o página que creamos tiene un objetivo claro: ahorrarte tiempo, reducir tus gastos operativos o ayudarte a vender más. La tecnología debe pagar por sí sola.
+              </p>
+            </div>
+            
+            <div className="bg-[#020617] p-8 rounded-2xl border border-blue-500/20 hover:border-[#1E90FF]/50 transition-colors duration-300">
+              <RiTeamLine className="text-[#1E90FF] text-4xl mb-4" />
+              <h3 className="text-xl font-bold mb-3 text-white">Hablamos tu idioma</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Olvídate de términos técnicos y excusas informáticas. Te explicamos todo de forma clara y transparente, enfocándonos siempre en cómo solucionar tus problemas comerciales.
+              </p>
+            </div>
+
+            <div className="bg-[#020617] p-8 rounded-2xl border border-blue-500/20 hover:border-[#1E90FF]/50 transition-colors duration-300">
+              <RiShieldCheckLine className="text-[#1E90FF] text-4xl mb-4" />
+              <h3 className="text-xl font-bold mb-3 text-white">Seguridad y Sin ataduras</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Te entregamos soluciones completas sin costos sorpresa ni letras pequeñas. Entregamos proyectos seguros, estables y te acompañamos en el crecimiento de tu empresa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Metodología / Proceso */}
-      <section className="py-24 bg-slate-900/30 relative z-10 border-y border-white/5">
+      <section className="py-24 relative z-10">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl font-bold mb-10">
-                <span className="text-[#1E90FF] tracking-wider uppercase text-sm font-semibold">{t("serv_method_highlight") || "Cómo trabajamos"}</span>
-                <br /> <span className="text-white">{t("serv_method_title") || "Nuestra Metodología"}</span>
+                <span className="text-[#1E90FF] tracking-wider uppercase text-sm font-semibold">Cómo trabajamos</span>
+                <br /> <span className="text-white">Un proceso simple y transparente</span>
               </h2>
               <div className="space-y-8">
                 <Step 
                   number="01" 
-                  title={t("serv_step1_title") || "Descubrimiento"} 
-                  desc={t("serv_step1_desc") || "Entendemos a fondo tus necesidades y objetivos comerciales para trazar el mejor camino tecnológico."}
+                  title="Descubrimiento y Estrategia" 
+                  desc="Escuchamos tus problemas comerciales y trazamos el mejor plan tecnológico para resolverlos sin gastos innecesarios."
                 />
                 <Step 
                   number="02" 
-                  title={t("serv_step2_title") || "Diseño & Prototipado"} 
-                  desc={t("serv_step2_desc") || "Creamos interfaces visuales y flujos de usuario antes de escribir una sola línea de código."}
+                  title="Diseño Visual" 
+                  desc="Te mostramos exactamente cómo se verá y funcionará todo antes de empezar a programar, para que no haya sorpresas."
                 />
                 <Step 
                   number="03" 
-                  title={t("serv_step3_title") || "Desarrollo Ágil"} 
-                  desc={t("serv_step3_desc") || "Construimos tu solución con entregas incrementales, asegurando calidad y transparencia constante."}
+                  title="Desarrollo y Lanzamiento" 
+                  desc="Construimos tu solución mostrándote avances constantes, asegurando que el producto final sea exactamente lo que tu empresa necesita."
                 />
               </div>
             </div>
@@ -168,22 +213,23 @@ const Servicios = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
+      {/* Call to Action - Tarjeta Blanca Corregida */}
       <section className="py-24 px-6 relative z-10 text-center">
-        <div className="max-w-4xl mx-auto bg-gradient-to-r from-[#020617] to-[#172554] border border-[#1E90FF]/30 rounded-3xl p-12 shadow-2xl shadow-blue-500/10 overflow-hidden relative">
+        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-12 shadow-2xl overflow-hidden relative border-4 border-blue-50">
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              {t("serv_cta_title") || "¿Listo para iniciar tu próximo gran proyecto?"}
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">
+              ¿Listo para modernizar tu empresa y aumentar tus ventas?
             </h2>
             <Link 
               to="/contacto"
-              className="inline-flex items-center gap-2 bg-white text-[#020617] px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105"
+              className="inline-flex items-center gap-2 bg-[#1E90FF] text-white px-8 py-4 rounded-full font-bold hover:bg-blue-600 transition-all duration-300 shadow-[0_0_20px_rgba(30,144,255,0.4)] hover:scale-105"
             >
-              {t("serv_cta_btn") || "Contáctanos ahora"}
+              Habla con un experto gratis
               <RiArrowRightLine />
             </Link>
           </div>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full -mr-32 -mt-32 blur-3xl opacity-50" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-100 rounded-full -ml-32 -mb-32 blur-3xl opacity-50" />
         </div>
       </section>
     </div>
