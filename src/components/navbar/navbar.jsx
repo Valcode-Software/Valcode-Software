@@ -57,7 +57,7 @@ const Navbar = () => {
 
       <ul className="nav-links">
         <li onClick={() => navigate("/")}>{t("nav_inicio")}</li>
-        <li>{t("nav_servicios")}</li>
+        <li onClick={() => navigate("/servicios")}>{t("nav_servicios")}</li>
         <li onClick={() => navigate("/nosotros")}>{t("nav_nosotros")}</li>
         <li onClick={() => navigate("/proyectos")}>{t("nav_proyectos")}</li>
         <li onClick={() => navigate("/contacto")}>{t("nav_contacto")}</li>

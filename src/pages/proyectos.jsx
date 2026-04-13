@@ -34,7 +34,7 @@ const ProjectsSection = () => {
         </div>
 
         {/* Card */}
-        <div className="grid md:grid-cols-2 gap-10 items-center bg-slate-900/50 backdrop-blur-md border border-pink-500/20 rounded-2xl p-8 shadow-2xl hover:shadow-pink-500/10 transition duration-500">
+        <div className="grid md:grid-cols-2 gap-10 items-center bg-slate-900/50 backdrop-blur-md border border-[#1E90FF]/20 rounded-2xl p-8 shadow-2xl hover:shadow-blue-500/10 transition duration-500">
           
           {/* Imagen */}
           <div className="overflow-hidden rounded-xl border border-gray-700 bg-gray-800 aspect-video flex items-center justify-center">
@@ -97,7 +97,7 @@ const ProjectsSection = () => {
 
     {/* Overlay: oscuro y blur fuerte */}
     <div
-      className="absolute inset-0 bg-black/90 backdrop-blur-[18px]"
+      className="absolute inset-0 bg-[#020617]/95 backdrop-blur-[18px]"
       onClick={() => setOpen(false)}
       aria-hidden="true"
     />
@@ -107,7 +107,7 @@ const ProjectsSection = () => {
 
       <div className="relative w-full h-full sm:h-auto">
 
-        <div className="bg-slate-900/95 border border-blue-500/20 rounded-none sm:rounded-2xl p-6 sm:p-8 max-h-[96vh] overflow-auto shadow-2xl">
+        <div className="bg-[#020617]/95 border border-[#1E90FF]/30 rounded-none sm:rounded-2xl p-6 sm:p-8 max-h-[96vh] overflow-auto shadow-2xl">
 
           {/* Cerrar */}
           <button
@@ -146,4 +146,4 @@ const ProjectsSection = () => {
   );
 };
 
-export default ProjectsSection; 
+export default ProjectsSection;  

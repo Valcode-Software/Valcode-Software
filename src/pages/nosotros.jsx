@@ -12,10 +12,10 @@ const Card = ({ year, title, desc, t }) => {
       className="
         w-full max-w-[320px] min-h-[260px] flex flex-col p-6 rounded-xl
         bg-[#020617]
-        border border-pink-500/30
+        border border-[#1E90FF]/20
         hover:rotate-2
         transition-all duration-500
-        shadow-lg shadow-pink-500/10
+        shadow-lg shadow-blue-500/5
         cursor-pointer
       "
     >
@@ -34,8 +34,8 @@ const Card = ({ year, title, desc, t }) => {
 
 const FounderCard = ({ img, name, role, linkedin }) => {
   return (
-    <div className="flex flex-col items-center bg-[#020617] border border-pink-500/20 rounded-xl p-6 w-full max-w-[300px] hover:-translate-y-2 transition-transform duration-300 shadow-lg shadow-pink-500/5">
-      <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-pink-500 mb-4">
+    <div className="flex flex-col items-center bg-[#020617] border border-[#1E90FF]/20 rounded-xl p-6 w-full max-w-[300px] hover:-translate-y-2 transition-transform duration-300 shadow-lg shadow-blue-500/10">
+      <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-[#1E90FF] mb-4">
         <img src={img} alt={name} className="w-full h-full object-cover" />
       </div>
       <h3 className="text-xl font-bold text-white mb-1">{name}</h3>
@@ -82,10 +82,10 @@ const Nosotros = () => {
           <div className="flex justify-center">
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 group">
               {/* Glow/Sombra animada detrás */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 rounded-full blur-lg opacity-75 animate-pulse transition duration-500 group-hover:opacity-100"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#1E90FF] via-blue-400 to-cyan-300 rounded-full blur-lg opacity-40 animate-pulse transition duration-500 group-hover:opacity-70"></div>
               
               {/* Contenedor con borde gradiente */}
-              <div className="relative w-full h-full rounded-full p-1.5 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+              <div className="relative w-full h-full rounded-full p-1.5 bg-gradient-to-r from-[#1E90FF] via-white/50 to-blue-800">
                 <div className="w-full h-full rounded-full overflow-hidden bg-gray-900 border-4 border-gray-900">
                   <img
                     src={img1}

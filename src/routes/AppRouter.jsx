@@ -8,6 +8,7 @@ const ContactPage = lazy(() => import("../pages/contacto"));
 const Proyectos = lazy(() => import("../pages/proyectos"));
 const Terminos = lazy(() => import("../pages/tyc/tyc"));
 const Politica = lazy(() => import("../pages/politicadeseguirdad/politica"));
+const Servicios = lazy(() => import("../pages/servicios"));
 
 const AppRouter = () => {
   return (
@@ -18,6 +19,7 @@ const AppRouter = () => {
             <Route path="/" element={<Home />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/proyectos" element={<Proyectos />} />
+            <Route path="/servicios" element={<Servicios />} /> {/* Esta línea ya es correcta */}
             <Route path="/contacto" element={<ContactPage />} />
             <Route path="/terminos" element={<Terminos />} />
             <Route path="/privacidad" element={<Politica />} />
