@@ -113,7 +113,10 @@ const PorqueValcode = () => {
           <p className={styles['cta-description']}>
             {t("porque_cta_desc")}
           </p>
-          <button className={styles['cta-button']}>
+          <button
+            className={styles['cta-button']}
+            onClick={() => window.open("https://calendly.com/softwarevalcode/nueva-reunion", "_blank")}
+          >
             {t("porque_cta_button")}
           </button>
         </div>

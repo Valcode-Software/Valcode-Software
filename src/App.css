@@ -19,3 +19,51 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #e6e6e6;
 }
+
+/* Animations for Nosotros page comets/shooting stars */
+@keyframes comet-1 {
+  0% {
+    transform: translateX(0) translateY(0) rotate(20deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(150vw) translateY(-70vh) rotate(20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(180vw) translateY(-85vh) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes comet-2 {
+  0% {
+    transform: translateX(0) translateY(0) rotate(-20deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(-150vw) translateY(70vh) rotate(-20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-180vw) translateY(85vh) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+.animate-comet-1 {
+  animation: comet-1 15s linear infinite;
+  animation-delay: 2s; /* Start after some delay */
+  pointer-events: none; /* Make sure it doesn't block clicks */
+}
+.animate-comet-2 {
+  animation: comet-2 18s linear infinite;
+  animation-delay: 8s; /* Different delay for the second one */
+  pointer-events: none; /* Make sure it doesn't block clicks */
+}

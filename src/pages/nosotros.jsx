@@ -1,8 +1,6 @@
 import React from "react";
 import { RiLinkedinFill } from "react-icons/ri";
 import img1 from "../assets/img/somos-nosotros.png";
-import imgJho from "../assets/img/jesus.jpg";
-import imgJesu from "../assets/img/jhonatan.jpg";
 import { useLanguage } from "../context/LanguageContext";
 
 
@@ -58,6 +56,11 @@ const Nosotros = () => {
     <section className="bg-gradient-to-br from-[#020617] via-[#172554] to-[#020617] text-white min-h-screen py-12 md:py-20 relative overflow-hidden">
       {/* ESTRELLAS / GALAXIA */}
       <div className="absolute inset-0 z-0 pointer-events-none animate-stars opacity-40" />
+
+      {/* COHETE / ESTRELLA FUGÁZ 1 */}
+      <div className="absolute top-[20%] left-[-200px] w-[200px] h-[2px] bg-gradient-to-r from-transparent via-blue-300 to-blue-500 shadow-lg animate-comet-1 z-10"></div>
+      {/* COHETE / ESTRELLA FUGÁZ 2 */}
+      <div className="absolute top-[70%] right-[-200px] w-[200px] h-[2px] bg-gradient-to-l from-transparent via-purple-300 to-purple-500 shadow-lg animate-comet-2 z-10"></div>
 
       <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
 <br /><br />
@@ -153,34 +156,6 @@ const Nosotros = () => {
             <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-gray-950"></div>
           </div>
 
-        </div>
-
-        <div className="mt-12 md:mt-20 text-center max-w-4xl mx-auto px-4">
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">{t("us_today")}</h3>
-          <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-light">
-            {t("us_today_desc")}
-          </p>
-        </div>
-
-        {/* Línea separadora punteada con espacios laterales */}
-        <div className="w-full px-8 md:px-16 mt-20 mb-16">
-          <div className="border-t-4 border-dotted border-gray-700/60 w-full"></div>
-        </div>
-
-        {/* Sección de Fundadores (CTOs) */}
-        <div className="flex flex-col md:flex-row justify-center items-center gap-10 mb-10">
-          <FounderCard 
-            img={imgJho} 
-            name="Jesus Santiago Castillo" 
-            role="CTO & Co-Founder" 
-            linkedin="https://www.linkedin.com/in/jes%C3%BAs-santiago-castillo-moyano-97183033a/"
-          />
-          <FounderCard 
-            img={imgJesu} 
-            name="Jhonatan Julian Moreno" 
-            role="CTO & Co-Founder" 
-            linkedin="https://www.linkedin.com/in/jhonatan-juli%C3%A1n-moreno-sabogal-a0b055286/"
-          />
         </div>
 
       </div>
