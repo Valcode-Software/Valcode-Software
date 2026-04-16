@@ -4,7 +4,7 @@ import { useLanguage } from "../../context/LanguageContext";
 import { RiLinkedinFill, RiSearchLine } from "react-icons/ri";
 import { HiMenu, HiX } from "react-icons/hi";
 import "./navbar.css";
-import logo from "../../assets/img/Logo_Valcode_Software_White.png";
+import logo from "../../assets/img/valcode_logo_all_white.png";
 
 const Navbar = () => {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
@@ -22,20 +22,65 @@ const Navbar = () => {
     setIsLangMenuOpen(false);
   };
 
-  // 🔥 EFECTO HIDE / SHOW NAVBAR
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+
+  const navItems = [
+    { id: "inicio", label: t("nav_inicio"), path: "/" },
+    { id: "servicios", label: t("nav_servicios"), path: "/servicios" },
+    { id: "nosotros", label: t("nav_nosotros"), path: "/nosotros" },
+    { id: "proyectos", label: t("nav_proyectos"), path: "/proyectos" },
+    { id: "contacto", label: t("nav_contacto"), path: "/contacto" },
+  ];
+
+  useEffect(() => {
+    const q = searchValue.trim().toLowerCase();
+    if (!q) {
+      setFilteredResults([]);
+      return;
+    }
+
+    const results = navItems.filter((item) => {
+      return (
+        item.label.toLowerCase().includes(q) || item.id.toLowerCase().includes(q)
+      );
+    });
+
+    setFilteredResults(results.slice(0, 6));
+  }, [searchValue]);
+
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleSearchSelect = (path) => {
+    navigate(path);
+    setIsSearchOpen(false);
+    setSearchValue("");
+  };
+
+  const handleSearchKeyDown = (e) => {
+    if (e.key === "Enter") {
+      if (filteredResults.length > 0) {
+        handleSearchSelect(filteredResults[0].path);
+      } else if (searchValue.trim()) {
+        const q = searchValue.trim().toLowerCase();
+        const exact = navItems.find((it) => it.id === q);
+        if (exact) handleSearchSelect(exact.path);
+      }
+    }
+  };
+
+  // EFECTO HIDE / SHOW NAVBAR
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Evita micro movimientos
       if (Math.abs(currentScrollY - lastScrollY.current) < 5) return;
 
       if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
-        // Scroll hacia abajo → ocultar
         setShowNavbar(false);
         setIsSearchOpen(false);
       } else {
-        // Scroll hacia arriba → mostrar
         setShowNavbar(true);
       }
 
@@ -96,8 +141,28 @@ const Navbar = () => {
         <div className="search-dropdown">
           <div className="search-input-wrapper">
             <RiSearchLine className="search-input-icon" />
-            <input type="text" placeholder={t("nav_buscar")} autoFocus />
+            <input
+              type="text"
+              placeholder={t("nav_buscar")}
+              autoFocus
+              value={searchValue}
+              onChange={handleSearchChange}
+              onKeyDown={handleSearchKeyDown}
+            />
           </div>
+
+          {filteredResults.length > 0 && (
+            <ul className="search-results">
+              {filteredResults.map((item) => (
+                <li
+                  key={item.id}
+                  onClick={() => handleSearchSelect(item.path)}
+                >
+                  {item.label}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
 
@@ -189,7 +254,7 @@ const Navbar = () => {
             </div>
 
             <a
-              href="https://www.linkedin.com"
+              href="https://www.linkedin.com/in/valcode-software/"
               target="_blank"
               rel="noopener noreferrer"
               className="mobile-social-link"

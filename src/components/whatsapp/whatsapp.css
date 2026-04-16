@@ -18,11 +18,10 @@
 }
 
 .whatsapp-float:hover {
-  background-color: #128c7e;
+  background-color: #5534b800;
   transform: scale(1.1);
 }
 
-/* Estilo para el botón dentro del Hero */
 .whatsapp-hero-btn {
   display: inline-flex;
   align-items: center;

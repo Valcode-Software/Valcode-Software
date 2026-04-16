@@ -1,5 +1,8 @@
 import React from "react";
 import { RiLinkedinFill } from "react-icons/ri";
+import { SiN8N, SiDocker } from "react-icons/si";
+import { VscAzure } from "react-icons/vsc";
+import { FaAws, FaReact, FaNodeJs } from "react-icons/fa";
 import img1 from "../assets/img/somos-nosotros.png";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -22,10 +25,10 @@ const Card = ({ year, title, desc, t }) => {
 
         <h3 className="text-xl font-bold mt-2 mb-3">{title}</h3>
 
-        <p className="text-gray-400 text-sm mb-4">{desc}</p>
+        <p className="text-white text-sm mb-4">{desc}</p>
       </div>
 
-      <div className="text-gray-500 mt-4 text-xs">{t("us_team")}</div>
+      <div className="text-white mt-4 text-xs">{t("us_team")}</div>
     </div>
   );
 };
@@ -156,6 +159,33 @@ const Nosotros = () => {
             <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-gray-950"></div>
           </div>
 
+        </div>
+
+        {/* TECH STACK LOGOS */}
+        <div className="mt-20 md:mt-32 mb-10 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("us_tech_title")}</h2>
+          <p className="text-gray-400 mb-12">{t("us_tech_subtitle")}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 justify-center max-w-5xl mx-auto">
+            {/* Tech Items */}
+            {[
+              { Icon: SiN8N, name: "n8n", color: "text-[#FF6D5A]" },
+              { Icon: VscAzure, name: "Azure", color: "text-[#0078D4]" },
+              { Icon: FaAws, name: "AWS", color: "text-[#FF9900]" },
+              { Icon: FaReact, name: "React", color: "text-[#61DAFB]" },
+              { Icon: FaNodeJs, name: "Node.js", color: "text-[#339933]" },
+              { Icon: SiDocker, name: "Docker", color: "text-[#2496ED]" }
+            ].map((tech, i) => (
+              <div 
+                key={i} 
+                className="flex flex-col items-center justify-center p-6 bg-bg-white/10 backdrop-blur-md border border-[#1E90FF]/20 rounded-xl hover:-translate-y-2 hover:border-[#1E90FF]/50 transition-all duration-300 shadow-lg shadow-blue-500/5 group"
+              >
+                <div className={`${tech.color} opacity-80 group-hover:opacity-100 transition-opacity duration-300 mb-3`}>
+                  <tech.Icon size={48} />
+                </div>
+                <span className="text-white group-hover:text-white transition-colors text-sm font-medium">{tech.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>

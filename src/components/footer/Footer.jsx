@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   FileText,
   Shield,
-  Cookie,
-  Scale,
   Github,
   Linkedin,
   Instagram,
@@ -41,25 +39,20 @@ const Footer = () => {
   const { t } = useLanguage();
   const legalLinks = [
     { icon: <FileText size={16} />, title: t("footer_terminos"), path: '/terminos' },
-    { icon: <Shield size={16} />, title: t("footer_privacidad"), path: '/privacidad' },
-    { icon: <Cookie size={16} />, title: t("footer_cookies"), path: '/cookies' },
-    { icon: <Scale size={16} />, title: t("footer_aviso"), path: '/aviso-legal' }
+    { icon: <Shield size={16} />, title: t("footer_privacidad"), path: '/privacidad' }
   ];
 
   // Redes sociales separadas en dos filas (4 arriba, 4 abajo)
   const socialLinksTop = [
     { icon: <Linkedin size={18} />, url: 'https://www.linkedin.com/in/valcode-software/', label: 'LinkedIn' },
-    { icon: <Github size={18} />, url: '#', label: 'GitHub' },
-    { icon: <TiktokIcon size={18} />, url: '#', label: 'TikTok' },
-    { icon: <Youtube size={18} />, url: '#', label: 'YouTube' }
-
+    { icon: <TiktokIcon size={18} />, url: 'https://www.tiktok.com/@valcodesoftware?is_from_webapp=1&sender_device=pc', label: 'TikTok' },
+    { icon: <WhatsappIcon size={18} />, url: 'https://wa.me/573227223032', label: 'WhatsApp' }
   ];
 
   const socialLinksBottom = [
     { icon: <Instagram size={18} />, url: 'https://www.instagram.com/valcode.software/', label: 'Instagram' },
     { icon: <Facebook size={18} />, url: 'https://www.facebook.com/profile.php?id=61580736153444', label: 'Facebook' },
-    { icon: <XIcon size={18} />, url: 'https://x.com/valcodesoftware', label: 'X' },
-    { icon: <WhatsappIcon size={18} />, url: '#', label: 'WhatsApp' }
+    { icon: <XIcon size={18} />, url: 'https://x.com/valcodesoftware', label: 'X' }
   ];
 
   return (
@@ -125,7 +118,7 @@ const Footer = () => {
           <div className={styles.contactSection}>
             <h4 className={styles.sectionTitle}>{t("footer_contacto")}</h4>
             <div className={styles.contactInfo}>
-              <p>softwarevalcode@gmail.com</p>
+              <p><a href="mailto:softwarevalcode@gmail.com?subject=Consulta%20desde%20sitio%20web" style={{ color: 'inherit', textDecoration: 'none' }}>softwarevalcode@gmail.com</a></p>
               <p>+57 3227223032</p>
             </div>
           </div>
@@ -146,10 +139,10 @@ const Footer = () => {
           <div className={styles.navSection}>
             <h4 className={styles.sectionTitle}>{t("footer_navegacion")}</h4>
             <div className={styles.navLinks}>
-              <p>{t("nav_servicios")}</p>
-              <p>{t("nav_proyectos")}</p>
-              <p>{t("nav_nosotros")}</p>
-              <p>{t("nav_contacto")}</p>
+              <Link to="/servicios">{t("nav_servicios")}</Link>
+              <Link to="/proyectos">{t("nav_proyectos")}</Link>
+              <Link to="/nosotros">{t("nav_nosotros")}</Link>
+              <Link to="/contacto">{t("nav_contacto")}</Link>
             </div>
           </div>
 

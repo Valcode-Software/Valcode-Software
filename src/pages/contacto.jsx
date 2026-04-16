@@ -277,13 +277,12 @@ export default function ContactPage() {
 
       {/* ESTRELLAS / GALAXIA */}
       <div className="absolute inset-0 z-0 pointer-events-none animate-stars opacity-40" />
-
       <div className="grid md:grid-cols-2 gap-12 max-w-6xl w-full mx-auto relative z-10">
-
+        
         {/* FORMULARIO */}
         <div className="bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-blue-900/20">
           <h1 className="text-4xl font-bold mb-4">
-            <span className="text-[#020617]">{t("contact_req")}</span>
+           <span className="text-blue-900">{t("contact_req")}</span>
           </h1>
 
           <p className="text-gray-600 mb-6 text-sm">
@@ -472,7 +471,7 @@ export default function ContactPage() {
         <div className="flex flex-col justify-center text-white space-y-6">
           <div>
             <h2 className="text-3xl font-bold mb-4">
-              <span style={{ color: '#1E90FF' }}>{t("contact_info_title_1")}</span><br />
+              <span style={{ color: '#ffffff' }}>{t("contact_info_title_1")}</span><br />
               {t("contact_info_title_2")}
             </h2>
             <p className="text-gray-300 leading-relaxed">
@@ -483,7 +482,7 @@ export default function ContactPage() {
           <div>
             <div className="flex items-start group hover:bg-white/10 transition-all duration-300 p-3 rounded-xl">
               <div className="bg-blue-500/20 p-3 rounded-xl group-hover:bg-blue-500/30 transition-all duration-300">
-                <RiSmartphoneLine style={{ color: '#1E90FF' }} size={24} />
+                <RiSmartphoneLine style={{ color: '#ffffff' }} size={24} />
               </div>
               <div className="ml-4">
                 <h4 className="text-sm font-medium text-gray-400">{t("contact_info_celular")}</h4>
@@ -493,7 +492,7 @@ export default function ContactPage() {
 
             <div className="flex items-start group hover:bg-white/10 transition-all duration-300 p-3 rounded-xl">
               <div className="bg-blue-500/20 p-3 rounded-xl group-hover:bg-blue-500/30 transition-all duration-300">
-                <RiMailLine style={{ color: '#1E90FF' }} size={24} />
+                <RiMailLine style={{ color: '#ffffff' }} size={24} />
               </div>
               <div className="ml-4">
                 <h4 className="text-sm font-medium text-gray-400">{t("contact_info_email")}</h4>
@@ -503,7 +502,7 @@ export default function ContactPage() {
           </div>
 
           <div className="flex items-center gap-2 text-sm text-gray-400">
-            <RiCheckLine style={{ color: '#1E90FF' }} size={18} />
+            <RiCheckLine style={{ color: '#ffffff' }} size={18} />
             <span>{t("contact_info_secure")}</span>
           </div>
         </div>

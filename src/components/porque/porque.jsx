@@ -48,9 +48,9 @@ const PorqueValcode = () => {
   ];
 
   const stats = [
-    { numero: "50+", label: t("porque_stats_proyectos") },
-    { numero: "5+", label: t("porque_stats_experiencia") },
-    { numero: "15+", label: t("porque_stats_expertos") },
+    { numero: "1", label: t("porque_stats_proyectos") },
+    { numero: "1", label: t("porque_stats_experiencia") },
+    { numero: "2", label: t("porque_stats_expertos") },
     { numero: "100%", label: t("porque_stats_satisfaccion") }
   ];
 

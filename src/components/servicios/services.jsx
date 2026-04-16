@@ -4,6 +4,7 @@ import img2 from "../../assets/img/plataformas-digitales.jpg";
 import img3 from "../../assets/img/ia-para-negocios.jpg";
 import img4 from "../../assets/img/asistentes-virtuales.png";
 import { useLanguage } from "../../context/LanguageContext";
+import { Link } from "react-router-dom";
 
 export default function Services() {
   const { t } = useLanguage();
@@ -89,18 +90,19 @@ export default function Services() {
               </div>
 
               {/* BOTÓN FLOTANTE */}
-              <div
+              <Link
+                to="/servicios"
                 className="
                   relative z-10 self-end mt-6 w-10 h-10 rounded-lg
                   border border-white/20
                   flex items-center justify-center
-                  group-hover:bg-pink-600
-                  group-hover:border-pink-600
+                  group-hover:bg-white
+                  group-hover:border-white
                   transition
                 "
               >
-                <HiArrowUpRight className="text-lg group-hover:text-white" />
-              </div>
+                <HiArrowUpRight className="text-lg group-hover:text-blue-600" />
+              </Link>
             </div>
           ))}
         </div>

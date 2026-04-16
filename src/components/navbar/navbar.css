@@ -9,13 +9,11 @@
   padding: 0 20px;
   box-sizing: border-box;
   background: #020617;
-  /* Azul oscuro neutro sólido */
   color: rgb(255, 255, 255);
   border-radius: 0;
   z-index: 1000;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
   border-bottom: 1px solid rgba(23, 5, 51, 0.1);
-  /* Borde sutil oscuro */
   transition: transform 0.35s ease-in-out, box-shadow 0.3s ease;
 }
 
@@ -27,20 +25,16 @@
   font-size: 18px;
   font-weight: bold;
   display: flex;
-  /* Elimina espacios extra debajo de la imagen */
 }
 
 .logo img {
   height: 115px;
-  /* Ajusta la imagen para que quepa en la barra */
   width: auto;
-  /* Mantiene la proporción original */
 }
 
 .nav-links {
   display: flex;
   gap: 25px;
-  /* menos espacio */
   list-style: none;
   margin: 0;
   padding: 0;
@@ -64,7 +58,6 @@
   left: 0;
   bottom: -4px;
   width: 0;
-  /* empieza invisible */
   height: 2px;
   background: rgb(255, 255, 255);
   transition: width 0.3s ease;
@@ -72,12 +65,10 @@
 
 .nav-links li:hover::after {
   width: 100%;
-  /* se dibuja la línea */
 }
 
 .nav-links li:hover {
   color: #2563eb;
-  /* Azul brillante al pasar el mouse */
 }
 
 .mobile-separator {
@@ -90,7 +81,6 @@
 
 .language-selector {
   position: relative;
-  /* Necesario para el posicionamiento absoluto del dropdown */
   font-size: 14px;
   cursor: pointer;
   color: rgb(255, 255, 255);
@@ -104,7 +94,6 @@
   border-radius: 5px;
   transition: background-color 0.3s;
   margin-right: 0;
-  /* antes 190px */
 }
 
 .lang-dropdown {
@@ -112,7 +101,7 @@
   top: calc(100% + 5px);
   right: -30px;
   background-color: #fdfdfd;
-  border: 1px solid #333;
+  border: 1px solid #ffffff;
   color: black;
   border-radius: 5px;
   list-style: none;
@@ -120,11 +109,8 @@
   margin: 0;
   z-index: 10;
   min-width: 100px;
-
-  /* Animación suave sin bug */
   opacity: 0;
   visibility: hidden;
-  /* <-- evita que se pueda interactuar mientras está oculto */
   transform: translateY(-10px);
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
@@ -133,7 +119,6 @@
 .language-selector:focus-within .lang-dropdown {
   opacity: 1;
   visibility: visible;
-  /* <-- hace visible y clickeable */
   transform: translateY(0);
 }
 
@@ -155,26 +140,21 @@
   align-items: center;
   justify-content: center;
   color: rgb(255, 255, 255);
-  /* Azul oscuro para verse en fondo blanco */
   font-size: 22px;
   margin-left: 10px;
   margin-right: 75px;
   text-decoration: none;
   transition: all 0.3s ease;
-  /* Transición suave para todo */
 }
 
 .social-link svg {
   width: 1em;
   height: 1em;
   transition: all 0.3s ease;
-  /* Transición del SVG también */
 }
 
-/* Hover moderno */
 .social-link:hover {
   color: #2563eb;
-  /* Azul brillante */
   transform: translateY(-5px) scale(1.2);
   /* Sube y agranda un poco */
   filter: drop-shadow(0 4px 10px rgba(37, 99, 235, 0.3));
@@ -207,7 +187,7 @@
   background: #1a0a2e;
   padding: 15px;
   border-radius: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
   animation: slideDown 0.3s ease;
   box-sizing: border-box;
@@ -231,41 +211,33 @@
 .search-dropdown input {
   width: 100%;
   background: transparent;
-
-  /* mantenemos estructura */
   padding: 8px 12px 8px 40px;
   box-sizing: border-box;
   color: white;
   outline: none;
   font-size: 14px;
-
-  /* estilo moderno */
   border: none;
   border-bottom: 2px solid rgba(255, 255, 255, 0.25);
   border-radius: 0;
   transition: all 0.25s ease;
 }
 
-/* Línea glow al enfocar */
 .search-dropdown input:focus {
   border-bottom: 2px solid rgba(255, 255, 255, 0.8);
   box-shadow: none;
 }
 
-/* Placeholder */
 .search-dropdown input::placeholder {
   color: rgba(255, 255, 255, 0.45);
   font-weight: 300;
 }
 
-/* Lupa reactiva */
+
 .search-input-wrapper:focus-within .search-input-icon {
   color: #4FD1FF;
   transform: translateY(-50%) scale(1.05);
 }
 
-
-/* ICONO MENU */
 .mobile-menu-icon {
   display: none;
   font-size: 22px;
@@ -277,7 +249,7 @@
 }
 
 .mobile-menu-icon:hover {
-  color: #2563eb;
+  color: #ffffff;
   transform: scale(1.1);
 }
 
@@ -324,7 +296,11 @@
   cursor: pointer;
   color: white;
 }
-
+.mobile-nav-links li:hover {
+  background-color: #ffffff;   /* fondo blanco */
+  color: #0d1a36;    
+  border-radius: 12px;          /* azul (blue-600 aprox) */
+}
 .mobile-actions {
   display: flex;
   flex-direction: row;
@@ -340,7 +316,7 @@
 
 .current-lang {
   font-size: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.288);
   padding: 8px 25px;
   border-radius: 30px;
   display: flex;
@@ -356,8 +332,9 @@
   min-width: 100px;
   z-index: 10;
   margin-top: 10px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(255, 255, 255);
   border-radius: 15px;
+  color: rgb(15, 15, 50);
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -378,46 +355,38 @@
 }
 
 .mobile-social-link:active {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgb(255, 255, 255);
 }
 
 /* RESPONSIVE LANDSCAPE (Móviles en horizontal) */
 @media (max-height: 800px) {
   .mobile-menu {
     padding-top: 40px;
-    /* Subimos el menú más hacia arriba */
     justify-content: flex-start;
     overflow-y: auto;
     padding-bottom: 150px;
-    /* Más espacio abajo */
     gap: 15px;
-    /* Menos espacio entre elementos */
     height: 100dvh;
     -webkit-overflow-scrolling: touch;
   }
 
   .mobile-nav-links {
     position: relative;
-    /* o absolute si quieres sacarlo del flujo */
     gap: 10px;
     top: -30px;
-    /* sube los links más arriba */
   }
 
   .mobile-nav-links li {
     font-size: 20px;
-    /* Ajustable según necesidad */
   }
 
   .mobile-actions {
     margin-top: 10px;
-    /* Bajamos los iconos y el idioma */
     margin-bottom: 20px;
   }
 
   .mobile-separator {
     margin: -50px 0 0 0;
-    /* Sube más la línea */
   }
 }
 

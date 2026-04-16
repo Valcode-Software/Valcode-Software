@@ -108,7 +108,7 @@
 
 .slogan {
   font-size: clamp(12px, 2vw, 14px);
-  color: #94A3B8;
+  color: #d3d5d7;
   line-height: 1.5;
   max-width: min(260px, 100%);
   margin: 0;
@@ -148,14 +148,14 @@
   height: clamp(32px, 5vw, 36px);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.05);
-  color: #94A3B8;
+  color: #dcdcdc;
   transition: all 0.2s ease;
   text-decoration: none;
 }
 
 .socialIcon:hover {
-  background: #0a82fa;
-  color: white;
+  background: #ffffff;
+  color: rgb(35, 13, 61);
   transform: translateY(-2px);
 }
 
@@ -189,7 +189,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #94A3B8;
+  color: #ffffff;
   text-decoration: none;
   font-size: clamp(12px, 1.8vw, 14px);
   transition: color 0.2s ease;
@@ -197,33 +197,35 @@
 }
 
 .legalLink:hover {
-  color: #1E90FF;
+  color: #ffffff;
 }
 
 /* Contact Section */
 .contactInfo p,
-.navLinks p {
+.navLinks p,
+.navLinks a {
   margin: 0;
   transition: color 0.2s ease;
   font-size: clamp(12px, 1.8vw, 14px);
-  color: #94A3B8;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .contactInfo p:first-child:hover {
-  color: #1E90FF;
+  color: #ffffff;
   cursor: pointer;
 }
 
 
 
 /* Navegación */
-.navLinks p {
+.navLinks p, .navLinks a {
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
-.navLinks p:hover {
-  color: #1E90FF;
+.navLinks p:hover, .navLinks a:hover {
+  color: #ffffff;
 }
 
 /* Bottom Bar */
@@ -247,7 +249,7 @@
 
 .copyright {
   font-size: clamp(15px, 1.6vw, 13px);
-  color: #64748B;
+  color: #ffffff;
   margin: 0;
   order: 2;
 }
@@ -300,7 +302,8 @@
   
   .legalLink,
   .contactInfo p,
-  .navLinks p {
+  .navLinks p,
+  .navLinks a {
     font-size: 16px;
   }
 }
