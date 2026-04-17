@@ -202,8 +202,8 @@ export const translations = {
     
     // pages/politica
     pol_title: "POLÍTICA DE PRIVACIDAD",
-    pol_subtitle: "Valcode Software Solutions",
-    pol_updated: "Última actualización: 29 de febrero de 2024",
+    pol_subtitle: "Valcode Software",
+    pol_updated: "Última actualización: 20 de febrero de 2026",
     pol_intro: "En Valcode Software, nos tomamos muy en serio la privacidad de nuestros clientes y visitantes. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos su información personal cuando utiliza nuestros servicios o interactúa con nosotros.",
     pol_sec1_title: "1. COMPROMISO DE CONFIDENCIALIDAD",
     pol_sec1_p1: "En Valcode Software, establecemos un compromiso inquebrantable con la confidencialidad de la información que nuestros clientes nos confían. Todos los datos proporcionados a través de nuestros canales de comunicación son tratados con la máxima discreción y protegidos con los más altos estándares de seguridad.",
@@ -269,6 +269,7 @@ export const translations = {
     pol_footer_address_placeholder: "[Dirección de la empresa]",
     pol_footer_response: "Tiempo de respuesta: Máximo 72 horas hábiles",
     pol_note1: "Al proporcionar su información a través de nuestro sitio web, usted acepta los términos de esta Política de Privacidad.",
+    pol_note2: "En Valcode Software, su confianza es nuestro activo más valioso.",
     // pages/tyc
     tyc_title: "TÉRMINOS Y CONDICIONES",
     tyc_subtitle: "Valcode Software",
@@ -302,7 +303,7 @@ export const translations = {
     tyc_sec6_li3: "Respetar los derechos de propiedad intelectual de Valcode Software",
     tyc_sec6_li4: "Mantener la confidencialidad de cualquier información recibida",
     tyc_sec7_title: "7. LIMITACIÓN DE RESPONSABILIDAD",
-    tyc_sec7_p1: "Valcode Software no será responsable por daños directos, indirectos, incidentales o consecuentes que resulten del uso o la imposibilidad de uso de nuestros servicios. No garantizamos que el servicio sea ininterrumpido o libre de errores.",
+    tyc_sec7_p1: "Valcode Software no será responsable por daños directos, indirectos, incidentales o consecuentes que resulten del uso o la imposibilidad de uso de nuestros servicios. No garantizamos que el servicio sea interrumpido o libre de errores.",
     tyc_sec8_title: "8. MODIFICACIONES DE LOS TÉRMINOS",
     tyc_sec8_p1: "Valcode Software se reserva el derecho de modificar estos términos en cualquier momento. Las modificaciones entrarán en vigor inmediatamente después de su publicación en nuestro sitio web. El uso continuado de nuestros servicios constituye la aceptación de los términos modificados.",
     tyc_sec9_title: "9. LEY APLICABLE Y JURISDICCIÓN",
@@ -518,8 +519,8 @@ export const translations = {
 
     // pages/politica
     pol_title: "PRIVACY POLICY",
-    pol_subtitle: "Valcode Software Solutions",
-    pol_updated: "Last update: February 29, 2024",
+    pol_subtitle: "Valcode Software",
+    pol_updated: "Last update: February 20, 2026",
     pol_intro: "At Valcode Software, we take the privacy of our clients and visitors very seriously. This Privacy Policy describes how we collect, use, and protect your personal information when you use our services or interact with us.",
     pol_sec1_title: "1. COMMITMENT TO CONFIDENTIALITY",
     pol_sec1_p1: "At Valcode Software, we establish an unwavering commitment to the confidentiality of the information our clients entrust to us. All data provided through our communication channels is treated with the utmost discretion and protected by the highest security standards.",
