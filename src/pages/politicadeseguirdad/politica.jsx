@@ -14,7 +14,7 @@ const PoliticaPrivacidad = () => {
         <div className={styles.navbarSpacer}></div>
 
         <div className={styles.headerSection}>
-          <img src={logo} alt="Valcode Software Logo" className={styles.logo}/>
+
           <h1 className={styles.mainTitle}>{t('pol_title')}</h1>
           <p className={styles.subtitle}>{t('pol_subtitle')}</p>
           <p className={styles.updateDate}>{t('pol_updated')}</p>
@@ -142,27 +142,6 @@ const PoliticaPrivacidad = () => {
             </p>
           </div>
 
-          <div className={styles.contactFooter}>
-            <h3>{t('pol_footer_title')}</h3>
-            <p>{t('pol_footer_p1')}</p>
-            <div className={styles.contactInfo}>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}>📧</span>
-                <p><strong>{t('pol_footer_email')}</strong> privacidad@valcodesoftware.com</p>
-              </div>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}>📞</span>
-                <p><strong>{t('pol_footer_phone')}</strong> +57 (XXX) XXX-XXXX</p>
-              </div>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}>📍</span>
-                <p><strong>{t('pol_footer_address')}</strong> {t('pol_footer_address_placeholder')}</p>
-              </div>
-            </div>
-            <p className={styles.responseTime}>
-              {t('pol_footer_response')}
-            </p>
-          </div>
 
           <div className={styles.footerNote}>
             <p>

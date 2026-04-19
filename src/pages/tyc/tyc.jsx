@@ -111,15 +111,7 @@ const TerminosYCondiciones = () => {
             </p>
           </div>
 
-          <div className={styles.contactFooter}>
-            <h3>{t('tyc_contact_title')}</h3>
-            <p>{t('tyc_contact_p1')}</p>
-            <div className={styles.contactInfo}>
-              <p><strong>{t('tyc_contact_email')}</strong> softwarevalcode@gmail.com</p>
-              <p><strong>{t('tyc_contact_phone')}</strong> +57 3227223032</p>
-              <p><strong>{t('tyc_contact_address')}</strong> {t('tyc_contact_address_text')}</p>
-            </div>
-          </div>
+
 
           <div className={styles.acceptanceSection}>
             <p className={styles.acceptanceText}>
