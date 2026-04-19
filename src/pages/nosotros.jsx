@@ -177,7 +177,7 @@ const Nosotros = () => {
             ].map((tech, i) => (
               <div 
                 key={i} 
-                className="flex flex-col items-center justify-center p-6 bg-bg-white/10 backdrop-blur-md border border-[#1E90FF]/20 rounded-xl hover:-translate-y-2 hover:border-[#1E90FF]/50 transition-all duration-300 shadow-lg shadow-blue-500/5 group"
+                className="flex flex-col items-center justify-center p-6 bg-transparent backdrop-blur-md border border-[#1E90FF]/20 rounded-xl hover:-translate-y-2 hover:border-[#1E90FF]/50 transition-all duration-300 shadow-lg shadow-blue-500/5 group"
               >
                 <div className={`${tech.color} opacity-80 group-hover:opacity-100 transition-opacity duration-300 mb-3`}>
                   <tech.Icon size={48} />

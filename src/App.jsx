@@ -3,15 +3,13 @@ import './App.css'
 import AppRouter from "./routes/AppRouter";
 import WhatsAppButton from "./components/whatsapp/whatsappbutton";
 import ValcoChatButton from "./components/chat/floatingchat";
-import ErrorBoundary, { ErrorFallback } from './components/error/ErrorBoundary'
+// ErrorBoundary removed: rendering AppRouter directly
 
 function App() {
   return (
     <>
       <ValcoChatButton />
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <AppRouter />
-      </ErrorBoundary>
+      <AppRouter />
       <WhatsAppButton isFloating={true} />
     </>
   );

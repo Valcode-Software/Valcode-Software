@@ -9,6 +9,7 @@ const Proyectos = lazy(() => import("../pages/proyectos"));
 const Terminos = lazy(() => import("../pages/tyc/tyc"));
 const Politica = lazy(() => import("../pages/politicadeseguirdad/politica"));
 const Servicios = lazy(() => import("../pages/servicios"));
+const Error404 = lazy(() => import("../pages/Error404"));
 
 const AppRouter = () => {
   return (
@@ -20,10 +21,13 @@ const AppRouter = () => {
             <Route path="/inicios" element={<Home />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/proyectos" element={<Proyectos />} />
-            <Route path="/servicios" element={<Servicios />} /> {/* Esta línea ya es correcta */}
+            <Route path="/servicios" element={<Servicios />} />
             <Route path="/contacto" element={<ContactPage />} />
             <Route path="/terminos" element={<Terminos />} />
             <Route path="/privacidad" element={<Politica />} />
+
+            {/* 👇 ESTA ES LA CLAVE */}
+            <Route path="*" element={<Error404 />} />
           </Route>
         </Routes>
       </Suspense>
