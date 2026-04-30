@@ -5,7 +5,7 @@ import { VscAzure } from "react-icons/vsc";
 import { FaAws, FaReact, FaNodeJs } from "react-icons/fa";
 import img1 from "../assets/img/somos-nosotros.png";
 import { useLanguage } from "../context/LanguageContext";
-
+import { motion } from "framer-motion";
 
 const Card = ({ year, title, desc, t }) => {
   return (
@@ -55,6 +55,7 @@ const FounderCard = ({ img, name, role, linkedin }) => {
 
 const Nosotros = () => {
   const { t } = useLanguage();
+  const canvasRef = React.useRef(null);
   return (
     <section className="bg-gradient-to-br from-[#020617] via-[#172554] to-[#020617] text-white min-h-screen py-12 md:py-20 relative overflow-hidden">
       {/* ESTRELLAS / GALAXIA */}
@@ -161,32 +162,71 @@ const Nosotros = () => {
 
         </div>
 
-        {/* TECH STACK LOGOS */}
-        <div className="mt-20 md:mt-32 mb-10 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("us_tech_title")}</h2>
-          <p className="text-gray-400 mb-12">{t("us_tech_subtitle")}</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 justify-center max-w-5xl mx-auto">
-            {/* Tech Items */}
-            {[
-              { Icon: SiN8N, name: "n8n", color: "text-[#FF6D5A]" },
-              { Icon: VscAzure, name: "Azure", color: "text-[#0078D4]" },
-              { Icon: FaAws, name: "AWS", color: "text-[#FF9900]" },
-              { Icon: FaReact, name: "React", color: "text-[#61DAFB]" },
-              { Icon: FaNodeJs, name: "Node.js", color: "text-[#339933]" },
-              { Icon: SiDocker, name: "Docker", color: "text-[#2496ED]" }
-            ].map((tech, i) => (
-              <div 
-                key={i} 
-                className="flex flex-col items-center justify-center p-6 bg-transparent backdrop-blur-md border border-[#1E90FF]/20 rounded-xl hover:-translate-y-2 hover:border-[#1E90FF]/50 transition-all duration-300 shadow-lg shadow-blue-500/5 group"
-              >
-                <div className={`${tech.color} opacity-80 group-hover:opacity-100 transition-opacity duration-300 mb-3`}>
-                  <tech.Icon size={48} />
-                </div>
-                <span className="text-white group-hover:text-white transition-colors text-sm font-medium">{tech.name}</span>
-              </div>
-            ))}
+{/* TECH STACK LOGOS - N8N SIMULATION */}
+<div className="mt-20 md:mt-32 mb-10 text-center relative overflow-hidden py-10">
+  <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("us_tech_title")}</h2>
+  <p className="text-gray-400 mb-12">{t("us_tech_subtitle")}</p>
+
+  {/* Contenedor del Lienzo (Canvas) */}
+  <div 
+    ref={canvasRef}
+    className="relative max-w-5xl mx-auto min-h-[400px] border border-dashed border-gray-700 rounded-3xl bg-[#0a0a0a] overflow-hidden"
+    style={{
+      backgroundImage: `radial-gradient(#1e90ff20 1px, transparent 1px)`,
+      backgroundSize: '30px 30px'
+    }}
+  >
+    <div className="absolute top-4 left-4 text-xs text-gray-500 uppercase tracking-widest pointer-events-none">
+      n8n Canvas • Drag to move nodes
+    </div>
+
+    {/* Líneas de conexión simuladas (Fondo visual) */}
+    <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20 z-0">
+      <path d="M 50 150 C 200 150, 200 250, 400 250 S 600 150, 800 150 S 900 250, 1000 250" stroke="#1E90FF" strokeWidth="1.5" fill="none" strokeDasharray="6,4" />
+      <path d="M 50 250 C 200 250, 200 150, 400 150 S 600 250, 800 250 S 900 150, 1000 150" stroke="#1E90FF" strokeWidth="1.5" fill="none" strokeDasharray="6,4" />
+      
+      {/* Puntos de datos animados recorriendo las rutas */}
+      <circle r="3" fill="#1E90FF">
+        <animateMotion dur="10s" repeatCount="indefinite" path="M 50 150 C 200 150, 200 250, 400 250 S 600 150, 800 150 S 900 250, 1000 250" />
+      </circle>
+      <circle r="2" fill="#1E90FF" opacity="0.6">
+        <animateMotion dur="15s" repeatCount="indefinite" path="M 50 250 C 200 250, 200 150, 400 150 S 600 250, 800 250 S 900 150, 1000 150" />
+      </circle>
+    </svg>
+
+    {/* Área de Grilla de Nodos */}
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 p-10 justify-center h-full relative z-10">
+      {[
+        { Icon: SiN8N, name: "n8n", color: "text-[#FF6D5A]" },
+        { Icon: VscAzure, name: "Azure", color: "text-[#0078D4]" },
+        { Icon: FaAws, name: "AWS", color: "text-[#FF9900]" },
+        { Icon: FaReact, name: "React", color: "text-[#61DAFB]" },
+        { Icon: FaNodeJs, name: "Node.js", color: "text-[#339933]" },
+        { Icon: SiDocker, name: "Docker", color: "text-[#2496ED]" }
+      ].map((tech, i) => (
+        <motion.div
+          key={i}
+          drag
+          dragConstraints={canvasRef} // Soluciona el bug permitiendo movimiento en todo el contenedor
+          dragElastic={0.05}
+          whileDrag={{ scale: 1.1, zIndex: 50 }}
+          className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-6 bg-black/40 backdrop-blur-md border border-[#1E90FF]/20 rounded-xl hover:border-[#1E90FF]/50 transition-colors duration-300 shadow-lg shadow-blue-500/5 group"
+        >
+          {/* Pequeños conectores simulados de n8n */}
+          <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-gray-600 rounded-full border-2 border-[#0a0a0a]" />
+          <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-gray-600 rounded-full border-2 border-[#0a0a0a]" />
+          
+          <div className={`${tech.color} opacity-80 group-hover:opacity-100 transition-opacity duration-300 mb-3 pointer-events-none`}>
+            <tech.Icon size={48} />
           </div>
-        </div>
+          <span className="text-white text-sm font-medium select-none pointer-events-none">
+            {tech.name}
+          </span>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</div>
 
       </div>
     </section>
