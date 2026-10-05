@@ -1,232 +1,183 @@
 import React from "react";
 import { RiLinkedinFill } from "react-icons/ri";
-import { SiN8N, SiDocker } from "react-icons/si";
+import { SiN8N, SiDocker, SiFastapi, SiPostgresql } from "react-icons/si";
 import { VscAzure } from "react-icons/vsc";
 import { FaAws, FaReact, FaNodeJs } from "react-icons/fa";
 import img1 from "../assets/img/somos-nosotros.png";
 import { useLanguage } from "../context/LanguageContext";
 import { motion } from "framer-motion";
+import { Sparkles, ShieldCheck, Cpu, CheckCircle2 } from "lucide-react";
 
-const Card = ({ year, title, desc, t }) => {
+const Card = ({ year, title, desc }) => {
   return (
-    <div
-      className="
-        w-full max-w-[320px] min-h-[260px] flex flex-col p-6 rounded-xl
-        bg-[#020617]
-        border border-[#1E90FF]/20
-        hover:rotate-2
-        transition-all duration-500
-        shadow-lg shadow-blue-500/5
-        cursor-pointer
-      "
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="w-full max-w-[340px] min-h-[260px] flex flex-col p-8 rounded-3xl bg-white border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-500 hover:-translate-y-1.5"
     >
       <div className="flex-1">
-        <span className="text-white text-sm">{year}</span>
+        <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-mono font-semibold mb-4">
+          AÑO {year}
+        </span>
 
-        <h3 className="text-xl font-bold mt-2 mb-3">{title}</h3>
+        <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">{title}</h3>
 
-        <p className="text-white text-sm mb-4">{desc}</p>
+        <p className="text-slate-600 text-sm leading-relaxed font-light">{desc}</p>
       </div>
 
-      <div className="text-white mt-4 text-xs">{t("us_team")}</div>
-    </div>
-  );
-};
-
-const FounderCard = ({ img, name, role, linkedin }) => {
-  return (
-    <div className="flex flex-col items-center bg-[#020617] border border-[#1E90FF]/20 rounded-xl p-6 w-full max-w-[300px] hover:-translate-y-2 transition-transform duration-300 shadow-lg shadow-blue-500/10">
-      <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-[#1E90FF] mb-4">
-        <img src={img} alt={name} className="w-full h-full object-cover" />
+      <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+        <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+        <span>Hito Valcode Software</span>
       </div>
-      <h3 className="text-xl font-bold text-white mb-1">{name}</h3>
-      <p className="text-sm text-gray-400 mb-4">{role}</p>
-      <a 
-        href={linkedin} 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="text-white hover:text-blue-400 transition-colors bg-gray-800 p-2 rounded-full"
-      >
-        <RiLinkedinFill size={20} />
-      </a>
-    </div>
+    </motion.div>
   );
 };
 
 const Nosotros = () => {
   const { t } = useLanguage();
-  const canvasRef = React.useRef(null);
+
   return (
-    <section className="bg-gradient-to-br from-[#020617] via-[#172554] to-[#020617] text-white min-h-screen py-12 md:py-20 relative overflow-hidden">
-      {/* ESTRELLAS / GALAXIA */}
-      <div className="absolute inset-0 z-0 pointer-events-none animate-stars opacity-40" />
+    <section className="bg-white text-slate-900 min-h-screen py-28 relative overflow-hidden font-sans border-t border-slate-100">
+      
+      {/* Fondo técnico con sutil cuadrícula */}
+      <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:28px_28px] opacity-40 pointer-events-none"></div>
 
-      {/* COHETE / ESTRELLA FUGÁZ 1 */}
-      <div className="absolute top-[20%] left-[-200px] w-[200px] h-[2px] bg-gradient-to-r from-transparent via-blue-300 to-blue-500 shadow-lg animate-comet-1 z-10"></div>
-      {/* COHETE / ESTRELLA FUGÁZ 2 */}
-      <div className="absolute top-[70%] right-[-200px] w-[200px] h-[2px] bg-gradient-to-l from-transparent via-purple-300 to-purple-500 shadow-lg animate-comet-2 z-10"></div>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* ================= HERO / SOBRE NOSOTROS ================= */}
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-28">
+          
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs tracking-widest uppercase font-semibold mb-6 shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              <span>{t("us_subtitle") || "Nuestra Esencia & Visión"}</span>
+            </div>
 
-      <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
-<br /><br />
-        {/* HERO */}
-        <div className="grid md:grid-cols-2 gap-10 items-center mb-20 md:mb-32">
-          <div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              {t("us_title")}
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 mb-6 tracking-tight leading-tight">
+              {t("us_title") || "Transformamos el futuro digital de las empresas."}
             </h1>
 
-            <p className="text-white mb-4">
-              {t("us_purpose")}
+            <p className="text-slate-700 text-base mb-6 font-medium leading-relaxed">
+              {t("us_purpose") || "Somos una firma de ingeniería de software y desarrollo de agentes de IA enfocada en construir soluciones escalables, robustas y de alto impacto global."}
             </p>
 
-            <p className="text-gray-400">
-{t("us_desc1")}
-
-{t("us_desc2")}
+            <p className="text-slate-600 text-base font-light leading-relaxed mb-8">
+              {t("us_desc1") || "Ayudamos a las organizaciones a automatizar sus operaciones y escalar su tecnología mediante arquitecturas limpias y metodologías de vanguardia."}
             </p>
-          </div>
 
-          <div className="flex justify-center">
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 group">
-              {/* Glow/Sombra animada detrás */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#1E90FF] via-blue-400 to-cyan-300 rounded-full blur-lg opacity-40 animate-pulse transition duration-500 group-hover:opacity-70"></div>
+            <div className="flex items-center gap-6 pt-4 border-t border-slate-100">
+              <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                <ShieldCheck className="w-4 h-4 text-emerald-500" /> Código Limpio y Escalable
+              </div>
+              <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                <Cpu className="w-4 h-4 text-blue-600" /> Agentes IA Integrados
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex justify-center"
+          >
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 group">
+              <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition duration-700"></div>
               
-              {/* Contenedor con borde gradiente */}
-              <div className="relative w-full h-full rounded-full p-1.5 bg-gradient-to-r from-[#1E90FF] via-white/50 to-blue-800">
-                <div className="w-full h-full rounded-full overflow-hidden bg-gray-900 border-4 border-gray-900">
+              <div className="relative w-full h-full rounded-full p-2 bg-white border border-slate-200 shadow-2xl">
+                <div className="w-full h-full rounded-full overflow-hidden bg-slate-900">
                   <img
                     src={img1}
-                    alt="team"
-                    className="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-110"
+                    alt="Equipo Valcode Software"
+                    className="w-full h-full object-cover transform transition-transform duration-700 ease-in-out group-hover:scale-105"
                   />
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* TIMELINE */}
-        <div className="relative">
-
-          {/* Línea central */}
-          <div className="hidden md:block absolute left-1/2 top-0 h-full w-1 bg-gray-800 -translate-x-1/2"></div>
-
-          {/* ITEM 1 */}
-          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 mb-12 md:mb-10 items-center relative">
-            <div className="flex justify-center md:justify-end md:pr-10 w-full">
-              <Card
-                year="2024"
-                title={t("us_card1_title")}
-                desc={t("us_card1_desc")}
-                t={t}
-              />
-            </div>
-
-            <div className="hidden md:block"></div>
-
-            {/* Punto */}
-            <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-gray-950"></div>
-          </div>
-
-          {/* ITEM 2 */}
-          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 mb-12 md:mb-10 items-center relative">
-            <div className="hidden md:block"></div>
-
-            <div className="flex justify-center md:justify-start md:pl-10 w-full">
-              <Card
-                year="2025"
-                title={t("us_card2_title")}
-                desc={t("us_card2_desc")}
-                t={t}
-              />
-            </div>
-
-            <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-gray-950"></div>
-          </div>
-
-          {/* ITEM 3 */}
-          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 mb-12 md:mb-10 items-center relative">
-            <div className="flex justify-center md:justify-end md:pr-10 w-full">
-              <Card
-                year="2026"
-                title={t("us_card3_title")}
-                desc={t("us_card3_desc")}
-                t={t}
-              />
-            </div>
-
-            <div className="hidden md:block"></div>
-
-            <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-white rounded-full -translate-x-1/2 border-4 border-gray-950"></div>
-          </div>
+          </motion.div>
 
         </div>
 
-{/* TECH STACK LOGOS - N8N SIMULATION */}
-<div className="mt-20 md:mt-32 mb-10 text-center relative overflow-hidden py-10">
-  <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("us_tech_title")}</h2>
-  <p className="text-gray-400 mb-12">{t("us_tech_subtitle")}</p>
 
-  {/* Contenedor del Lienzo (Canvas) */}
-  <div 
-    ref={canvasRef}
-    className="relative max-w-5xl mx-auto min-h-[400px] border border-dashed border-gray-700 rounded-3xl bg-[#0a0a0a] overflow-hidden"
-    style={{
-      backgroundImage: `radial-gradient(#1e90ff20 1px, transparent 1px)`,
-      backgroundSize: '30px 30px'
-    }}
-  >
-    <div className="absolute top-4 left-4 text-xs text-gray-500 uppercase tracking-widest pointer-events-none">
-      n8n Canvas • Drag to move nodes
-    </div>
+        {/* ================= TIMELINE DE EVOLUCIÓN ================= */}
+        <div className="mb-32">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 mb-3 tracking-tight">
+              Nuestra Trayectoria
+            </h2>
+            <p className="text-slate-600 font-light">
+              Evolución constante consolidando proyectos de alto rendimiento tecnológico.
+            </p>
+          </div>
 
-    {/* Líneas de conexión simuladas (Fondo visual) */}
-    <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20 z-0">
-      <path d="M 50 150 C 200 150, 200 250, 400 250 S 600 150, 800 150 S 900 250, 1000 250" stroke="#1E90FF" strokeWidth="1.5" fill="none" strokeDasharray="6,4" />
-      <path d="M 50 250 C 200 250, 200 150, 400 150 S 600 250, 800 250 S 900 150, 1000 150" stroke="#1E90FF" strokeWidth="1.5" fill="none" strokeDasharray="6,4" />
-      
-      {/* Puntos de datos animados recorriendo las rutas */}
-      <circle r="3" fill="#1E90FF">
-        <animateMotion dur="10s" repeatCount="indefinite" path="M 50 150 C 200 150, 200 250, 400 250 S 600 150, 800 150 S 900 250, 1000 250" />
-      </circle>
-      <circle r="2" fill="#1E90FF" opacity="0.6">
-        <animateMotion dur="15s" repeatCount="indefinite" path="M 50 250 C 200 250, 200 150, 400 150 S 600 250, 800 250 S 900 150, 1000 150" />
-      </circle>
-    </svg>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+            <Card
+              year="2024"
+              title={t("us_card1_title") || "Fundación e Innovación"}
+              desc={t("us_card1_desc") || "Inicios enfocados en el desarrollo de software a la medida y restructuración de plataformas empresariales."}
+            />
+            <Card
+              year="2025"
+              title={t("us_card2_title") || "Expansión Cloud & APIs"}
+              desc={t("us_card2_desc") || "Consolidación de alianzas estratégicas e integración de arquitecturas robustas en AWS y Azure."}
+            />
+            <Card
+              year="2026"
+              title={t("us_card3_title") || "Era de Agentes IA & Workflows"}
+              desc={t("us_card3_desc") || "Lanzamiento de flujos autónomos avanzados y plataformas globales de inversión y matchmaking."}
+            />
+          </div>
+        </div>
 
-    {/* Área de Grilla de Nodos */}
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 p-10 justify-center h-full relative z-10">
-      {[
-        { Icon: SiN8N, name: "n8n", color: "text-[#FF6D5A]" },
-        { Icon: VscAzure, name: "Azure", color: "text-[#0078D4]" },
-        { Icon: FaAws, name: "AWS", color: "text-[#FF9900]" },
-        { Icon: FaReact, name: "React", color: "text-[#61DAFB]" },
-        { Icon: FaNodeJs, name: "Node.js", color: "text-[#339933]" },
-        { Icon: SiDocker, name: "Docker", color: "text-[#2496ED]" }
-      ].map((tech, i) => (
-        <motion.div
-          key={i}
-          drag
-          dragConstraints={canvasRef} // Soluciona el bug permitiendo movimiento en todo el contenedor
-          dragElastic={0.05}
-          whileDrag={{ scale: 1.1, zIndex: 50 }}
-          className="cursor-grab active:cursor-grabbing flex flex-col items-center justify-center p-6 bg-black/40 backdrop-blur-md border border-[#1E90FF]/20 rounded-xl hover:border-[#1E90FF]/50 transition-colors duration-300 shadow-lg shadow-blue-500/5 group"
-        >
-          {/* Pequeños conectores simulados de n8n */}
-          <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-gray-600 rounded-full border-2 border-[#0a0a0a]" />
-          <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-gray-600 rounded-full border-2 border-[#0a0a0a]" />
+
+        {/* ================= TECH STACK / ECOSISTEMA LIMPIO Y EMPRESARIAL ================= */}
+        <div className="text-center max-w-5xl mx-auto pt-10 border-t border-slate-200">
           
-          <div className={`${tech.color} opacity-80 group-hover:opacity-100 transition-opacity duration-300 mb-3 pointer-events-none`}>
-            <tech.Icon size={48} />
-          </div>
-          <span className="text-white text-sm font-medium select-none pointer-events-none">
-            {tech.name}
+          <span className="text-xs font-mono text-blue-600 uppercase tracking-widest block mb-3">
+            ECOSISTEMA DE INGENIERÍA
           </span>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</div>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-950 mb-3 tracking-tight">
+            {t("us_tech_title") || "Tecnologías que utilizamos"}
+          </h2>
+          <p className="text-slate-600 font-light text-sm sm:text-base mb-12">
+            {t("us_tech_subtitle") || "Nuestras herramientas para el éxito y la escalabilidad empresarial."}
+          </p>
+
+          {/* Grid limpio sin cajas oscuras pesadas */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+            {[
+              { Icon: SiN8N, name: "n8n Workflows", color: "text-[#FF6D5A]" },
+              { Icon: SiFastapi, name: "FastAPI Python", color: "text-[#009688]" },
+              { Icon: SiPostgresql, name: "PostgreSQL", color: "text-[#336791]" },
+              { Icon: FaReact, name: "React Frontend", color: "text-[#61DAFB]" },
+              { Icon: FaNodeJs, name: "Node.js Core", color: "text-[#339933]" },
+              { Icon: SiDocker, name: "Docker Containers", color: "text-[#2496ED]" },
+              { Icon: FaAws, name: "AWS Cloud", color: "text-[#FF9900]" },
+              { Icon: VscAzure, name: "Azure DevOps", color: "text-[#0078D4]" }
+            ].map((tech, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md hover:border-slate-300 transition-all text-left"
+              >
+                <div className={`p-3 rounded-xl bg-slate-50 border border-slate-100 ${tech.color}`}>
+                  <tech.Icon size={26} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900">{tech.name}</h4>
+                  <span className="text-[11px] text-slate-500 font-mono">Production Ready</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
 
       </div>
     </section>

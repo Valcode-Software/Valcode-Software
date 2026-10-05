@@ -1,370 +1,276 @@
-import { useCallback, useEffect, useMemo, useRef, useState, memo } from 'react';
-import styles from './Tecnologias.module.css'; 
-import { FaReact, FaJs, FaHtml5, FaCss3Alt, FaNodeJs, FaPython, FaJava, FaAngular, FaGithub, FaAws, FaDatabase } from "react-icons/fa";
-import { SiTailwindcss, SiPostgresql, SiMysql, SiMongodb, SiDocker, SiGit, SiTypescript, SiFirebase, SiFlutter } from "react-icons/si";
-
-const ANIMATION_CONFIG = { SMOOTH_TAU: 0.25, MIN_COPIES: 2, COPY_HEADROOM: 2 };
-
-const toCssLength = value => (typeof value === 'number' ? `${value}px` : (value ?? undefined));
-
-const useResizeObserver = (callback, elements, dependencies) => {
-  useEffect(() => {
-    if (!window.ResizeObserver) {
-      const handleResize = () => callback();
-      window.addEventListener('resize', handleResize);
-      callback();
-      return () => window.removeEventListener('resize', handleResize);
-    }
-    const observers = elements.map(ref => {
-      if (!ref.current) return null;
-      const observer = new ResizeObserver(callback);
-      observer.observe(ref.current);
-      return observer;
-    });
-    callback();
-    return () => {
-      observers.forEach(observer => observer?.disconnect());
-    };
-  }, [callback, elements, dependencies]);
-};
-
-const useImageLoader = (seqRef, onLoad, dependencies) => {
-  useEffect(() => {
-    const images = seqRef.current?.querySelectorAll('img') ?? [];
-    if (images.length === 0) {
-      onLoad();
-      return;
-    }
-    let remainingImages = images.length;
-    const handleImageLoad = () => {
-      remainingImages -= 1;
-      if (remainingImages === 0) onLoad();
-    };
-    images.forEach(img => {
-      const htmlImg = img;
-      if (htmlImg.complete) {
-        handleImageLoad();
-      } else {
-        htmlImg.addEventListener('load', handleImageLoad, { once: true });
-        htmlImg.addEventListener('error', handleImageLoad, { once: true });
-      }
-    });
-    return () => {
-      images.forEach(img => {
-        img.removeEventListener('load', handleImageLoad);
-        img.removeEventListener('error', handleImageLoad);
-      });
-    };
-  }, [onLoad, seqRef, dependencies]);
-};
-
-const useAnimationLoop = (trackRef, targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical) => {
-  const rafRef = useRef(null);
-  const lastTimestampRef = useRef(null);
-  const offsetRef = useRef(0);
-  const velocityRef = useRef(0);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const seqSize = isVertical ? seqHeight : seqWidth;
-
-    if (seqSize > 0) {
-      offsetRef.current = ((offsetRef.current % seqSize) + seqSize) % seqSize;
-      const transformValue = isVertical
-        ? `translate3d(0, ${-offsetRef.current}px, 0)`
-        : `translate3d(${-offsetRef.current}px, 0, 0)`;
-      track.style.transform = transformValue;
-    }
-
-    const animate = timestamp => {
-      if (lastTimestampRef.current === null) {
-        lastTimestampRef.current = timestamp;
-      }
-
-      const deltaTime = Math.max(0, timestamp - lastTimestampRef.current) / 1000;
-      lastTimestampRef.current = timestamp;
-
-      const target = isHovered && hoverSpeed !== undefined ? hoverSpeed : targetVelocity;
-
-      const easingFactor = 1 - Math.exp(-deltaTime / ANIMATION_CONFIG.SMOOTH_TAU);
-      velocityRef.current += (target - velocityRef.current) * easingFactor;
-
-      if (seqSize > 0) {
-        let nextOffset = offsetRef.current + velocityRef.current * deltaTime;
-        nextOffset = ((nextOffset % seqSize) + seqSize) % seqSize;
-        offsetRef.current = nextOffset;
-
-        const transformValue = isVertical
-          ? `translate3d(0, ${-offsetRef.current}px, 0)`
-          : `translate3d(${-offsetRef.current}px, 0, 0)`;
-        track.style.transform = transformValue;
-      }
-
-      rafRef.current = requestAnimationFrame(animate);
-    };
-
-    rafRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (rafRef.current !== null) {
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = null;
-      }
-      lastTimestampRef.current = null;
-    };
-  }, [targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical, trackRef]);
-};
-
-export const LogoLoop = memo(
-  ({
-    logos,
-    speed = 120,
-    direction = 'left',
-    width = '100%',
-    logoHeight = 28,
-    gap = 32,
-    pauseOnHover,
-    hoverSpeed,
-    fadeOut = false,
-    fadeOutColor,
-    scaleOnHover = false,
-    renderItem,
-    ariaLabel = 'Partner logos',
-    className,
-    style
-  }) => {
-    const containerRef = useRef(null);
-    const trackRef = useRef(null);
-    const seqRef = useRef(null);
-
-    const [seqWidth, setSeqWidth] = useState(0);
-    const [seqHeight, setSeqHeight] = useState(0);
-    const [copyCount, setCopyCount] = useState(ANIMATION_CONFIG.MIN_COPIES);
-    const [isHovered, setIsHovered] = useState(false);
-
-    const effectiveHoverSpeed = useMemo(() => {
-      if (hoverSpeed !== undefined) return hoverSpeed;
-      if (pauseOnHover === true) return 0;
-      if (pauseOnHover === false) return undefined;
-      return 0;
-    }, [hoverSpeed, pauseOnHover]);
-
-    const isVertical = direction === 'up' || direction === 'down';
-
-    const targetVelocity = useMemo(() => {
-      const magnitude = Math.abs(speed);
-      let directionMultiplier;
-      if (isVertical) {
-        directionMultiplier = direction === 'up' ? 1 : -1;
-      } else {
-        directionMultiplier = direction === 'left' ? 1 : -1;
-      }
-      const speedMultiplier = speed < 0 ? -1 : 1;
-      return magnitude * directionMultiplier * speedMultiplier;
-    }, [speed, direction, isVertical]);
-
-    const updateDimensions = useCallback(() => {
-      const containerWidth = containerRef.current?.clientWidth ?? 0;
-      const sequenceRect = seqRef.current?.getBoundingClientRect?.();
-      const sequenceWidth = sequenceRect?.width ?? 0;
-      const sequenceHeight = sequenceRect?.height ?? 0;
-      if (isVertical) {
-        const parentHeight = containerRef.current?.parentElement?.clientHeight ?? 0;
-        if (containerRef.current && parentHeight > 0) {
-          const targetHeight = Math.ceil(parentHeight);
-          if (containerRef.current.style.height !== `${targetHeight}px`)
-            containerRef.current.style.height = `${targetHeight}px`;
-        }
-        if (sequenceHeight > 0) {
-          setSeqHeight(Math.ceil(sequenceHeight));
-          const viewport = containerRef.current?.clientHeight ?? parentHeight ?? sequenceHeight;
-          const copiesNeeded = Math.ceil(viewport / sequenceHeight) + ANIMATION_CONFIG.COPY_HEADROOM;
-          setCopyCount(Math.max(ANIMATION_CONFIG.MIN_COPIES, copiesNeeded));
-        }
-      } else if (sequenceWidth > 0) {
-        setSeqWidth(Math.ceil(sequenceWidth));
-        const copiesNeeded = Math.ceil(containerWidth / sequenceWidth) + ANIMATION_CONFIG.COPY_HEADROOM;
-        setCopyCount(Math.max(ANIMATION_CONFIG.MIN_COPIES, copiesNeeded));
-      }
-    }, [isVertical]);
-
-    useResizeObserver(updateDimensions, [containerRef, seqRef], [logos, gap, logoHeight, isVertical]);
-
-    useImageLoader(seqRef, updateDimensions, [logos, gap, logoHeight, isVertical]);
-
-    useAnimationLoop(trackRef, targetVelocity, seqWidth, seqHeight, isHovered, effectiveHoverSpeed, isVertical);
-
-    const cssVariables = useMemo(
-      () => ({
-        '--logoloop-gap': `${gap}px`,
-        '--logoloop-logoHeight': `${logoHeight}px`,
-        ...(fadeOutColor && { '--logoloop-fadeColor': fadeOutColor })
-      }),
-      [gap, logoHeight, fadeOutColor]
-    );
-
-    const rootClassName = useMemo(
-      () => {
-        const classes = [styles.logoloop];
-        if (isVertical) classes.push(styles['logoloop--vertical']);
-        if (fadeOut) classes.push(styles['logoloop--fade']);
-        if (scaleOnHover) classes.push(styles['logoloop--scale-hover']);
-        if (className) classes.push(className);
-        return classes.join(' ');
-      },
-      [isVertical, fadeOut, scaleOnHover, className]
-    );
-
-    const handleMouseEnter = useCallback(() => {
-      if (effectiveHoverSpeed !== undefined) setIsHovered(true);
-    }, [effectiveHoverSpeed]);
-    
-    const handleMouseLeave = useCallback(() => {
-      if (effectiveHoverSpeed !== undefined) setIsHovered(false);
-    }, [effectiveHoverSpeed]);
-
-    const renderLogoItem = useCallback(
-      (item, key) => {
-        if (renderItem) {
-          return (
-            <li className={styles.logoloop__item} key={key} role="listitem">
-              {renderItem(item, key)}
-            </li>
-          );
-        }
-        const isNodeItem = 'node' in item;
-        const content = isNodeItem ? (
-          <span className={styles.logoloop__node} aria-hidden={!!item.href && !item.ariaLabel}>
-            {item.node}
-          </span>
-        ) : (
-          <img
-            src={item.src}
-            srcSet={item.srcSet}
-            sizes={item.sizes}
-            width={item.width}
-            height={item.height}
-            alt={item.alt ?? ''}
-            title={item.title}
-            loading="lazy"
-            decoding="async"
-            draggable={false}
-          />
-        );
-        const itemAriaLabel = isNodeItem ? (item.ariaLabel ?? item.title) : (item.alt ?? item.title);
-        const itemContent = item.href ? (
-          <a
-            className={styles.logoloop__link}
-            href={item.href}
-            aria-label={itemAriaLabel || 'logo link'}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            {content}
-          </a>
-        ) : (
-          content
-        );
-        return (
-          <li className={styles.logoloop__item} key={key} role="listitem">
-            {itemContent}
-          </li>
-        );
-      },
-      [renderItem]
-    );
-
-    const logoLists = useMemo(
-      () =>
-        Array.from({ length: copyCount }, (_, copyIndex) => (
-          <ul
-            className={styles.logoloop__list}
-            key={`copy-${copyIndex}`}
-            role="list"
-            aria-hidden={copyIndex > 0}
-            ref={copyIndex === 0 ? seqRef : undefined}
-          >
-            {logos.map((item, itemIndex) => renderLogoItem(item, `${copyIndex}-${itemIndex}`))}
-          </ul>
-        )),
-      [copyCount, logos, renderLogoItem]
-    );
-
-    const containerStyle = useMemo(
-      () => ({
-        width: isVertical
-          ? toCssLength(width) === '100%'
-            ? undefined
-            : toCssLength(width)
-          : (toCssLength(width) ?? '100%'),
-        ...cssVariables,
-        ...style
-      }),
-      [width, cssVariables, style, isVertical]
-    );
-
-    return (
-      <div 
-        ref={containerRef} 
-        className={rootClassName} 
-        style={containerStyle} 
-        role="region" 
-        aria-label={ariaLabel}
-      >
-        <div 
-          className={styles.logoloop__track} 
-          ref={trackRef} 
-          onMouseEnter={handleMouseEnter} 
-          onMouseLeave={handleMouseLeave}
-        >
-          {logoLists}
-        </div>
-      </div>
-    );
-  }
-);
-
-LogoLoop.displayName = 'LogoLoop';
+import { createElement, useState } from 'react';
+import { motion as Motion } from 'framer-motion';
+import { 
+  Bot, 
+  Terminal, 
+  ArrowRight, 
+  Workflow, 
+  RefreshCw
+} from 'lucide-react';
+import { useLanguage } from "../../context/LanguageContext";
+import { FaPython, FaReact, FaAws } from "react-icons/fa";
+import { SiPostgresql, SiFastapi, SiTailwindcss, SiN8N } from "react-icons/si";
 
 const Tecnologias = () => {
-  const logos = useMemo(() => [
-    { node: <FaReact size={48} color="#ffffff" />, ariaLabel: "React" },
-    { node: <FaAngular size={48} color="#ffffff" />, ariaLabel: "Angular" },
-    { node: <FaJs size={48} color="#ffffff" />, ariaLabel: "JavaScript" },
-    { node: <SiTypescript size={48} color="#ffffff" />, ariaLabel: "TypeScript" },
-    { node: <FaHtml5 size={48} color="#ffffff" />, ariaLabel: "HTML5" },
-    { node: <FaCss3Alt size={48} color="#ffffff" />, ariaLabel: "CSS3" },
-    { node: <FaNodeJs size={48} color="#ffffff" />, ariaLabel: "Node.js" },
-    { node: <FaPython size={48} color="#ffffff" />, ariaLabel: "Python" },
-    { node: <FaJava size={48} color="#ffffff" />, ariaLabel: "Java" },
-    { node: <FaGithub size={48} color="#ffffff" />, ariaLabel: "GitHub" },
-    { node: <FaAws size={48} color="#ffffff" />, ariaLabel: "AWS" },
-    { node: <SiFirebase size={48} color="#ffffff" />, ariaLabel: "Firebase" },
-    { node: <SiFlutter size={48} color="#ffffff" />, ariaLabel: "Flutter" },
-    { node: <SiTailwindcss size={48} color="#ffffff" />, ariaLabel: "Tailwind CSS" },
-    { node: <FaDatabase size={48} color="#ffffff" />, ariaLabel: "SQL" },
-    { node: <SiPostgresql size={48} color="#ffffff" />, ariaLabel: "PostgreSQL" },
-    { node: <SiMysql size={48} color="#ffffff" />, ariaLabel: "MySQL" },
-    { node: <SiMongodb size={48} color="#ffffff" />, ariaLabel: "MongoDB" },
-    { node: <SiDocker size={48} color="#ffffff" />, ariaLabel: "Docker" },
-    { node: <SiGit size={48} color="#ffffff" />, ariaLabel: "Git" },
-  ], []);
+  const { t } = useLanguage();
+  // Nodo activo en el workflow interactivo
+  const [activeStep, setActiveStep] = useState(0);
+
+  // Pasos del workflow estilo n8n / automatización real
+  const workflowSteps = [
+    {
+      id: "01",
+      title: t("tech_step1_title"),
+      subtitle: t("tech_step1_subtitle"),
+      description: t("tech_step1_desc"),
+      techIcon: <Bot className="w-6 h-6 text-blue-600" />,
+      techName: "OpenAI / Claude API & LangChain",
+      codeSnippet: "agent.listen({ trigger: 'user_request', intent: 'generate_backend_logic' })",
+      dataFlow: t("tech_step1_flow")
+    },
+    {
+      id: "02",
+      title: t("tech_step2_title"),
+      subtitle: t("tech_step2_subtitle"),
+      description: t("tech_step2_desc"),
+      techIcon: <SiPostgresql className="w-6 h-6 text-blue-600" />,
+      techName: "PostgreSQL & Vector DB",
+      codeSnippet: "db.createSchema({ tables: ['users', 'transactions', 'ai_logs'], optimize: true })",
+      dataFlow: t("tech_step2_flow")
+    },
+    {
+      id: "03",
+      title: t("tech_step3_title"),
+      subtitle: t("tech_step3_subtitle"),
+      description: t("tech_step3_desc"),
+      techIcon: <SiFastapi className="w-6 h-6 text-blue-600" />,
+      techName: "Python & FastAPI Server",
+      codeSnippet: "@app.post('/api/v1/orchestrate')\nasync def run_ai_workflow(payload: AgentPayload):",
+      dataFlow: t("tech_step3_flow")
+    },
+    {
+      id: "04",
+      title: t("tech_step4_title"),
+      subtitle: t("tech_step4_subtitle"),
+      description: t("tech_step4_desc"),
+      techIcon: <FaReact className="w-6 h-6 text-blue-600" />,
+      techName: "React, Tailwind & AWS",
+      codeSnippet: "export default function AIClientView() { return <Dashboard data={syncState} />; }",
+      dataFlow: t("tech_step4_flow")
+    }
+  ];
 
   return (
-    <section className="w-full py-16 bg-[#020617] overflow-hidden">
-      <div className="w-full relative">
-        <LogoLoop 
-          logos={logos} 
-          speed={50} 
-          gap={60} 
-          pauseOnHover={true} 
-          fadeOut={true} 
-          fadeOutColor="#020617" 
-          logoHeight={60}
-          scaleOnHover={true}
-        />
+    <section className="relative w-full py-28 bg-white overflow-hidden font-sans border-t border-slate-100">
+      
+      {/* Fondo técnico limpio tipo canvas */}
+      <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:28px_28px] opacity-40 pointer-events-none"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        
+        {/* Encabezado */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <Motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs tracking-widest uppercase font-semibold mb-6 shadow-sm"
+          >
+            <Workflow className="w-3.5 h-3.5 text-blue-600" />
+            <span>{t("tech_subtitle") || "Workflow de Agentes & Ecosistema Real"}</span>
+          </Motion.div>
+          
+          <Motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl font-extrabold text-slate-950 mb-6 tracking-tight"
+          >
+            {t("tech_title") || "De la idea al código: Flujos automatizados reales."}
+          </Motion.h2>
+          
+          <Motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-slate-600 font-light leading-relaxed"
+          >
+            {t("tech_desc") || "Visualiza cómo nuestros agentes conectan bases de datos, lógica en Python y interfaces modernas en un flujo continuo sin fricción."}
+          </Motion.p>
+        </div>
+
+        {/* SIMULADOR DE WORKFLOW INTERACTIVO (Estilo Nodos Conectados) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
+          
+          {/* Lado Izquierdo: Los Nodos del Workflow en Cadena */}
+          <div className="relative flex flex-col gap-3 lg:col-span-5">
+            <div aria-hidden="true" className="absolute bottom-5 left-[19px] top-5 w-px bg-slate-200" />
+            <Motion.div
+              aria-hidden="true"
+              className="absolute left-[19px] top-5 w-px origin-top bg-blue-600"
+              initial={false}
+              animate={{ height: `${(activeStep / (workflowSteps.length - 1)) * 100}%` }}
+              transition={{ duration: 0.45, ease: "easeInOut" }}
+            />
+            {workflowSteps.map((step, index) => {
+              const isActive = activeStep === index;
+              return (
+                <Motion.button
+                  key={step.id}
+                  type="button"
+                  onClick={() => setActiveStep(index)}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  aria-pressed={isActive}
+                  className="group relative z-10 flex w-full items-center gap-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+                >
+                  <div className={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 bg-white transition-colors ${
+                    isActive ? "border-blue-600 text-blue-700" : "border-slate-300 text-slate-500 group-hover:border-blue-400"
+                  }`}>
+                    {step.techIcon}
+                    {isActive && (
+                      <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-white bg-blue-600">
+                        <span className="absolute inset-0 animate-ping rounded-full bg-blue-500 opacity-60" />
+                      </span>
+                    )}
+                  </div>
+
+                  <div className={`flex min-h-[100px] flex-1 items-center justify-between gap-3 rounded-xl border p-4 transition-all duration-300 ${
+                    isActive
+                      ? "border-slate-900 bg-slate-900 text-white shadow-lg"
+                      : "border-slate-200 bg-white text-slate-800 group-hover:border-slate-300 group-hover:bg-slate-50"
+                  }`}>
+                    <div>
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                        <span className={`rounded px-2 py-0.5 text-[10px] font-mono ${isActive ? "bg-blue-500/20 text-blue-300" : "bg-slate-100 text-slate-500"}`}>
+                          {t("tech_step_label")} {step.id}
+                        </span>
+                        <span className={`text-xs font-semibold ${isActive ? "text-slate-300" : "text-slate-500"}`}>
+                          {step.subtitle}
+                        </span>
+                      </div>
+                      <h4 className="mt-1 text-sm font-bold sm:text-base">{step.title}</h4>
+                      <p className={`mt-1 line-clamp-2 text-xs leading-relaxed ${isActive ? "text-slate-300" : "text-slate-500"}`}>
+                        {step.description}
+                      </p>
+                    </div>
+                    {isActive ? (
+                      <Motion.span
+                        className="shrink-0 text-blue-300"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1.6, ease: "linear", repeat: Infinity }}
+                        title={t("tech_flow_running")}
+                        aria-label={t("tech_flow_running")}
+                      >
+                        <RefreshCw className="h-4 w-4" />
+                      </Motion.span>
+                    ) : (
+                      <ArrowRight className="h-4 w-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-1" />
+                    )}
+                  </div>
+                </Motion.button>
+              );
+            })}
+          </div>
+
+          {/* Lado Derecho: Consola de Inspección del Nodo Activo (Simulación de IA y Código) */}
+          <div className="lg:col-span-7">
+            <Motion.div 
+              key={activeStep}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="rounded-3xl bg-slate-900 text-white p-8 sm:p-10 shadow-2xl relative overflow-hidden border border-slate-800 flex flex-col justify-between"
+            >
+              {/* Brillo decorativo */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 blur-[90px] rounded-full pointer-events-none"></div>
+
+              <div>
+                {/* Header del nodo inspector */}
+                <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-800">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 rounded-xl bg-blue-600 text-white">
+                      {workflowSteps[activeStep].techIcon}
+                    </div>
+                    <div>
+                      <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">{t("tech_flow_active")}: {workflowSteps[activeStep].dataFlow}</span>
+                      <h3 className="text-xl font-extrabold text-white mt-0.5">{workflowSteps[activeStep].title}</h3>
+                    </div>
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    {t("tech_flow_synced")}
+                  </span>
+                </div>
+
+                <p className="text-slate-300 text-sm font-light leading-relaxed mb-6">
+                  {workflowSteps[activeStep].description}
+                </p>
+
+                {/* Consola de Código en Tiempo Real */}
+                <div className="rounded-xl bg-slate-950 border border-slate-800 p-4 font-mono text-xs text-slate-300 mb-6 shadow-inner">
+                  <div className="flex items-center justify-between mb-2 pb-2 border-b border-slate-800 text-slate-500">
+                    <span className="flex items-center gap-1.5">
+                      <Terminal className="w-3.5 h-3.5 text-blue-400" /> {workflowSteps[activeStep].techName}
+                    </span>
+                    <span className="text-[10px] text-blue-400">{t("tech_flow_status")}</span>
+                  </div>
+                  <pre className="text-blue-300 whitespace-pre-wrap"><code>{workflowSteps[activeStep].codeSnippet}</code></pre>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                <span>{t("tech_flow_interaction")}</span>
+                <span className="font-mono text-blue-400">VALCODE AI ENGINE</span>
+              </div>
+
+            </Motion.div>
+          </div>
+
+        </div>
+
+        {/* BARRA INFERIOR CON LAS HERRAMIENTAS REALES (Tus tecnologías integradas) */}
+        <div className="pt-10 border-t border-slate-200">
+          <p className="text-center text-xs font-mono uppercase tracking-widest text-slate-400 mb-8">
+            {t("tech_tools_title")}
+          </p>
+          
+          <div className="overflow-x-auto pb-3 [scrollbar-color:#cbd5e1_transparent] [scrollbar-width:thin]">
+            <ul className="flex min-w-full w-max items-start text-slate-700">
+              {[
+                { name: "React / Next.js", Icon: FaReact, color: "text-blue-500" },
+                { name: "FastAPI (Python)", Icon: SiFastapi, color: "text-teal-600" },
+                { name: "PostgreSQL", Icon: SiPostgresql, color: "text-blue-700" },
+                { name: "Tailwind CSS", Icon: SiTailwindcss, color: "text-cyan-500" },
+                { name: "AWS Cloud", Icon: FaAws, color: "text-amber-600" },
+                { name: "n8n / Workflows", Icon: SiN8N, color: "text-red-500" },
+              ].map(({ name, Icon, color }, index, technologies) => (
+                <li key={name} className="relative flex min-w-[168px] flex-1 flex-col items-center px-2 text-center">
+                  {index < technologies.length - 1 && (
+                    <span aria-hidden="true" className="absolute left-1/2 top-5 z-0 h-px w-full bg-slate-200">
+                      <Motion.span
+                        className="absolute left-0 top-[-2px] h-1 w-1 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.65)]"
+                        animate={{ x: [0, 168] }}
+                        transition={{ duration: 2.4, ease: "linear", repeat: Infinity, delay: index * 0.22 }}
+                      />
+                    </span>
+                  )}
+                  <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm">
+                    {createElement(Icon, { className: `text-xl ${color}` })}
+                  </span>
+                  <span className="mt-3 flex min-h-10 w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-2 py-2 text-xs font-semibold shadow-sm">
+                    {name}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
       </div>
     </section>
   );
