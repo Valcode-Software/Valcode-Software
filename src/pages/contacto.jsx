@@ -22,14 +22,12 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState({ show: false, success: false, message: '' });
   const [notification, setNotification] = useState({ show: false, message: '', type: '' });
 
-  // Configuración de EmailJS
   const EMAILJS_CONFIG = {
     serviceId: 'valcode_contact',
     templateId: 'template_93i6ml8',
     userId: '8r9u0XFzuB7KHwW_s'
   };
 
-  // Validaciones profesionales
   const validators = {
     empresa: (value) => {
       if (!value.trim()) return "El nombre de la empresa es obligatorio.";
@@ -207,32 +205,32 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 relative overflow-hidden px-6 pt-36 pb-24 font-sans">
+    <div className="min-h-screen bg-white text-slate-900 relative overflow-hidden px-5 sm:px-8 pt-28 lg:pt-36 pb-16 lg:pb-24 font-sans">
 
       {/* Fondo técnico con cuadrícula sutil */}
       <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:28px_28px] opacity-40 pointer-events-none"></div>
 
-      {/* NOTIFICACIÓN FLOTANTE MODERNA */}
+      {/* NOTIFICACIÓN FLOTANTE MODERNA (Responsiva) */}
       {notification.show && (
-        <div className="fixed top-32 right-5 z-50 w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 transform transition-all duration-500 animate-slide-in">
+        <div className="fixed top-24 sm:top-32 left-4 right-4 sm:left-auto sm:right-5 z-50 w-auto sm:w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 transform transition-all duration-500 animate-slide-in">
           <div className="p-4">
             <div className="flex items-start">
               <div className="flex-shrink-0">
                 {notification.type === 'success' ? (
                   <div className="p-2 bg-emerald-100 rounded-full">
-                    <RiCheckLine className="h-6 w-6 text-emerald-600" />
+                    <RiCheckLine className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-600" />
                   </div>
                 ) : (
                   <div className="p-2 bg-red-100 rounded-full">
-                    <RiErrorWarningLine className="h-6 w-6 text-red-600" />
+                    <RiErrorWarningLine className="h-5 w-5 sm:h-6 sm:w-6 text-red-600" />
                   </div>
                 )}
               </div>
-              <div className="ml-4 w-0 flex-1">
-                <p className="text-base font-semibold text-slate-900">
+              <div className="ml-3 sm:ml-4 w-0 flex-1">
+                <p className="text-sm sm:text-base font-semibold text-slate-900">
                   {notification.type === 'success' ? 'Solicitud Enviada' : 'Ocurrió un Error'}
                 </p>
-                <p className="mt-1 text-sm text-slate-600 font-light">{notification.message}</p>
+                <p className="mt-1 text-xs sm:text-sm text-slate-600 font-light">{notification.message}</p>
               </div>
               <div className="ml-4 flex flex-shrink-0">
                 <button
@@ -251,28 +249,28 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Header de la página */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs tracking-widest uppercase font-semibold mb-6 shadow-sm">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-[10px] sm:text-xs tracking-widest uppercase font-semibold mb-5 sm:mb-6 shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-blue-600" />
             <span>Contacto Profesional</span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 mb-4 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 mb-3 sm:mb-4 tracking-tight leading-tight">
             {t("contact_req") || "Inicia tu próximo proyecto"}
           </h1>
-          <p className="text-slate-600 text-lg font-light leading-relaxed">
+          <p className="text-slate-600 text-base sm:text-lg font-light leading-relaxed">
             {t("contact_desc") || "Cuéntanos sobre tus requerimientos y nuestro equipo técnico se pondrá en contacto contigo de inmediato."}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-12 items-start max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
           
-          {/* FORMULARIO (Lado Izquierdo - 7 columnas) */}
-          <div className="lg:col-span-7 bg-white border border-slate-200/80 p-8 sm:p-10 rounded-3xl shadow-xl">
-            <form ref={formRef} onSubmit={sendEmail} className="space-y-5" noValidate>
+          {/* FORMULARIO (Lado Izquierdo) */}
+          <div className="lg:col-span-7 bg-white border border-slate-200/80 p-6 sm:p-8 lg:p-10 rounded-3xl sm:rounded-[2rem] shadow-xl">
+            <form ref={formRef} onSubmit={sendEmail} className="space-y-4 sm:space-y-5" noValidate>
               
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 mb-2 font-semibold">Empresa</label>
+                <label className="block text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-500 mb-1.5 sm:mb-2 font-semibold">Empresa</label>
                 <input
                   type="text"
                   name="empresa"
@@ -281,7 +279,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={isSubmitting}
-                  className={`w-full px-4 py-3.5 bg-slate-50 rounded-2xl border ${
+                  className={`w-full px-4 py-3 sm:py-3.5 bg-slate-50 rounded-2xl border ${
                     errors.empresa && touched.empresa
                       ? "border-red-500 focus:ring-2 focus:ring-red-500/20"
                       : formData.empresa && !errors.empresa && touched.empresa
@@ -290,14 +288,14 @@ export default function ContactPage() {
                   } outline-none transition-all text-slate-900 text-sm font-medium ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                 />
                 {errors.empresa && touched.empresa && (
-                  <p className="text-red-500 text-xs mt-1.5 flex items-center gap-1 font-medium">
+                  <p className="text-red-500 text-[11px] sm:text-xs mt-1.5 flex items-center gap-1 font-medium">
                     <RiErrorWarningLine className="flex-shrink-0" /> {errors.empresa}
                   </p>
                 )}
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 mb-2 font-semibold">Nombre Completo</label>
+                <label className="block text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-500 mb-1.5 sm:mb-2 font-semibold">Nombre Completo</label>
                 <input
                   type="text"
                   name="nombre"
@@ -306,7 +304,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={isSubmitting}
-                  className={`w-full px-4 py-3.5 bg-slate-50 rounded-2xl border ${
+                  className={`w-full px-4 py-3 sm:py-3.5 bg-slate-50 rounded-2xl border ${
                     errors.nombre && touched.nombre
                       ? "border-red-500 focus:ring-2 focus:ring-red-500/20"
                       : formData.nombre && !errors.nombre && touched.nombre
@@ -315,14 +313,14 @@ export default function ContactPage() {
                   } outline-none transition-all text-slate-900 text-sm font-medium ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                 />
                 {errors.nombre && touched.nombre && (
-                  <p className="text-red-500 text-xs mt-1.5 flex items-center gap-1 font-medium">
+                  <p className="text-red-500 text-[11px] sm:text-xs mt-1.5 flex items-center gap-1 font-medium">
                     <RiErrorWarningLine className="flex-shrink-0" /> {errors.nombre}
                   </p>
                 )}
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 mb-2 font-semibold">Correo Electrónico</label>
+                <label className="block text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-500 mb-1.5 sm:mb-2 font-semibold">Correo Electrónico</label>
                 <input
                   type="email"
                   name="email"
@@ -331,7 +329,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={isSubmitting}
-                  className={`w-full px-4 py-3.5 bg-slate-50 rounded-2xl border ${
+                  className={`w-full px-4 py-3 sm:py-3.5 bg-slate-50 rounded-2xl border ${
                     errors.email && touched.email
                       ? "border-red-500 focus:ring-2 focus:ring-red-500/20"
                       : formData.email && !errors.email && touched.email
@@ -340,14 +338,14 @@ export default function ContactPage() {
                   } outline-none transition-all text-slate-900 text-sm font-medium ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                 />
                 {errors.email && touched.email && (
-                  <p className="text-red-500 text-xs mt-1.5 flex items-center gap-1 font-medium">
+                  <p className="text-red-500 text-[11px] sm:text-xs mt-1.5 flex items-center gap-1 font-medium">
                     <RiErrorWarningLine className="flex-shrink-0" /> {errors.email}
                   </p>
                 )}
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 mb-2 font-semibold">Teléfono / Celular</label>
+                <label className="block text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-500 mb-1.5 sm:mb-2 font-semibold">Teléfono / Celular</label>
                 <input
                   type="tel"
                   name="telefono"
@@ -357,7 +355,7 @@ export default function ContactPage() {
                   onBlur={handleBlur}
                   disabled={isSubmitting}
                   maxLength={10}
-                  className={`w-full px-4 py-3.5 bg-slate-50 rounded-2xl border ${
+                  className={`w-full px-4 py-3 sm:py-3.5 bg-slate-50 rounded-2xl border ${
                     errors.telefono && touched.telefono
                       ? "border-red-500 focus:ring-2 focus:ring-red-500/20"
                       : formData.telefono && !errors.telefono && touched.telefono
@@ -366,14 +364,14 @@ export default function ContactPage() {
                   } outline-none transition-all text-slate-900 text-sm font-medium ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                 />
                 {errors.telefono && touched.telefono && (
-                  <p className="text-red-500 text-xs mt-1.5 flex items-center gap-1 font-medium">
+                  <p className="text-red-500 text-[11px] sm:text-xs mt-1.5 flex items-center gap-1 font-medium">
                     <RiErrorWarningLine className="flex-shrink-0" /> {errors.telefono}
                   </p>
                 )}
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 mb-2 font-semibold">Mensaje o Requerimiento</label>
+                <label className="block text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-500 mb-1.5 sm:mb-2 font-semibold">Mensaje o Requerimiento</label>
                 <textarea
                   rows="4"
                   name="mensaje"
@@ -383,7 +381,7 @@ export default function ContactPage() {
                   onBlur={handleBlur}
                   disabled={isSubmitting}
                   maxLength={1000}
-                  className={`w-full px-4 py-3.5 bg-slate-50 rounded-2xl border ${
+                  className={`w-full px-4 py-3 sm:py-3.5 bg-slate-50 rounded-2xl border ${
                     errors.mensaje && touched.mensaje
                       ? "border-red-500 focus:ring-2 focus:ring-red-500/20"
                       : formData.mensaje && !errors.mensaje && touched.mensaje
@@ -392,12 +390,12 @@ export default function ContactPage() {
                   } outline-none transition-all text-slate-900 text-sm font-medium resize-none ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                 ></textarea>
                 {formData.mensaje && (
-                  <p className="text-[11px] text-slate-400 mt-1 text-right font-mono">
+                  <p className="text-[10px] sm:text-[11px] text-slate-400 mt-1 text-right font-mono">
                     {formData.mensaje.length}/1000 caracteres
                   </p>
                 )}
                 {errors.mensaje && touched.mensaje && (
-                  <p className="text-red-500 text-xs mt-1.5 flex items-center gap-1 font-medium">
+                  <p className="text-red-500 text-[11px] sm:text-xs mt-1.5 flex items-center gap-1 font-medium">
                     <RiErrorWarningLine className="flex-shrink-0" /> {errors.mensaje}
                   </p>
                 )}
@@ -413,9 +411,9 @@ export default function ContactPage() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     disabled={isSubmitting}
-                    className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                    className="mt-1 h-4 w-4 shrink-0 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                   />
-                  <label htmlFor="acceptedTerms" className="text-xs text-slate-600 cursor-pointer select-none leading-relaxed">
+                  <label htmlFor="acceptedTerms" className="text-[11px] sm:text-xs text-slate-600 cursor-pointer select-none leading-relaxed">
                     {t("contact_terms1") || "He leído y acepto los "}
                     <Link to="/terminos" target="_blank" className="text-blue-600 hover:underline font-semibold">{t("footer_terminos") || "Términos"}</Link>
                     {t("contact_terms2") || " y la "}
@@ -424,7 +422,7 @@ export default function ContactPage() {
                   </label>
                 </div>
                 {errors.acceptedTerms && touched.acceptedTerms && (
-                  <p className="text-red-500 text-xs mt-1.5 flex items-center gap-1 font-medium">
+                  <p className="text-red-500 text-[11px] sm:text-xs mt-1.5 flex items-center gap-1 font-medium">
                     <RiErrorWarningLine className="flex-shrink-0" /> {errors.acceptedTerms}
                   </p>
                 )}
@@ -433,13 +431,13 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full bg-slate-950 text-white py-4 rounded-2xl font-bold text-sm hover:bg-slate-900 transition-all duration-300 shadow-xl shadow-slate-950/10 flex items-center justify-center gap-2 ${
+                className={`w-full bg-slate-950 text-white py-3.5 sm:py-4 rounded-2xl font-bold text-sm hover:bg-slate-900 transition-all duration-300 shadow-xl shadow-slate-950/10 flex items-center justify-center gap-2 mt-4 ${
                   isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:scale-[1.01] active:scale-95'
                 }`}
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
@@ -455,11 +453,11 @@ export default function ContactPage() {
             </form>
           </div>
 
-          {/* INFORMACIÓN DE CONTACTO (Lado Derecho - 5 columnas) */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-8 bg-slate-50 border border-slate-200/80 p-8 sm:p-10 rounded-3xl h-full">
+          {/* INFORMACIÓN DE CONTACTO (Lado Derecho) */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-6 sm:space-y-8 bg-slate-50 border border-slate-200/80 p-6 sm:p-8 lg:p-10 rounded-3xl sm:rounded-[2rem] h-full">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-slate-950 tracking-tight">
-                {t("contact_info_title_1") || "Conectemos con"} <br />
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-slate-950 tracking-tight">
+                {t("contact_info_title_1") || "Conectemos con"} <br className="hidden sm:block" />
                 <span className="text-blue-600">{t("contact_info_title_2") || "alta tecnología"}</span>
               </h2>
               <p className="text-slate-600 leading-relaxed font-light text-sm sm:text-base">
@@ -467,36 +465,35 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div className="flex items-start p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm group hover:border-slate-300 transition-all">
-                <div className="bg-blue-50 p-3 rounded-xl text-blue-600 border border-blue-100">
-                  <RiSmartphoneLine size={22} />
+                <div className="bg-blue-50 p-2.5 sm:p-3 rounded-xl text-blue-600 border border-blue-100 shrink-0">
+                  <RiSmartphoneLine className="text-[20px] sm:text-[22px]" />
                 </div>
-                <div className="ml-4">
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-0.5">{t("contact_info_celular") || "Teléfono Directo"}</h4>
-                  <p className="text-slate-900 text-base font-bold">+57 322 722 3032</p>
+                <div className="ml-3 sm:ml-4 overflow-hidden">
+                  <h4 className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400 mb-0.5">{t("contact_info_celular") || "Teléfono Directo"}</h4>
+                  <p className="text-slate-900 text-sm sm:text-base font-bold truncate">+57 322 722 3032</p>
                 </div>
               </div>
 
               <div className="flex items-start p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm group hover:border-slate-300 transition-all">
-                <div className="bg-blue-50 p-3 rounded-xl text-blue-600 border border-blue-100">
-                  <RiMailLine size={22} />
+                <div className="bg-blue-50 p-2.5 sm:p-3 rounded-xl text-blue-600 border border-blue-100 shrink-0">
+                  <RiMailLine className="text-[20px] sm:text-[22px]" />
                 </div>
-                <div className="ml-4">
-                  <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-0.5">{t("contact_info_email") || "Correo Electrónico"}</h4>
-                  <p className="text-slate-900 text-base font-bold">softwarevalcode@gmail.com</p>
+                <div className="ml-3 sm:ml-4 overflow-hidden">
+                  <h4 className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400 mb-0.5">{t("contact_info_email") || "Correo Electrónico"}</h4>
+                  <p className="text-slate-900 text-sm sm:text-base font-bold break-all sm:truncate">softwarevalcode@gmail.com</p>
                 </div>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-slate-200 flex items-center gap-2.5 text-xs font-semibold text-slate-700">
-              <ShieldCheck className="w-5 h-5 text-emerald-500" />
-              <span>{t("contact_info_secure") || "Comunicaciones cifradas y protegidas bajo NDA"}</span>
+            <div className="pt-5 sm:pt-6 border-t border-slate-200 flex items-start sm:items-center gap-2.5 text-[11px] sm:text-xs font-semibold text-slate-700">
+              <ShieldCheck className="w-5 h-5 sm:w-5 sm:h-5 text-emerald-500 shrink-0 mt-0.5 sm:mt-0" />
+              <span className="leading-snug">{t("contact_info_secure") || "Comunicaciones cifradas y protegidas bajo NDA"}</span>
             </div>
           </div>
 
         </div>
-
       </div>
 
       <style>{`
@@ -508,6 +505,18 @@ export default function ContactPage() {
           to {
             transform: translateX(0);
             opacity: 1;
+          }
+        }
+        @media (max-width: 640px) {
+          @keyframes slide-in {
+            from {
+              transform: translateY(-100%);
+              opacity: 0;
+            }
+            to {
+              transform: translateY(0);
+              opacity: 1;
+            }
           }
         }
         .animate-slide-in {

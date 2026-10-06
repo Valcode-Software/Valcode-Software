@@ -7,34 +7,36 @@ import heroImg from "../../assets/img/bussines.png"; // Asegúrate de que la rut
 export default function HeroSection() {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const title = t("hero_main_title") || "Agentes de IA";
-  const description = t("hero_main_desc") || "Impulsamos tu negocio con soluciones tecnológicas de vanguardia, diseñadas para destacar y escalar en la era de la Inteligencia Artificial.";
-  const [typedTitle, setTypedTitle] = useState("");
-  const [typedDescription, setTypedDescription] = useState("");
+  const title = t("hero_main_title") || "Agentes de IA que impulsan tu empresa";
+  const description = t("hero_main_desc") || "Creamos software a medida y agentes inteligentes que automatizan procesos, mejoran la atención y convierten oportunidades en crecimiento para tu negocio.";
+  
+  // En lugar de guardar el string completo, guardamos el índice de la letra actual
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [descIndex, setDescIndex] = useState(0);
 
   useEffect(() => {
-    setTypedTitle("");
-    setTypedDescription("");
+    setTitleIndex(0);
+    setDescIndex(0);
 
-    let titleIndex = 0;
-    let descriptionIndex = 0;
+    let tIndex = 0;
+    let dIndex = 0;
     let descriptionTimer;
 
     const titleTimer = window.setInterval(() => {
-      titleIndex += 1;
-      setTypedTitle(title.slice(0, titleIndex));
+      tIndex += 1;
+      setTitleIndex(tIndex);
 
-      if (titleIndex >= title.length) {
+      if (tIndex >= title.length) {
         window.clearInterval(titleTimer);
       }
     }, 42);
 
     const descriptionStartTimer = window.setTimeout(() => {
       descriptionTimer = window.setInterval(() => {
-        descriptionIndex += 1;
-        setTypedDescription(description.slice(0, descriptionIndex));
+        dIndex += 1;
+        setDescIndex(dIndex);
 
-        if (descriptionIndex >= description.length) {
+        if (dIndex >= description.length) {
           window.clearInterval(descriptionTimer);
         }
       }, 12);
@@ -47,10 +49,19 @@ export default function HeroSection() {
     };
   }, [title, description]);
 
+  // Dividimos el texto en "visible" (lo que ya se tipeó) e "invisible" (lo que falta)
+  // Esto soluciona por completo el bug de responsive de los textos sobrepuestos.
+  const visibleTitle = title.slice(0, titleIndex);
+  const invisibleTitle = title.slice(titleIndex);
+
+  const visibleDesc = description.slice(0, descIndex);
+  const invisibleDesc = description.slice(descIndex);
+
   return (
-    <section className="relative w-full h-[100dvh] overflow-hidden bg-black">
+    // Agregamos min-h-[600px] para asegurar que en pantallas muy cortas no se colapse todo
+    <section className="relative w-full h-[100dvh] min-h-[600px] overflow-hidden bg-black flex flex-col justify-end">
       
-      {/* Fondo con animación más sutil (se ve "más atrás") */}
+      {/* Fondo con animación sutil */}
       <motion.div
         initial={{ scale: 1.05 }}
         animate={{ scale: 1 }}
@@ -65,27 +76,27 @@ export default function HeroSection() {
         <img
           src={heroImg}
           alt="Agentes de IA Hero"
-          // object-top asegura que la cabeza del robot siempre esté visible
-          className="w-full h-full object-cover object-top opacity-90"
+          className="w-full h-full object-cover object-top opacity-80"
         />
       </motion.div>
 
-      {/* Overlay oscuro invertido: Más oscuro abajo para el texto, transparente arriba para la cara del robot */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent" />
+      {/* Overlay oscuro invertido (Ajustado para mejor contraste en móvil) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/30" />
 
-      {/* Contenido: Movido a la izquierda y hacia abajo */}
-      <div className="absolute inset-0 flex flex-col justify-end items-start text-left px-8 sm:px-12 md:px-20 pb-28 sm:pb-36 z-10 max-w-7xl mx-auto">
+      {/* Contenido: Agregamos pt-28 para que nunca choque con el Navbar fijo arriba */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-start text-left px-6 sm:px-12 md:px-20 pb-16 sm:pb-28 pt-28">
         
-        {/* Título Principal */}
+        {/* Título Principal - Escalado de texto más suave para móviles */}
         <motion.h1
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
           aria-label={title}
-          className="relative text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-tight drop-shadow-2xl mb-4 max-w-3xl bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
+          className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[1.1] drop-shadow-2xl mb-4 max-w-4xl bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent break-words w-full"
         >
-          <span aria-hidden="true" className="invisible block">{title}</span>
-          <span aria-hidden="true" className="absolute inset-0">{typedTitle}</span>
+          <span>{visibleTitle}</span>
+          {/* El texto invisible mantiene la estructura intacta para evitar saltos en la pantalla */}
+          <span aria-hidden="true" className="opacity-0">{invisibleTitle}</span>
         </motion.h1>
 
         {/* Descripción */}
@@ -94,10 +105,10 @@ export default function HeroSection() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
           aria-label={description}
-          className="relative text-gray-200 text-lg sm:text-xl md:text-2xl font-light leading-relaxed max-w-2xl drop-shadow-md mb-8"
+          className="text-gray-200 text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed max-w-2xl drop-shadow-md mb-8 break-words w-full"
         >
-          <span aria-hidden="true" className="invisible block">{description}</span>
-          <span aria-hidden="true" className="absolute inset-0">{typedDescription}</span>
+          <span>{visibleDesc}</span>
+          <span aria-hidden="true" className="opacity-0">{invisibleDesc}</span>
         </motion.p>
 
         {/* Botones de Acción */}
@@ -109,16 +120,16 @@ export default function HeroSection() {
         >
           <button
             onClick={() => navigate('/servicios')}
-            className="px-8 py-3.5 rounded-full bg-blue-600 text-white font-semibold text-[15px] transition-all duration-300 hover:bg-blue-700 hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-blue-600 text-white font-semibold text-[15px] transition-all duration-300 hover:bg-blue-700 hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] active:scale-95 flex items-center justify-center"
           >
-            {t("btn_servicios") || "Nuestros Servicios"}
+            {t("btn_servicios") || "Explorar soluciones"}
           </button>
 
           <button
             onClick={() => navigate('/contacto')}
-            className="px-8 py-3.5 rounded-full bg-transparent border border-white/80 text-white font-semibold text-[15px] transition-all duration-300 hover:bg-white hover:text-black hover:scale-105 active:scale-95 backdrop-blur-sm"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-transparent border border-white/80 text-white font-semibold text-[15px] transition-all duration-300 hover:bg-white hover:text-black hover:scale-105 active:scale-95 backdrop-blur-sm flex items-center justify-center"
           >
-            {t("btn_contacto") || "Empezar Proyecto"}
+            {t("btn_contacto") || "Hablemos de tu proyecto"}
           </button>
         </motion.div>
 

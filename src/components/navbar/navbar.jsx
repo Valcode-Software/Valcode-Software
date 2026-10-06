@@ -104,7 +104,7 @@ const Navbar = () => {
 
   return (
     <>
-      {/* 1. TOP BAR ULTRA MINIMALISTA (Centrada internamente) */}
+      {/* 1. TOP BAR ULTRA MINIMALISTA */}
       <div
         className={`hidden md:flex fixed top-0 left-0 w-full h-10 bg-slate-950 items-center border-b border-white/5 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] z-[60] ${
           showTopBar ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
@@ -132,10 +132,10 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* 2. BARRA PRINCIPAL (Fondo blanco, diseño centrado 2026) */}
+      {/* 2. BARRA PRINCIPAL */}
       <nav
         className={`fixed ${
-          showTopBar ? "top-[40px]" : "top-0"
+          showTopBar ? "top-0 md:top-10" : "top-0"
         } left-0 w-full z-50 flex flex-col transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] bg-white/95 backdrop-blur-md shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] font-sans ${
           showNavbar ? "translate-y-0" : "-translate-y-full"
         }`}
@@ -143,7 +143,7 @@ const Navbar = () => {
         {/* Contenedor centralizado para monitores grandes */}
         <div className="w-full h-[90px] max-w-7xl mx-auto flex items-center justify-between px-6">
           
-          {/* LOGO - Flex 1 para empujar el centro (Alineado a la izquierda) */}
+          {/* LOGO */}
           <div className="flex-1 flex justify-start">
             <div 
               className="cursor-pointer flex items-center transition-transform duration-500 hover:scale-105" 
@@ -157,7 +157,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* ENLACES DESKTOP - Flex 1 para quedar en el centro exacto (Efecto "Pill" con tus colores) */}
+          {/* ENLACES DESKTOP */}
           <ul className="hidden lg:flex flex-1 justify-center items-center gap-2 list-none m-0 p-0">
             {mainNavItems.map((item) => (
               <li
@@ -166,15 +166,13 @@ const Navbar = () => {
                 className="relative px-5 py-2 cursor-pointer text-[0.95rem] font-semibold text-slate-800 transition-all duration-300 hover:text-blue-600 group"
               >
                 <span className="relative z-10">{item.label}</span>
-                {/* Fondo animado azul claro en hover */}
                 <span className="absolute inset-0 bg-blue-50/0 rounded-full group-hover:bg-blue-50 transition-all duration-300 -z-10 scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100" />
               </li>
             ))}
           </ul>
 
-          {/* ACCIONES DESKTOP - Flex 1 para alinear a la derecha */}
+          {/* ACCIONES DESKTOP */}
           <div className="hidden md:flex flex-1 justify-end items-center gap-3">
-            
             {/* Selector de Idioma */}
             <div
               className="relative cursor-pointer group"
@@ -188,7 +186,6 @@ const Navbar = () => {
                 <span className="text-[9px] ml-0.5 text-slate-400 group-hover:text-slate-600 transition-colors">▼</span>
               </div>
               
-              {/* Dropdown Idioma (Tus colores originales, sombras modernas) */}
               <div
                 className={`absolute top-[130%] right-0 bg-white ring-1 ring-black/5 rounded-xl min-w-[140px] shadow-xl p-1.5 transition-all duration-400 origin-top-right ${
                   isLangMenuOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
@@ -209,7 +206,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Buscador Circular (Con tu azul original) */}
+            {/* Buscador Circular */}
             <div
               className={`w-10 h-10 flex items-center justify-center rounded-full cursor-pointer transition-all duration-300 shadow-sm ${
                 isSearchOpen ? "border-blue-600 text-blue-600 bg-blue-50" : "bg-white border border-slate-200 text-slate-600 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50/50"
@@ -219,7 +216,7 @@ const Navbar = () => {
               <RiSearchLine className="text-[17px]" />
             </div>
 
-            {/* Botón de Contacto (Bordeado original pero con hover premium) */}
+            {/* Botón de Contacto */}
             <button
               onClick={() => navigate(contactItem.path)}
               className="ml-2 px-6 py-2.5 rounded-full border border-slate-800 text-slate-800 text-sm font-semibold tracking-wide transition-all duration-300 hover:bg-slate-800 hover:text-white hover:scale-[1.02] active:scale-95"
@@ -227,11 +224,19 @@ const Navbar = () => {
               {contactItem.label}
             </button>
           </div>
+
+          {/* BOTÓN MENÚ MÓVIL (Reubicado dentro del flex en lugar de absolute) */}
+          <div
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-slate-50 border border-slate-100 text-2xl text-slate-800 cursor-pointer transition-transform duration-300 active:scale-90 shadow-sm"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <HiX /> : <HiMenu />}
+          </div>
         </div>
 
-        {/* DROPDOWN BUSCADOR DESKTOP (Moderno pero con tus hovers en azul) */}
+        {/* DROPDOWN BUSCADOR DESKTOP */}
         <div
-          className={`absolute top-[100px] right-6 xl:right-[15%] w-[340px] bg-white ring-1 ring-black/5 rounded-2xl shadow-xl overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)] origin-top-right ${
+          className={`absolute top-[90px] right-6 xl:right-[15%] w-[340px] bg-white ring-1 ring-black/5 rounded-2xl shadow-xl overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)] origin-top-right ${
             isSearchOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-4 pointer-events-none"
           }`}
         >
@@ -275,19 +280,9 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* ==================================================== */}
-        {/* MENÚ MÓVIL (Tarjeta Flotante con tus colores originales) */}
-        {/* ==================================================== */}
-
+        {/* MENÚ DESPLEGABLE MÓVIL */}
         <div
-          className="md:hidden absolute right-6 top-[30px] flex items-center justify-center w-10 h-10 rounded-full bg-slate-50 border border-slate-100 text-2xl text-slate-800 cursor-pointer transition-transform duration-300 active:scale-90 shadow-sm"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <HiX /> : <HiMenu />}
-        </div>
-
-        <div
-          className={`absolute top-[100px] left-4 right-4 bg-white ring-1 ring-black/5 rounded-3xl shadow-2xl flex flex-col overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] md:hidden ${
+          className={`absolute top-[90px] left-4 right-4 bg-white ring-1 ring-black/5 rounded-3xl shadow-2xl flex flex-col overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] md:hidden ${
             isMobileMenuOpen ? "max-h-[600px] opacity-100 scale-100 translate-y-0" : "max-h-0 opacity-0 scale-95 -translate-y-4 pointer-events-none"
           }`}
         >
