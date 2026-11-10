@@ -1,0 +1,164 @@
+/* =========================================================
+   VALCODE · MODO OSCURO GLOBAL
+   Se activa con la clase "dark" en <html> (ThemeContext).
+   Remapea las utilidades claras de Tailwind usadas en el
+   sitio a una paleta negra corporativa, manteniendo el azul.
+   ========================================================= */
+
+:root {
+  --vc-page: #07090d;
+  --vc-surface: #0e1218;
+  --vc-surface-2: #141922;
+  --vc-surface-3: #1b212c;
+  --vc-text-1: #f5f7fa;
+  --vc-text-2: #e2e8f0;
+  --vc-text-3: #c3cbd8;
+  --vc-text-4: #9aa6b8;
+  --vc-text-5: #7d899c;
+  --vc-line-1: rgba(255, 255, 255, 0.06);
+  --vc-line-2: rgba(255, 255, 255, 0.1);
+  --vc-line-3: rgba(255, 255, 255, 0.16);
+  --vc-blue-soft: rgba(59, 130, 246, 0.14);
+  --vc-blue-line: rgba(96, 165, 250, 0.32);
+  --vc-blue-text: #60a5fa;
+}
+
+/* Cambio de tema sin parpadeos de transiciones */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
+html.dark,
+html.dark body {
+  background-color: var(--vc-page);
+  color: var(--vc-text-2);
+}
+
+/* ---------- Fondos ---------- */
+:where(html.dark) .bg-white:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-white\/95:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-white\/90:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-white\/80:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-white\/70:not(:where([data-keep-light], [data-keep-light] *)) {
+  background-color: var(--vc-surface);
+}
+:where(html.dark) .bg-white\/95:not(:where([data-keep-light], [data-keep-light] *)) { background-color: rgba(14, 18, 24, 0.92); }
+:where(html.dark) .bg-white\/80:not(:where([data-keep-light], [data-keep-light] *)) { background-color: rgba(14, 18, 24, 0.82); }
+
+:where(html.dark) .bg-\[\#F5F7FA\]:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-\[\#f5f7fa\]:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-gray-50:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-slate-50:not(:where([data-keep-light], [data-keep-light] *)) {
+  background-color: var(--vc-page);
+}
+:where(html.dark) .bg-slate-50\/90:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-slate-50\/80:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-slate-50\/50:not(:where([data-keep-light], [data-keep-light] *)) {
+  background-color: rgba(255, 255, 255, 0.025);
+}
+:where(html.dark) .bg-slate-100:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-gray-100:not(:where([data-keep-light], [data-keep-light] *)) {
+  background-color: var(--vc-surface-2);
+}
+:where(html.dark) .bg-slate-200:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-slate-300:not(:where([data-keep-light], [data-keep-light] *)) {
+  background-color: var(--vc-surface-3);
+}
+:where(html.dark) .bg-blue-50:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-blue-50\/70:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .bg-blue-50\/50:not(:where([data-keep-light], [data-keep-light] *)) {
+  background-color: var(--vc-blue-soft);
+}
+
+/* ---------- Textos ---------- */
+:where(html.dark) .text-black:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .text-slate-950:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .text-slate-900:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .text-gray-900:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .text-gray-800:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .text-slate-800:not(:where([data-keep-light], [data-keep-light] *)) {
+  color: var(--vc-text-1);
+}
+:where(html.dark) .text-slate-700:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .text-gray-700:not(:where([data-keep-light], [data-keep-light] *)) {
+  color: var(--vc-text-3);
+}
+:where(html.dark) .text-slate-600:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .text-gray-600:not(:where([data-keep-light], [data-keep-light] *)) {
+  color: var(--vc-text-4);
+}
+:where(html.dark) .text-slate-500:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .text-gray-500:not(:where([data-keep-light], [data-keep-light] *)) {
+  color: var(--vc-text-5);
+}
+:where(html.dark) .text-blue-700:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .text-blue-800:not(:where([data-keep-light], [data-keep-light] *)) {
+  color: var(--vc-blue-text);
+}
+:where(html.dark) .text-\[\#0b2152\]:not(:where([data-keep-light], [data-keep-light] *)) {
+  color: #8fb4ff;
+}
+
+/* ---------- Bordes y anillos ---------- */
+:where(html.dark) .border-slate-100:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .border-gray-100:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .border-slate-200\/70:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .border-slate-200\/80:not(:where([data-keep-light], [data-keep-light] *)) {
+  border-color: var(--vc-line-1);
+}
+:where(html.dark) .border-slate-200:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .border-gray-200:not(:where([data-keep-light], [data-keep-light] *)) {
+  border-color: var(--vc-line-2);
+}
+:where(html.dark) .border-slate-300:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .border-slate-400:not(:where([data-keep-light], [data-keep-light] *)) {
+  border-color: var(--vc-line-3);
+}
+:where(html.dark) .border-blue-100:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .border-blue-200:not(:where([data-keep-light], [data-keep-light] *)) {
+  border-color: var(--vc-blue-line);
+}
+:where(html.dark) .ring-slate-200:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .ring-black\/5:not(:where([data-keep-light], [data-keep-light] *)) {
+  --tw-ring-color: var(--vc-line-2);
+}
+:where(html.dark) .divide-slate-100 > * + *:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .divide-slate-200 > * + *:not(:where([data-keep-light], [data-keep-light] *)) {
+  border-color: var(--vc-line-2);
+}
+
+/* ---------- Estados hover ---------- */
+:where(html.dark) .hover\:bg-white:hover:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .hover\:bg-slate-50:hover:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .hover\:bg-gray-50:hover:not(:where([data-keep-light], [data-keep-light] *)) {
+  background-color: var(--vc-surface-2);
+}
+:where(html.dark) .hover\:bg-slate-100:hover:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .hover\:bg-gray-100:hover:not(:where([data-keep-light], [data-keep-light] *)) {
+  background-color: var(--vc-surface-3);
+}
+:where(html.dark) .hover\:bg-blue-50:hover:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .hover\:bg-blue-50\/50:hover:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .group:hover .group-hover\:bg-blue-50:not(:where([data-keep-light], [data-keep-light] *)) {
+  background-color: var(--vc-blue-soft);
+}
+:where(html.dark) .hover\:text-slate-950:hover:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .hover\:text-slate-900:hover:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .hover\:text-slate-800:hover:not(:where([data-keep-light], [data-keep-light] *)) {
+  color: #ffffff;
+}
+:where(html.dark) .hover\:text-blue-700:hover:not(:where([data-keep-light], [data-keep-light] *)) {
+  color: var(--vc-blue-text);
+}
+:where(html.dark) .hover\:border-slate-300:hover:not(:where([data-keep-light], [data-keep-light] *)),
+:where(html.dark) .hover\:border-slate-200:hover:not(:where([data-keep-light], [data-keep-light] *)) {
+  border-color: var(--vc-line-3);
+}
+
+/* ---------- Formularios ---------- */
+:where(html.dark) input::placeholder,
+:where(html.dark) textarea::placeholder {
+  color: var(--vc-text-5);
+}

@@ -445,3 +445,27 @@
     color: black;
   }
 }
+/* ===== Modo oscuro ===== */
+:global(html.dark) .politicaContainer { background-color: #07090d; }
+:global(html.dark) .mainTitle,
+:global(html.dark) .sectionTitle,
+:global(html.dark) .highlightBox strong,
+:global(html.dark) .confidencePhrase { color: #f5f7fa; border-color: rgba(255, 255, 255, 0.85); }
+:global(html.dark) .subtitle { color: #c3cbd8; }
+:global(html.dark) .updateDate { color: #7d899c; }
+:global(html.dark) .contentSection { background: #0e1218; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06); }
+:global(html.dark) .introCard,
+:global(html.dark) .footerNote,
+:global(html.dark) .acceptanceSection { background-color: #141922; border-left-color: #3b82f6; }
+:global(html.dark) .introText,
+:global(html.dark) .sectionText,
+:global(html.dark) .bulletList li,
+:global(html.dark) .footerNote p,
+:global(html.dark) .acceptanceText { color: #c3cbd8; }
+:global(html.dark) .bulletList li { border-left-color: rgba(255, 255, 255, 0.14); }
+:global(html.dark) .sectionCard { border-bottom-color: rgba(255, 255, 255, 0.08); }
+:global(html.dark) .sectionTitle::before { background-color: #3b82f6; }
+:global(html.dark) .highlightBox,
+:global(html.dark) .securityBadge { background-color: #141922; border-color: rgba(255, 255, 255, 0.12); color: #e2e8f0; }
+:global(html.dark) .contactFooter { background-color: #141922; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08); }
+:global(html.dark) .confidencePhrase { border-top-color: rgba(255, 255, 255, 0.12); }

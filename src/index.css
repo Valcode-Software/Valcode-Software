@@ -42,3 +42,18 @@
 .animate-spin-slow {
   animation: spinSlow 3s linear infinite;
 }
+
+/* Selector de emojis del chat Valco */
+.valco-emoji .EmojiPickerReact {
+  border: none !important;
+  border-radius: 0 !important;
+  --epr-emoji-size: 28px;
+  --epr-highlight-color: #2563eb;
+  --epr-hover-bg-color: #eff6ff;
+  --epr-focus-bg-color: #dbeafe;
+  --epr-search-input-bg-color: #f1f5f9;
+  --epr-search-border-color: #2563eb;
+  --epr-category-label-bg-color: rgba(255, 255, 255, 0.96);
+  --epr-category-label-text-color: #64748b;
+  --epr-text-color: #0f172a;
+}

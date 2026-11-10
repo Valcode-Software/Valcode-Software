@@ -1,15 +1,57 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
+import { useTheme } from "../../context/ThemeContext";
 import { RiLinkedinFill, RiSearchLine } from "react-icons/ri";
 import { HiMenu, HiX } from "react-icons/hi";
+import { Sun, Moon } from "lucide-react";
 
 import { US, ES } from "country-flag-icons/react/3x2";
 import logo from "../../assets/img/valcode_logo_all_white.png";
 
+/* Interruptor de tema claro / oscuro (el navbar conserva su estilo original) */
+const ThemeToggle = ({ isDark, onToggle, label }) => (
+  <button
+    type="button"
+    role="switch"
+    aria-checked={isDark}
+    aria-label={label}
+    title={label}
+    onClick={onToggle}
+    className="relative flex h-10 w-[72px] shrink-0 items-center rounded-full border border-slate-200 bg-slate-100/80 p-1 shadow-inner transition-colors duration-300 hover:border-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60"
+  >
+    <span
+      aria-hidden="true"
+      className={`absolute left-1 top-1 h-[30px] w-[30px] rounded-full transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+        isDark
+          ? "translate-x-8 bg-slate-900 shadow-[0_4px_12px_-2px_rgba(15,23,42,0.5)]"
+          : "translate-x-0 bg-white shadow-[0_2px_8px_-1px_rgba(15,23,42,0.25)]"
+      }`}
+    />
+    <span className="relative z-10 flex h-[30px] w-[30px] items-center justify-center">
+      <Sun
+        strokeWidth={2.2}
+        className={`h-[15px] w-[15px] transition-all duration-500 ${isDark ? "rotate-90 text-slate-400" : "rotate-0 text-blue-600"}`}
+      />
+    </span>
+    <span className="relative z-10 ml-auto flex h-[30px] w-[30px] items-center justify-center">
+      <Moon
+        strokeWidth={2.2}
+        className={`h-[14px] w-[14px] transition-all duration-500 ${isDark ? "-rotate-12 fill-white text-white" : "rotate-0 text-slate-400"}`}
+      />
+    </span>
+  </button>
+);
+
 const Navbar = () => {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const { language, changeLanguage, t } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
+  const themeLabel =
+    language === "en"
+      ? isDark ? "Switch to light mode" : "Switch to dark mode"
+      : isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro";
   const selectedLang = language === "en" ? "EN" : "ES";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -106,7 +148,7 @@ const Navbar = () => {
     <>
       {/* 1. TOP BAR ULTRA MINIMALISTA */}
       <div
-        className={`hidden md:flex fixed top-0 left-0 w-full h-10 bg-slate-950 items-center border-b border-white/5 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] z-[60] ${
+        className={`hidden md:flex fixed top-0 left-0 w-full h-10 bg-[#020617] bg-[radial-gradient(ellipse_60%_220%_at_50%_0%,rgba(37,99,235,0.22),transparent_70%)] items-center border-b border-blue-500/15 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] z-[60] ${
           showTopBar ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         }`}
       >
@@ -134,6 +176,7 @@ const Navbar = () => {
 
       {/* 2. BARRA PRINCIPAL */}
       <nav
+        data-keep-light
         className={`fixed ${
           showTopBar ? "top-0 md:top-10" : "top-0"
         } left-0 w-full z-50 flex flex-col transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] bg-white/95 backdrop-blur-md shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] font-sans ${
@@ -206,6 +249,9 @@ const Navbar = () => {
               </div>
             </div>
 
+            {/* Modo claro / oscuro */}
+            <ThemeToggle isDark={isDark} onToggle={toggleTheme} label={themeLabel} />
+
             {/* Buscador Circular */}
             <div
               className={`w-10 h-10 flex items-center justify-center rounded-full cursor-pointer transition-all duration-300 shadow-sm ${
@@ -226,6 +272,9 @@ const Navbar = () => {
           </div>
 
           {/* BOTÓN MENÚ MÓVIL (Reubicado dentro del flex en lugar de absolute) */}
+          <div className="md:hidden mr-2">
+            <ThemeToggle isDark={isDark} onToggle={toggleTheme} label={themeLabel} />
+          </div>
           <div
             className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-slate-50 border border-slate-100 text-2xl text-slate-800 cursor-pointer transition-transform duration-300 active:scale-90 shadow-sm"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -356,4 +405,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar;
