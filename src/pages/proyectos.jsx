@@ -6,6 +6,8 @@ import { HiArrowUpRight } from "react-icons/hi2";
 import { Sparkles, Clock, Rocket, ShieldCheck, X } from "lucide-react";
 import { motion as Motion } from "framer-motion";
 
+const DEMO_URL = "https://ispowering.onrender.com/";
+
 const ProjectsSection = () => {
   const { t } = useLanguage();
   
@@ -54,6 +56,85 @@ const ProjectsSection = () => {
             {t("proj_desc") || "Explora las plataformas de software de alto impacto y las soluciones basadas en inteligencia artificial que estamos construyendo."}
           </p>
         </div>
+
+        {/* ================= DEMO DESTACADA: ISPOWERING ================= */}
+        <Motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="relative mb-12 sm:mb-16 overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 shadow-2xl"
+        >
+          <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-blue-600/30 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl pointer-events-none" />
+
+          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center p-6 sm:p-10">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-emerald-300">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+                {t("proj_demo_badge")}
+              </span>
+
+              <h3 className="mt-4 text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight tracking-tight text-white">
+                {t("proj_demo_title")}
+              </h3>
+
+              <p className="mt-4 text-sm sm:text-base font-light leading-relaxed text-slate-300">
+                {t("proj_demo_desc")}
+              </p>
+
+              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <a
+                  href={DEMO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/30 transition hover:bg-blue-500"
+                >
+                  <Rocket className="w-4 h-4" />
+                  {t("proj_demo_btn")}
+                  <HiArrowUpRight />
+                </a>
+                <button
+                  onClick={() => setOpenModal2(true)}
+                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
+                >
+                  {t("proj_demo_details")}
+                </button>
+              </div>
+
+              <p className="mt-5 flex items-start gap-2 text-xs leading-relaxed text-slate-400">
+                <Clock className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                {t("proj_demo_note")}
+              </p>
+            </div>
+
+            <a
+              href={DEMO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-xl"
+              aria-label={t("proj_demo_btn")}
+            >
+              <div className="flex items-center gap-1.5 border-b border-white/10 bg-slate-900/80 px-4 py-2.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+                <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+                <span className="ml-3 truncate rounded-md bg-white/5 px-3 py-0.5 text-[10px] sm:text-xs text-slate-400">
+                  ispowering.onrender.com
+                </span>
+              </div>
+              <div className="aspect-video bg-slate-950">
+                <img
+                  src={ispoweringImg}
+                  alt={t("proj_card2_image_alt")}
+                  className="h-full w-full object-contain transition duration-700 group-hover:scale-105"
+                />
+              </div>
+            </a>
+          </div>
+        </Motion.div>
 
         {/* GRID DE PROYECTOS */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
@@ -169,13 +250,18 @@ const ProjectsSection = () => {
 
             {/* Botones de acción */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-5 sm:pt-6 border-t border-slate-100 items-stretch sm:items-center justify-between">
-              <span className="w-full sm:w-auto text-xs font-semibold text-amber-600 bg-amber-50 border border-amber-200/60 px-4 py-3 sm:py-2 rounded-full flex items-center justify-center gap-1.5">
-                <Clock className="w-3.5 h-3.5" /> {t("proj_card2_launch")}
-              </span>
+              <a
+                href={DEMO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white rounded-full font-semibold text-sm hover:bg-blue-500 transition shadow-md flex items-center justify-center gap-2"
+              >
+                {t("proj_demo_btn")} <HiArrowUpRight />
+              </a>
 
               <button
                 onClick={() => setOpenModal2(true)}
-                className="w-full sm:w-auto px-6 py-3 bg-slate-900 text-white rounded-full font-semibold text-sm hover:bg-slate-800 transition shadow-md flex items-center justify-center"
+                className="w-full sm:w-auto px-6 py-3 border border-slate-300 rounded-full text-slate-700 font-semibold text-sm hover:bg-slate-50 transition flex items-center justify-center"
               >
                 {t("proj_card2_more")}
               </button>
@@ -263,6 +349,15 @@ const ProjectsSection = () => {
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-light pb-2">
                   {t("proj_card2_modal_p3")}
                 </p>
+                <a
+                  href={DEMO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-blue-500"
+                >
+                  <Rocket className="w-4 h-4" /> {t("proj_demo_btn")} <HiArrowUpRight />
+                </a>
+                <p className="mt-3 text-xs text-slate-400">{t("proj_demo_note")}</p>
               </div>
             </div>
           </div>

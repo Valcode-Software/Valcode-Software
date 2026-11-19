@@ -12,12 +12,19 @@ import {
   Route,
   ShieldCheck,
   Cpu,
+  Rocket,
+  Clock,
+  CheckCircle2,
+  ArrowUpRight,
 } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 
 // Ajusta estas rutas si tu carpeta de assets es diferente
 import valdrenVideo from "../../assets/Video/Valdren_AI_Valcode_Software.mp4";
 import valdrenPoster from "../../assets/img/valdren-poster.jpg";
+import ispoweringImg from "../../assets/img/ispoweirn1.png";
+
+const ISP_DEMO_URL = "https://ispowering.onrender.com/";
 
 // Capítulos del video (segundos exactos de la edición)
 const CHAPTERS = [
@@ -149,7 +156,7 @@ const PorqueValcode = () => {
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700 shadow-sm"
           >
             <Sparkles className="h-3.5 w-3.5" />
-            <span>{t("porque_subtitle") || "Producto destacado · Valdren AI"}</span>
+            <span>{t("showcase_badge")}</span>
           </Motion.div>
 
           <Motion.h2
@@ -159,9 +166,9 @@ const PorqueValcode = () => {
             transition={{ delay: 0.08 }}
             className="mb-5 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl md:text-5xl"
           >
-            {t("porque_title") || "El agente de PQRS que "}
+            {t("showcase_title")}
             <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              {t("porque_title_highlight") || "clasifica por ti."}
+              {t("showcase_title_highlight")}
             </span>
           </Motion.h2>
 
@@ -172,23 +179,36 @@ const PorqueValcode = () => {
             transition={{ delay: 0.16 }}
             className="text-base font-light leading-relaxed text-slate-600 sm:text-lg"
           >
-            {t("porque_desc") ||
-              "Valdren AI recibe peticiones, quejas, reclamos y sugerencias, las entiende con inteligencia artificial y las envía priorizadas al equipo correcto. Mira el flujo completo en menos de dos minutos."}
+            {t("showcase_desc")}
           </Motion.p>
         </div>
 
-        {/* Reproductor */}
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-x-10 lg:gap-y-6">
+        {/* ================= IZQUIERDA: VALDREN AI (VIDEO) ================= */}
         <Motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto max-w-6xl"
+          className="relative flex flex-col lg:row-span-2 lg:grid lg:grid-rows-subgrid"
         >
+          <div className="mb-5 lg:mb-0">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">
+              {t("showcase_valdren_tag")}
+            </p>
+            <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-slate-950 sm:text-3xl">
+              {t("showcase_valdren_title")}
+            </h3>
+            <p className="mt-2 text-sm font-light leading-relaxed text-slate-600 sm:text-base">
+              {t("showcase_valdren_desc")}
+            </p>
+          </div>
+
+          <div className="relative flex-1">
           {/* Halo */}
           <div className="absolute -inset-3 rounded-[32px] bg-gradient-to-br from-blue-600/20 via-cyan-400/10 to-transparent blur-2xl" />
 
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_30px_80px_-20px_rgba(15,40,80,0.35)]">
+          <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_30px_80px_-20px_rgba(15,40,80,0.35)]">
             {/* Barra de ventana */}
             <div className="flex items-center gap-3 border-b border-slate-200/80 bg-slate-50/90 px-4 py-2.5">
               <div className="flex gap-1.5">
@@ -306,7 +326,7 @@ const PorqueValcode = () => {
             </div>
 
             {/* Capítulos */}
-            <div className="flex gap-2 overflow-x-auto border-t border-slate-200/80 bg-white px-4 py-3 [scrollbar-width:none] sm:grid sm:grid-cols-3 lg:grid-cols-6">
+            <div className="flex gap-2 overflow-x-auto border-t border-slate-200/80 bg-white px-4 py-3 [scrollbar-width:none] sm:grid sm:grid-cols-3">
               {CHAPTERS.map((ch, i) => {
                 const isActive = i === activeChapter;
                 const next = CHAPTERS[i + 1]?.start ?? duration;
@@ -333,32 +353,128 @@ const PorqueValcode = () => {
                 );
               })}
             </div>
+
+            {/* Beneficios de Valdren */}
+            <ul className="grid flex-1 grid-cols-1 content-center gap-3 border-t border-slate-200/80 bg-slate-50/60 px-4 py-4 sm:grid-cols-3">
+              {features.map((f) => (
+                <li key={f.title} className="flex items-start gap-2.5">
+                  <span className="mt-0.5 inline-flex shrink-0 rounded-lg bg-blue-50 p-1.5 text-blue-600 [&>svg]:h-4 [&>svg]:w-4">
+                    {f.icon}
+                  </span>
+                  <span>
+                    <span className="block text-xs font-bold text-slate-900">{f.title}</span>
+                    <span className="mt-0.5 block text-[11px] font-light leading-snug text-slate-600">{f.desc}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
           </div>
         </Motion.div>
 
-        {/* Beneficios + CTA */}
-        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3">
-          {features.map((f, i) => (
-            <Motion.div
-              key={f.title}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ delay: i * 0.08 }}
-              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <div className="mb-4 inline-flex rounded-xl bg-blue-50 p-2.5 text-blue-600">{f.icon}</div>
-              <h3 className="mb-1.5 text-base font-bold text-slate-900">{f.title}</h3>
-              <p className="text-sm font-light leading-relaxed text-slate-600">{f.desc}</p>
-            </Motion.div>
-          ))}
+        {/* ================= DERECHA: ISPOWERING BUSINESS (DEMO EN VIVO) ================= */}
+        <Motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+          className="relative flex flex-col lg:row-span-2 lg:grid lg:grid-rows-subgrid"
+        >
+          <div className="mb-5 lg:mb-0">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              </span>
+              {t("showcase_isp_tag")}
+            </p>
+            <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-slate-950 sm:text-3xl">
+              {t("showcase_isp_title")}
+            </h3>
+            <p className="mt-2 text-sm font-light leading-relaxed text-slate-600 sm:text-base">
+              {t("showcase_isp_desc")}
+            </p>
+          </div>
+
+          <div className="relative flex-1">
+            <div className="absolute -inset-3 rounded-[32px] bg-gradient-to-br from-indigo-600/20 via-blue-500/10 to-transparent blur-2xl" />
+
+            <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 shadow-[0_30px_80px_-20px_rgba(15,40,80,0.45)]">
+              {/* Barra de ventana */}
+              <div className="flex items-center gap-3 border-b border-white/10 bg-slate-900/90 px-4 py-2.5">
+                <div className="flex gap-1.5">
+                  <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
+                  <span className="h-3 w-3 rounded-full bg-[#FEBC2E]" />
+                  <span className="h-3 w-3 rounded-full bg-[#28C840]" />
+                </div>
+                <div className="mx-auto hidden items-center gap-2 rounded-lg bg-white/5 px-4 py-1 text-xs text-slate-400 ring-1 ring-white/10 sm:flex">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  ispowering.onrender.com
+                </div>
+                <span className="ml-auto flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300 sm:ml-0">
+                  Live
+                </span>
+              </div>
+
+              {/* Vista de la plataforma */}
+              <a
+                href={ISP_DEMO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t("proj_demo_btn")}
+                className="group relative block aspect-video w-full overflow-hidden bg-slate-950"
+              >
+                <img
+                  src={ispoweringImg}
+                  alt={t("proj_card2_image_alt")}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-top transition duration-700 group-hover:scale-105"
+                />
+                <span className="absolute inset-0 flex items-center justify-center bg-slate-950/0 opacity-0 transition duration-300 group-hover:bg-slate-950/50 group-hover:opacity-100">
+                  <span className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-slate-950 shadow-xl">
+                    <Rocket className="h-4 w-4 text-blue-600" /> {t("proj_demo_btn")}
+                  </span>
+                </span>
+              </a>
+
+              {/* Características + CTA */}
+              <div className="flex flex-1 flex-col justify-between gap-5 border-t border-white/10 px-5 py-5 sm:px-6">
+                <ul className="space-y-2.5">
+                  {["showcase_isp_feat1", "showcase_isp_feat2", "showcase_isp_feat3"].map((k) => (
+                    <li key={k} className="flex items-start gap-2.5 text-sm text-slate-300">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                      {t(k)}
+                    </li>
+                  ))}
+                </ul>
+
+                <div>
+                  <a
+                    href={ISP_DEMO_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/30 transition hover:bg-blue-500 active:scale-95"
+                  >
+                    <Rocket className="h-4 w-4" />
+                    {t("proj_demo_btn")}
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                  <p className="mt-3 flex items-start gap-2 text-[11px] leading-relaxed text-slate-500">
+                    <Clock className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                    {t("proj_demo_note")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Motion.div>
         </div>
 
         <Motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
-          className="mx-auto mt-6 flex max-w-6xl flex-col items-start justify-between gap-5 rounded-2xl bg-slate-950 px-6 py-6 text-white sm:flex-row sm:items-center sm:px-8"
+          className="mx-auto mt-14 flex max-w-7xl flex-col items-start justify-between gap-5 rounded-2xl bg-slate-950 px-6 py-6 text-white sm:flex-row sm:items-center sm:px-8"
         >
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-400">
