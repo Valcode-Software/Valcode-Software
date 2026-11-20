@@ -461,7 +461,24 @@ export const translations = {
     tyc_contact_phone: "Teléfono:",
     tyc_contact_address: "Dirección:",
     tyc_contact_address_text: "remoto",
-    tyc_acceptance: "Al utilizar nuestros servicios, usted confirma que ha leído, entendido y aceptado estos Términos y Condiciones en su totalidad."
+    tyc_acceptance: "Al utilizar nuestros servicios, usted confirma que ha leído, entendido y aceptado estos Términos y Condiciones en su totalidad.",
+
+    // error 404
+    error404_badge: "Error 404",
+    error404_title: "Esta página se perdió en el espacio",
+    error404_desc: "La ruta que buscas no existe, fue movida o ya no está disponible. Revisa la dirección o continúa desde una de las opciones de abajo.",
+    error404_home: "Volver al inicio",
+    error404_back: "Página anterior",
+    error404_links_aria: "Enlaces útiles",
+    error404_maybe: "Quizás buscabas",
+    error404_link_home: "Inicio",
+    error404_link_home_desc: "Vuelve a la página principal",
+    error404_link_services: "Servicios",
+    error404_link_services_desc: "Conoce lo que ofrecemos",
+    error404_link_support: "Soporte",
+    error404_link_support_desc: "Habla con nuestro equipo",
+    error404_report_q: "¿Crees que esto es un error?",
+    error404_report_link: "Repórtalo a soporte"
   },
   en: {
     // navbar
@@ -926,6 +943,23 @@ export const translations = {
     tyc_contact_phone: "Phone:",
     tyc_contact_address: "Address:",
     tyc_contact_address_text: "remote",
-    tyc_acceptance: "By using our services, you confirm that you have read, understood, and accepted these Terms and Conditions in their entirety."
+    tyc_acceptance: "By using our services, you confirm that you have read, understood, and accepted these Terms and Conditions in their entirety.",
+
+    // error 404
+    error404_badge: "Error 404",
+    error404_title: "This page got lost in space",
+    error404_desc: "The page you're looking for doesn't exist, has been moved, or is no longer available. Check the address or continue from one of the options below.",
+    error404_home: "Back to home",
+    error404_back: "Previous page",
+    error404_links_aria: "Useful links",
+    error404_maybe: "Maybe you were looking for",
+    error404_link_home: "Home",
+    error404_link_home_desc: "Go back to the main page",
+    error404_link_services: "Services",
+    error404_link_services_desc: "See what we offer",
+    error404_link_support: "Support",
+    error404_link_support_desc: "Talk to our team",
+    error404_report_q: "Think this is a mistake?",
+    error404_report_link: "Report it to support"
   }
 };

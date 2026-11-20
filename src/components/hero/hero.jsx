@@ -59,7 +59,7 @@ export default function HeroSection() {
 
   return (
     // Agregamos min-h-[600px] para asegurar que en pantallas muy cortas no se colapse todo
-    <section className="relative w-full h-[100dvh] min-h-[600px] overflow-hidden bg-black flex flex-col justify-end">
+    <section className="relative w-full min-h-[100dvh] overflow-hidden bg-black flex flex-col justify-end">
       
       {/* Fondo con animación sutil */}
       <motion.div
@@ -84,7 +84,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/30" />
 
       {/* Contenido: Agregamos pt-28 para que nunca choque con el Navbar fijo arriba */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-start text-left px-6 sm:px-12 md:px-20 pb-16 sm:pb-28 pt-28">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-start text-left px-6 sm:px-12 md:px-20 pb-16 sm:pb-20 pt-32">
         
         {/* Título Principal - Escalado de texto más suave para móviles */}
         <motion.h1
@@ -92,7 +92,7 @@ export default function HeroSection() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
           aria-label={title}
-          className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[1.1] drop-shadow-2xl mb-4 max-w-4xl bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent break-words w-full"
+          className="text-white text-[clamp(2.25rem,min(7vw,9vh),6rem)] font-extrabold tracking-tight leading-[1.1] drop-shadow-2xl mb-4 max-w-4xl bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent break-words w-full"
         >
           <span>{visibleTitle}</span>
           {/* El texto invisible mantiene la estructura intacta para evitar saltos en la pantalla */}
@@ -105,7 +105,7 @@ export default function HeroSection() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
           aria-label={description}
-          className="text-gray-200 text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed max-w-2xl drop-shadow-md mb-8 break-words w-full"
+          className="text-gray-200 text-[clamp(1rem,min(1.6vw,2.6vh),1.5rem)] font-light leading-relaxed max-w-2xl drop-shadow-md mb-8 break-words w-full"
         >
           <span>{visibleDesc}</span>
           <span aria-hidden="true" className="opacity-0">{invisibleDesc}</span>
